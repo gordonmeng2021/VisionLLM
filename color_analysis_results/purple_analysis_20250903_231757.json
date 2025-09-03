@@ -1,0 +1,19 @@
+{
+  "analysis_info": {
+    "timestamp": "20250903_231757",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1600,
+      502,
+      4
+    ],
+    "total_pixels": 803200,
+    "unique_colors": 451
+  },
+  "color_detection": {
+    "color_name": "purple",
+    "color_info": {
+      "name": "Purple",
+      "description": "Colors with significant blue, present red, and low green",
+      "rules": [
+        

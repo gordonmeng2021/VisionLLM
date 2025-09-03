@@ -1,0 +1,14 @@
+# Checking pixel logic
+# check from rightest to the left to see if there is a green or red candle
+
+
+#### Pending: 
+Minute photo cap logic 
+
+
+Steps:
+1. Run extract_hex_colors.py to find the matched color.
+2. Input the matched color then run search_specific_color.py, to check whenther the color is right or not.
+
+
+### orange and yellow is not well define
