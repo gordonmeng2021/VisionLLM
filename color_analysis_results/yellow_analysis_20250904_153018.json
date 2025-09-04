@@ -1,0 +1,128 @@
+{
+  "analysis_info": {
+    "timestamp": "20250904_153018",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1158,
+      630,
+      4
+    ],
+    "total_pixels": 729540,
+    "unique_colors": 298
+  },
+  "color_detection": {
+    "color_name": "yellow",
+    "color_info": {
+      "name": "Yellow",
+      "description": "Colors with similar high red and green values, controlled blue"
+    },
+    "detected_colors_count": 11,
+    "total_detected_pixels": 7956,
+    "percentage_of_image": 1.0905502097211943
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        247,
+        218,
+        89
+      ],
+      "pixel_count": 7881,
+      "percentage": 1.0802697590262356
+    },
+    {
+      "rgb": [
+        248,
+        220,
+        95
+      ],
+      "pixel_count": 35,
+      "percentage": 0.004797543657647284
+    },
+    {
+      "rgb": [
+        247,
+        219,
+        92
+      ],
+      "pixel_count": 10,
+      "percentage": 0.0013707267593277956
+    },
+    {
+      "rgb": [
+        248,
+        220,
+        99
+      ],
+      "pixel_count": 6,
+      "percentage": 0.0008224360555966774
+    },
+    {
+      "rgb": [
+        247,
+        218,
+        90
+      ],
+      "pixel_count": 5,
+      "percentage": 0.0006853633796638978
+    },
+    {
+      "rgb": [
+        247,
+        219,
+        91
+      ],
+      "pixel_count": 5,
+      "percentage": 0.0006853633796638978
+    },
+    {
+      "rgb": [
+        248,
+        220,
+        97
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0005482907037311183
+    },
+    {
+      "rgb": [
+        248,
+        220,
+        98
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0005482907037311183
+    },
+    {
+      "rgb": [
+        248,
+        220,
+        96
+      ],
+      "pixel_count": 3,
+      "percentage": 0.0004112180277983387
+    },
+    {
+      "rgb": [
+        248,
+        220,
+        94
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00027414535186555915
+    },
+    {
+      "rgb": [
+        248,
+        220,
+        93
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00013707267593277957
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/yellow_detection_20250904_153008.png",
+    "report": "color_analysis_results/yellow_analysis_20250904_153018.json"
+  }
+}

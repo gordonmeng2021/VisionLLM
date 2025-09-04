@@ -1,0 +1,101 @@
+{
+  "analysis_info": {
+    "timestamp": "20250904_153547",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1026,
+      680,
+      4
+    ],
+    "total_pixels": 697680,
+    "unique_colors": 199
+  },
+  "color_detection": {
+    "color_name": "purple",
+    "color_info": {
+      "name": "Purple",
+      "description": "Colors with significant blue, present red, and low green"
+    },
+    "detected_colors_count": 8,
+    "total_detected_pixels": 2663,
+    "percentage_of_image": 0.38169361311776173
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        144,
+        49,
+        170
+      ],
+      "pixel_count": 2428,
+      "percentage": 0.3480105492489393
+    },
+    {
+      "rgb": [
+        46,
+        22,
+        53
+      ],
+      "pixel_count": 106,
+      "percentage": 0.015193211787639032
+    },
+    {
+      "rgb": [
+        225,
+        202,
+        233
+      ],
+      "pixel_count": 43,
+      "percentage": 0.006163284027061117
+    },
+    {
+      "rgb": [
+        197,
+        150,
+        212
+      ],
+      "pixel_count": 39,
+      "percentage": 0.005589955280357758
+    },
+    {
+      "rgb": [
+        170,
+        98,
+        191
+      ],
+      "pixel_count": 39,
+      "percentage": 0.005589955280357758
+    },
+    {
+      "rgb": [
+        79,
+        31,
+        93
+      ],
+      "pixel_count": 5,
+      "percentage": 0.0007166609333791996
+    },
+    {
+      "rgb": [
+        56,
+        32,
+        63
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0002866643733516798
+    },
+    {
+      "rgb": [
+        106,
+        82,
+        113
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001433321866758399
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/purple_detection_20250904_153545.png",
+    "report": "color_analysis_results/purple_analysis_20250904_153547.json"
+  }
+}

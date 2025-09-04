@@ -11,4 +11,17 @@ Steps:
 2. Input the matched color then run search_specific_color.py, to check whenther the color is right or not.
 
 
-### orange and yellow is not well define
+
+### run strategy.py to start the strategy
+
+
+### add the zigzag indicator 
+
+#Steps:
+1. Open scrape.py, open NVDA, TSLA etc.
+2. 每5 min 整分鐘 - 30s 就refresh all tabs, then > 5分鐘整就 capture all tabs photos.
+3. Save the photo in a proper dir, open ${number of photo captured} threading.
+3. Input the photo for the strategy, output the signal.
+
+
+??? 跟PID or what?

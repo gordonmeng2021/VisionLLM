@@ -1,0 +1,38 @@
+{
+  "analysis_info": {
+    "timestamp": "20250904_162309",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1374,
+      302,
+      4
+    ],
+    "total_pixels": 414948,
+    "unique_colors": 84
+  },
+  "color_detection": {
+    "color_name": "green",
+    "color_info": {
+      "name": "Green",
+      "description": "Colors with significant green component, including teal-green"
+    },
+    "detected_colors_count": 1,
+    "total_detected_pixels": 264,
+    "percentage_of_image": 0.06362242979843256
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        69,
+        151,
+        130
+      ],
+      "pixel_count": 264,
+      "percentage": 0.06362242979843256
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/green_detection_20250904_162305.png",
+    "report": "color_analysis_results/green_analysis_20250904_162309.json"
+  }
+}

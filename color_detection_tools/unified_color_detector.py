@@ -48,12 +48,16 @@ class UnifiedColorDetector:
             },
             'yellow': {
                 'name': 'Yellow',
-                'description': 'Colors with high red and green, low blue',
+                'description': 'Colors with similar high red and green values, controlled blue',
                 'rules': [
-                    lambda r, g, b: r > 100 and g > 100,   # High red and green
-                    lambda r, g, b: b < min(r, g) * 0.6,   # Low blue
-                    lambda r, g, b: max(r, g, b) - min(r, g, b) > 20,  # Color variation
-                    lambda r, g, b: r > 50 and g > 50,     # Both R and G present
+                    lambda r, g, b: r > 100 and g > 100,   # High red and green (lowered threshold)
+                    lambda r, g, b: abs(int(r) - int(g)) < 80,       # Red and green should be similar (more relaxed)
+                    lambda r, g, b: b < min(r, g) * 0.65,  # Blue less than 65% of min(R,G) (more relaxed)
+                    lambda r, g, b: b < 150,               # Blue absolute limit (increased)
+                    lambda r, g, b: min(r, g) > max(r, g) * 0.6,   # R and G should be reasonably close (more relaxed)
+                    lambda r, g, b: int(r) + int(g) > 2 * int(b) + 50,    # Yellow color space rule (more relaxed)
+                    lambda r, g, b: r > g * 0.7 and g > r * 0.7,   # Neither R nor G dominates too much (more relaxed)
+                    lambda r, g, b: r > 50 and g > 50,     # Minimum brightness to avoid dark colors
                 ]
             },
             'orange': {
@@ -65,6 +69,29 @@ class UnifiedColorDetector:
                     lambda r, g, b: g > 30 and g < r * 0.8,  # Medium green
                     lambda r, g, b: b < min(r, g) * 0.5,   # Low blue
                     lambda r, g, b: max(r, g, b) - min(r, g, b) > 25,  # Color variation
+                ]
+            },
+            'red': {
+                'name': 'Red',
+                'description': 'Colors with dominant red component, excluding orange',
+                'rules': [
+                    lambda r, g, b: r > max(g, b) * 1.2,   # Red dominant but not as strict
+                    lambda r, g, b: r > 100,               # High red value
+                    lambda r, g, b: g < r * 0.6,           # Green much lower than red (stricter to avoid orange)
+                    lambda r, g, b: b < r * 0.6,           # Blue much lower than red
+                    lambda r, g, b: r - g > 50,            # Red significantly higher than green (avoid orange)
+                    lambda r, g, b: max(r, g, b) - min(r, g, b) > 40,  # Good color variation
+                ]
+            },
+            'green': {
+                'name': 'Green',
+                'description': 'Colors with significant green component, including teal-green',
+                'rules': [
+                    lambda r, g, b: g > max(r, b),         # Green is highest component
+                    lambda r, g, b: g > 50,                # Minimum green value
+                    lambda r, g, b: g - max(r, b) > 10,    # Green noticeably higher (more lenient)
+                    lambda r, g, b: max(r, g, b) - min(r, g, b) > 15,  # Some color variation
+                    lambda r, g, b: g > 80 or (g > r * 1.5 and g > b * 0.8),  # Either bright green OR green dominant over red with reasonable blue
                 ]
             }
         }

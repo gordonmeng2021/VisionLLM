@@ -1,0 +1,254 @@
+{
+  "analysis_info": {
+    "timestamp": "20250904_151848",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1600,
+      502,
+      4
+    ],
+    "total_pixels": 803200,
+    "unique_colors": 451
+  },
+  "color_detection": {
+    "color_name": "purple",
+    "color_info": {
+      "name": "Purple",
+      "description": "Colors with significant blue, present red, and low green"
+    },
+    "detected_colors_count": 25,
+    "total_detected_pixels": 1506,
+    "percentage_of_image": 0.1875
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        142,
+        39,
+        162
+      ],
+      "pixel_count": 1330,
+      "percentage": 0.16558764940239043
+    },
+    {
+      "rgb": [
+        107,
+        33,
+        121
+      ],
+      "pixel_count": 54,
+      "percentage": 0.0067231075697211165
+    },
+    {
+      "rgb": [
+        197,
+        137,
+        207
+      ],
+      "pixel_count": 48,
+      "percentage": 0.00597609561752988
+    },
+    {
+      "rgb": [
+        253,
+        230,
+        232
+      ],
+      "pixel_count": 13,
+      "percentage": 0.0016185258964143425
+    },
+    {
+      "rgb": [
+        225,
+        194,
+        230
+      ],
+      "pixel_count": 13,
+      "percentage": 0.0016185258964143425
+    },
+    {
+      "rgb": [
+        169,
+        84,
+        184
+      ],
+      "pixel_count": 12,
+      "percentage": 0.00149402390438247
+    },
+    {
+      "rgb": [
+        250,
+        210,
+        213
+      ],
+      "pixel_count": 11,
+      "percentage": 0.0013695219123505977
+    },
+    {
+      "rgb": [
+        74,
+        27,
+        83
+      ],
+      "pixel_count": 4,
+      "percentage": 0.00049800796812749
+    },
+    {
+      "rgb": [
+        249,
+        199,
+        203
+      ],
+      "pixel_count": 3,
+      "percentage": 0.0003735059760956175
+    },
+    {
+      "rgb": [
+        43,
+        22,
+        47
+      ],
+      "pixel_count": 3,
+      "percentage": 0.0003735059760956175
+    },
+    {
+      "rgb": [
+        252,
+        228,
+        230
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        250,
+        204,
+        208
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        249,
+        197,
+        201
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        248,
+        188,
+        193
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        248,
+        183,
+        188
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        248,
+        191,
+        196
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        251,
+        226,
+        228
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        246,
+        175,
+        181
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        249,
+        198,
+        202
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        246,
+        172,
+        178
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        251,
+        215,
+        218
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        251,
+        215,
+        219
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        252,
+        227,
+        229
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        246,
+        170,
+        176
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    },
+    {
+      "rgb": [
+        248,
+        195,
+        199
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0001245019920318725
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/purple_detection_20250904_151846.png",
+    "report": "color_analysis_results/purple_analysis_20250904_151848.json"
+  }
+}

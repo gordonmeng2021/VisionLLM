@@ -1,0 +1,56 @@
+{
+  "analysis_info": {
+    "timestamp": "20250904_153152",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1158,
+      630,
+      4
+    ],
+    "total_pixels": 729540,
+    "unique_colors": 298
+  },
+  "color_detection": {
+    "color_name": "orange",
+    "color_info": {
+      "name": "Orange",
+      "description": "Colors with high red, medium green, low blue"
+    },
+    "detected_colors_count": 3,
+    "total_detected_pixels": 144,
+    "percentage_of_image": 0.019738465334320256
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        241,
+        157,
+        56
+      ],
+      "pixel_count": 80,
+      "percentage": 0.010965814074622365
+    },
+    {
+      "rgb": [
+        128,
+        87,
+        30
+      ],
+      "pixel_count": 45,
+      "percentage": 0.0061682704169750795
+    },
+    {
+      "rgb": [
+        244,
+        181,
+        88
+      ],
+      "pixel_count": 19,
+      "percentage": 0.0026043808427228116
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/orange_detection_20250904_153149.png",
+    "report": "color_analysis_results/orange_analysis_20250904_153152.json"
+  }
+}
