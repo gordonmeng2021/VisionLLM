@@ -25,3 +25,8 @@ Steps:
 
 
 ??? 跟PID or what?
+
+
+### alert
+### add zigzag indicator
+### auto open multiple symbol tabs

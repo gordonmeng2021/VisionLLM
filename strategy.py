@@ -86,14 +86,14 @@ class CandleStrategyAnalyzer:
                 else:  # RGB
                     self.rgb_image = self.image_array
             else:
-                print("❌ Unsupported image format")
+                # print("❌ Unsupported image format")
                 return False
             
-            print(f"✅ RGB image shape: {self.rgb_image.shape}")
+            # print(f"✅ RGB image shape: {self.rgb_image.shape}")
             return True
             
         except Exception as e:
-            print(f"❌ Error loading image: {e}")
+            # print(f"❌ Error loading image: {e}")
             return False
     
     def detect_candles(self):
@@ -105,7 +105,7 @@ class CandleStrategyAnalyzer:
         # Step 1: Create a horizontal color map - for each x position, check if ANY pixel in that column is red or green
         x_color_map = []  # List of (x, color) for each x position that has red or green pixels
         
-        print("🎨 Scanning horizontal positions for red/green pixels...")
+        # print("🎨 Scanning horizontal positions for red/green pixels...")
         for x in range(width):
             has_red = False
             has_green = False
@@ -132,10 +132,10 @@ class CandleStrategyAnalyzer:
             elif has_green:
                 x_color_map.append((x, 'green'))
         
-        print(f"📍 Found {len(x_color_map)} x-positions with red/green pixels")
+        # print(f"📍 Found {len(x_color_map)} x-positions with red/green pixels")
         
         if not x_color_map:
-            print("❌ No red/green pixels found")
+            # print("❌ No red/green pixels found")
             return []
         
         # Step 2: Find continuous horizontal segments of the same color
@@ -169,13 +169,13 @@ class CandleStrategyAnalyzer:
         if current_segment:
             segments.append(current_segment)
         
-        print(f"🔍 Found {len(segments)} continuous color segments:")
-        for i, seg in enumerate(segments):
-            print(f"  Segment {i+1}: {seg['color']} x={seg['left']}-{seg['right']} (width={seg['width']})")
+        # print(f"🔍 Found {len(segments)} continuous color segments:")
+        # for i, seg in enumerate(segments):
+            # print(f"  Segment {i+1}: {seg['color']} x={seg['left']}-{seg['right']} (width={seg['width']})")
         
         # Step 3: Analyze segment widths to identify candle pattern
         if not segments:
-            print("❌ No segments found")
+            # print("❌ No segments found")
             return []
         
         # Get all segment widths
@@ -184,11 +184,11 @@ class CandleStrategyAnalyzer:
         for w in widths:
             width_counts[w] = width_counts.get(w, 0) + 1
         
-        print(f"📊 Width distribution: {dict(sorted(width_counts.items()))}")
+        # print(f"📊 Width distribution: {dict(sorted(width_counts.items()))}")
         
         # Find the most common width (likely the candle width)
         most_common_width = max(width_counts.items(), key=lambda x: x[1])[0]
-        print(f"📏 Most common width: {most_common_width} pixels (appears {width_counts[most_common_width]} times)")
+        # print(f"📏 Most common width: {most_common_width} pixels (appears {width_counts[most_common_width]} times)")
         
         # Step 4: Filter segments to find candles based on the most common width
         candles = []
@@ -236,26 +236,25 @@ class CandleStrategyAnalyzer:
         self.candle_positions = candles
         self.candle_width = most_common_width
         
-        print(f"📊 Detected {len(candles)} candles")
-        print(f"📏 Candle width: {most_common_width} pixels")
+        # print(f"📊 Detected {len(candles)} candles")
+        # print(f"📏 Candle width: {most_common_width} pixels")
         
-        print(f"🕯️  Final candle positions:")
-        for i, candle in enumerate(candles):
-            print(f"  Candle {i+1}: x={candle['center']} ({candle['color']}, left={candle['left']}, right={candle['right']}, width={candle['width']})")
-        
+        # print(f"🕯️  Final candle positions:")
+        # for i, candle in enumerate(candles):
+            # print(f"  Candle {i+1}: x={candle['center']} ({candle['color']}, left={candle['left']}, right={candle['right']}, width={candle['width']})")
         return candles
     
     def get_second_rightmost_candle(self):
         """Get the second rightmost candle's midpoint."""
         if len(self.candle_positions) < 2:
-            print("❌ Need at least 2 candles for analysis")
+            # print("❌ Need at least 2 candles for analysis")
             return None
         
         # Sort candles by center position (rightmost first)
         sorted_candles = sorted(self.candle_positions, key=lambda c: c['center'], reverse=True)
         second_rightmost = sorted_candles[1]
         
-        print(f"🎯 Second rightmost candle center: x={second_rightmost['center']}")
+        # print(f"🎯 Second rightmost candle center: x={second_rightmost['center']}")
         return second_rightmost
     
     def detect_color_at_position(self, color_name, x, y):
@@ -284,7 +283,7 @@ class CandleStrategyAnalyzer:
         else:  # 'both'
             y_range = range(height)  # Entire height
         
-        print(f"🔍 Scanning x={x} for {colors} in direction '{direction}' (y range: {min(y_range)}-{max(y_range)})")
+        # print(f"🔍 Scanning x={x} for {colors} in direction '{direction}' (y range: {min(y_range)}-{max(y_range)})")
         
         color_detections = {}
         for color in colors:
@@ -301,12 +300,12 @@ class CandleStrategyAnalyzer:
                 print(f"🎨 Found {len(color_detections[color])} {color} pixels at x={x}: y positions {color_detections[color][:5]}{'...' if len(color_detections[color]) > 5 else ''}")
                 return color  # Return first color found
         
-        print(f"❌ No target colors found at x={x}")
+        # print(f"❌ No target colors found at x={x}")
         return 'none'
     
     def analyze_stm_signal(self, candle_x):
         """Analyze STM signal by looking down from candle midpoint for orange/purple."""
-        print(f"🔍 Analyzing STM signal at x={candle_x} (looking down)")
+        # print(f"🔍 Analyzing STM signal at x={candle_x} (looking down)")
         
         color_found = self.scan_vertical_line_for_colors(candle_x, ['orange', 'purple'], 'down')
         
@@ -319,7 +318,7 @@ class CandleStrategyAnalyzer:
     
     def analyze_td_signal(self, candle_x):
         """Analyze TD signal by looking up and down from candle midpoint for yellow/blue."""
-        print(f"🔍 Analyzing TD signal at x={candle_x} (looking up and down)")
+        # print(f"🔍 Analyzing TD signal at x={candle_x} (looking up and down)")
         
         color_found = self.scan_vertical_line_for_colors(candle_x, ['yellow', 'blue'], 'both')
         
@@ -332,8 +331,8 @@ class CandleStrategyAnalyzer:
     
     def run_analysis(self):
         """Run the complete strategy analysis."""
-        print("🚀 Starting Strategy Analysis")
-        print("=" * 50)
+        # print("🚀 Starting Strategy Analysis")
+        # print("=" * 50)
         
         # Load image
         if not self.load_image():
@@ -377,7 +376,7 @@ def main():
     image_path = 'cropped_images/test.png'
     
     if not os.path.exists(image_path):
-        print(f"❌ Image not found: {image_path}")
+        # print(f"❌ Image not found: {image_path}")
         return
     
     # Create analyzer
@@ -391,7 +390,7 @@ def main():
         print(f"\n🎉 Analysis Complete!")
         print(f"Final JSON: {json.dumps(results)}")
     else:
-        print(f"\n❌ Analysis Failed: {results['error']}")
+        # print(f"\n❌ Analysis Failed: {results['error']}")
 
 if __name__ == "__main__":
     main()

@@ -84,7 +84,7 @@ class VisualCandleStrategyAnalyzer:
         try:
             pil_image = Image.open(self.image_path)
             self.image_array = np.array(pil_image)
-            print(f"✅ Image loaded: {self.image_array.shape}")
+            # print(f"✅ Image loaded: {self.image_array.shape}")
             
             # Convert to RGB (handle RGBA)
             if len(self.image_array.shape) == 3:
@@ -105,14 +105,14 @@ class VisualCandleStrategyAnalyzer:
     
     def detect_candles(self):
         """Detect candles by finding horizontal continuity of red/green pixels."""
-        print("🕯️  Detecting candles using horizontal continuity approach...")
+        # print("🕯️  Detecting candles using horizontal continuity approach...")
         
         height, width = self.rgb_image.shape[:2]
         
         # Step 1: Create a horizontal color map - for each x position, check if ANY pixel in that column is red or green
         x_color_map = []  # List of (x, color) for each x position that has red or green pixels
         
-        print("🎨 Scanning horizontal positions for red/green pixels...")
+        # print("🎨 Scanning horizontal positions for red/green pixels...")
         for x in range(width):
             has_red = False
             has_green = False
@@ -139,7 +139,7 @@ class VisualCandleStrategyAnalyzer:
             elif has_green:
                 x_color_map.append((x, 'green'))
         
-        print(f"📍 Found {len(x_color_map)} x-positions with red/green pixels")
+        # print(f"📍 Found {len(x_color_map)} x-positions with red/green pixels")
         
         if not x_color_map:
             print("❌ No red/green pixels found")
@@ -176,9 +176,9 @@ class VisualCandleStrategyAnalyzer:
         if current_segment:
             segments.append(current_segment)
         
-        print(f"🔍 Found {len(segments)} continuous color segments:")
-        for i, seg in enumerate(segments):
-            print(f"  Segment {i+1}: {seg['color']} x={seg['left']}-{seg['right']} (width={seg['width']})")
+        # print(f"🔍 Found {len(segments)} continuous color segments:")
+        # for i, seg in enumerate(segments):
+            # print(f"  Segment {i+1}: {seg['color']} x={seg['left']}-{seg['right']} (width={seg['width']})")
         
         # Step 3: Analyze segment widths to identify candle pattern
         if not segments:
@@ -191,11 +191,11 @@ class VisualCandleStrategyAnalyzer:
         for w in widths:
             width_counts[w] = width_counts.get(w, 0) + 1
         
-        print(f"📊 Width distribution: {dict(sorted(width_counts.items()))}")
+        # print(f"📊 Width distribution: {dict(sorted(width_counts.items()))}")
         
         # Find the most common width (likely the candle width)
         most_common_width = max(width_counts.items(), key=lambda x: x[1])[0]
-        print(f"📏 Most common width: {most_common_width} pixels (appears {width_counts[most_common_width]} times)")
+        # print(f"📏 Most common width: {most_common_width} pixels (appears {width_counts[most_common_width]} times)")
         
         # Step 4: Filter segments to find candles based on the most common width
         candles = []
@@ -215,7 +215,7 @@ class VisualCandleStrategyAnalyzer:
         
         # Step 5: If we don't have enough candles, try with more flexible criteria
         if len(candles) < 5:  # Expect at least 5 candles typically
-            print("🔄 Not enough candles found, trying more flexible approach...")
+            # print("🔄 Not enough candles found, trying more flexible approach...")
             
             # Try with larger tolerance or different width
             sorted_widths = sorted(width_counts.items(), key=lambda x: x[1], reverse=True)
@@ -243,12 +243,12 @@ class VisualCandleStrategyAnalyzer:
         self.candle_positions = candles
         self.candle_width = most_common_width
         
-        print(f"📊 Detected {len(candles)} candles")
-        print(f"📏 Candle width: {most_common_width} pixels")
+        # print(f"📊 Detected {len(candles)} candles")
+        # print(f"📏 Candle width: {most_common_width} pixels")
         
-        print(f"🕯️  Final candle positions:")
-        for i, candle in enumerate(candles):
-            print(f"  Candle {i+1}: x={candle['center']} ({candle['color']}, left={candle['left']}, right={candle['right']}, width={candle['width']})")
+        # print(f"🕯️  Final candle positions:")
+        # for i, candle in enumerate(candles):
+            # print(f"  Candle {i+1}: x={candle['center']} ({candle['color']}, left={candle['left']}, right={candle['right']}, width={candle['width']})")
         
         return candles
     
@@ -305,10 +305,10 @@ class VisualCandleStrategyAnalyzer:
         # Report findings and return first color found with positions
         for color in colors:
             if color_detections[color]:
-                print(f"🎨 Found {len(color_detections[color])} {color} pixels at x={x}: y positions {color_detections[color][:5]}{'...' if len(color_detections[color]) > 5 else ''}")
+                # print(f"🎨 Found {len(color_detections[color])} {color} pixels at x={x}: y positions {color_detections[color][:5]}{'...' if len(color_detections[color]) > 5 else ''}")
                 return color, color_detections[color]  # Return color and positions
         
-        print(f"❌ No target colors found at x={x}")
+        # print(f"❌ No target colors found at x={x}")
         return 'none', []
     
     def create_visual_analysis(self, candle_x):
