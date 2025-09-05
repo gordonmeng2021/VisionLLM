@@ -7,6 +7,7 @@ from logging.handlers import RotatingFileHandler
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import platform
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
 stock_list = ["TSLA", "NVDA", "AAPL"]
@@ -42,6 +43,63 @@ except Exception as strategy_import_error:
 # Note: We implement cropping directly in crop_screenshot() function
 
 
+def play_alert_sound():
+    """Play an alert sound based on the operating system."""
+    try:
+        system = platform.system().lower()
+        if system == "darwin":  # macOS
+            os.system("afplay /System/Library/Sounds/Glass.aiff")
+        elif system == "linux":
+            os.system("paplay /usr/share/sounds/alsa/Front_Left.wav")
+        elif system == "windows":
+            import winsound
+            winsound.Beep(1000, 500)  # 1000Hz for 500ms
+        else:
+            # Fallback: print bell character
+            print("\a")
+    except Exception as e:
+        # Fallback: print bell character
+        print("\a")
+
+
+def check_signal_alignment(stm: str, td: str, zigzag: str) -> tuple:
+    """
+    Check if all three signals are aligned (all buy or all sell).
+    
+    Returns:
+        tuple: (is_aligned, signal_type) where signal_type is 'buy', 'sell', or 'none'
+    """
+    if stm == "buy" and td == "buy" and zigzag == "buy":
+        return True, "buy"
+    elif stm == "sell" and td == "sell" and zigzag == "sell":
+        return True, "sell"
+    else:
+        return False, "none"
+
+
+def show_alert_message(symbol: str, signal_type: str, stm: str, td: str, zigzag: str, logger: logging.Logger):
+    """Show a prominent alert message in the terminal."""
+    alert_symbol = "🚨" if signal_type == "sell" else "🚀"
+    signal_emoji = "📉" if signal_type == "sell" else "📈"
+    
+    # Create a prominent border
+    border = "=" * 80
+    alert_line = f"{alert_symbol} ALERT: ALL SIGNALS ALIGNED - {signal_type.upper()} SIGNAL {alert_symbol}"
+    
+    print("\n" + border)
+    print(alert_line)
+    print(f"Symbol: {symbol}")
+    print(f"Signal Type: {signal_type.upper()} {signal_emoji}")
+    print(f"STM: {stm.upper()}")
+    print(f"TD: {td.upper()}")
+    print(f"Zigzag: {zigzag.upper()}")
+    print(f"Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(border + "\n")
+    
+    # Log the alert
+    logger.warning(f"ALERT: All signals aligned for {symbol} - {signal_type.upper()} (STM:{stm}, TD:{td}, Zigzag:{zigzag})")
+
+
 def configure_logging(log_path: str) -> logging.Logger:
     logger = logging.getLogger("main_orchestrator")
     logger.setLevel(logging.INFO)
@@ -67,16 +125,16 @@ def configure_logging(log_path: str) -> logging.Logger:
 
 def wait_for_user_ready(logger: logging.Logger) -> None:
     logger.info("Browser is now open. Open all desired tabs and sign in if needed.")
-    logger.info("Type 'ok' here to start the scheduled refresh/capture loop.")
+    logger.info("Type 'k' here to start the scheduled refresh/capture loop.")
     print("Browser is now open. Open all desired tabs and sign in if needed.")
-    print("Type 'ok' here to start the scheduled refresh/capture loop.")
+    print("Type 'k' here to start the scheduled refresh/capture loop.")
     while True:
         try:
-            user_input = input('Enter "ok" to continue: ').strip().lower()
+            user_input = input('Enter "k" to continue: ').strip().lower()
         except EOFError:
             time.sleep(1)
             continue
-        if user_input == "ok":
+        if user_input == "k":
             logger.info("User confirmed start. Beginning scheduled operations.")
             print("Starting scheduled operations...")
             return
@@ -256,7 +314,7 @@ def capture_single_tab(driver, tab_info: dict, index: int, output_dir: str, time
     """Capture a single tab and return the saved path."""
     try:
         driver.switch_to.window(tab_info["handle"])
-        time.sleep(0.8)
+        time.sleep(0.1)
         filename = f"{timestamp_for_filename}_tab{index}_{tab_info['host']}.png"
         path = os.path.join(output_dir, filename)
         
@@ -368,18 +426,28 @@ def run_strategy_concurrently(image_paths: list, output_dir: str, logger: loggin
                 if "error" in result:
                     logger.error(f"Processing failed for {img_path}: {result['error']}")
                     # Clean terminal output for errors
-                    print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\"}}")
+                    print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\",\"Zigzag\":\"error\"}}")
                 else:
                     symbol = result.get("symbol", "UNKNOWN")
                     stm = result.get("STM", "none")
                     td = result.get("TD", "none")
-                    logger.info(f"Analysis: {img_path} → Symbol={symbol}, STM={stm}, TD={td}")
+                    zigzag = result.get("Zigzag", "none")
+                    logger.info(f"Analysis: {img_path} → Symbol={symbol}, STM={stm}, TD={td}, Zigzag={zigzag}")
+                    
+                    # Check for signal alignment and trigger alerts
+                    is_aligned, signal_type = check_signal_alignment(stm, td, zigzag)
+                    if is_aligned:
+                        # Play alert sound
+                        play_alert_sound()
+                        # Show prominent alert message
+                        show_alert_message(symbol, signal_type, stm, td, zigzag, logger)
+                    
                     # Clean terminal output - only JSON
-                    print(f"JSON Output: {{\"Symbol\":\"{symbol}\",\"STM\":\"{stm}\",\"TD\":\"{td}\"}}")
+                    print(f"🔥JSON Output: {{\"Symbol\":\"{symbol}\",\"STM\":\"{stm}\",\"TD\":\"{td}\",\"Zigzag\":\"{zigzag}\"}}")
             except Exception as e:
                 logger.exception(f"Exception in processing for {path}: {e}")
                 # Clean terminal output for exceptions
-                print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\"}}")
+                print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\",\"Zigzag\":\"error\"}}")
 
 
 def ceil_to_next_5min_mark(now: datetime) -> datetime:
@@ -420,10 +488,10 @@ def main():
         wait_for_user_ready(logger)
         # get the first tab's url
         first_tab_url = driver.current_url
-        if "%3A" in first_tab_url:
-            base, _ = first_tab_url.split("%3A", 1)  # split once, discard the old stock part
+        if "symbol=" in first_tab_url:
+            base, _ = first_tab_url.split("symbol=", 1)  # split once, discard the old stock part
             for stock in stock_list:
-                new_url = f"{base}%3A{stock}"
+                new_url = f"{base}symbol={stock}"
                 # Open new tab with the URL
                 driver.execute_script(f"window.open('{new_url}', '_blank');")
         else:
@@ -435,6 +503,12 @@ def main():
 
         while True:
             now = datetime.now()
+            # if the time now is more than 4:00AM, stop the loop
+            if now.hour >= 8:
+                logger.info("Time is after 8:00AM. Stopping scheduled loop.")
+                print("Time is after 8:00AM. Stopping scheduled loop.")
+                break
+            
             capture_time = ceil_to_next_5min_mark(now)
             refresh_time = capture_time - timedelta(seconds=30)
 
@@ -488,5 +562,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

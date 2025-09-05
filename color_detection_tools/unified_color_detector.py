@@ -28,13 +28,17 @@ class UnifiedColorDetector:
         self.color_rules = {
             'purple': {
                 'name': 'Purple',
-                'description': 'Colors with significant blue, present red, and low green',
+                'description': 'Colors with blue dominance, moderate red, and low green - distinct from fuchsia',
                 'rules': [
-                    lambda r, g, b: b >= max(r, g) * 0.7,  # Blue significant
-                    lambda r, g, b: g < r and g < b,       # Green lower than R and B
-                    lambda r, g, b: max(r, g, b) - min(r, g, b) > 20,  # Color variation
-                    lambda r, g, b: r > 20,                # Red present
-                    lambda r, g, b: b > 30,                # Blue present
+                    lambda r, g, b: b > max(r, g) * 1.05,  # Blue is the dominant component (stricter than fuchsia)
+                    lambda r, g, b: g < min(r, b) * 0.5,   # Green much lower than red and blue
+                    lambda r, g, b: r > 20 and r < 180,    # Red present but not too bright (distinct from fuchsia)
+                    lambda r, g, b: b > 30 and b < 220,    # Blue present but not too bright
+                    lambda r, g, b: max(r, g, b) - min(r, g, b) > 20,  # Good color variation
+                    lambda r, g, b: b > r * 1.02,          # Blue slightly higher than red (purple characteristic)
+                    lambda r, g, b: int(r) + int(b) < 2 * int(g) + 250,  # Not as bright as fuchsia
+                    lambda r, g, b: abs(int(r) - int(b)) > 15,  # Red and blue should be different (not like fuchsia)
+                    lambda r, g, b: r < 200,               # Red not too bright (exclude bright fuchsia)
                 ]
             },
             'blue': {

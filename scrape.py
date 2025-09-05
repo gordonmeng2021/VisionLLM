@@ -49,7 +49,7 @@ def auto_login(driver: webdriver.Chrome) -> None:
             EC.element_to_be_clickable((By.CSS_SELECTOR, '[data-name="header-user-menu-sign-in"]'))
         )
         sign_in_option.click()
-        time.sleep(2)
+        # time.sleep(2)
         
         # Step 4: Click Email button
         email_button = wait.until(
@@ -104,7 +104,7 @@ def capture_screenshots(driver: webdriver.Chrome, output_dir: str, iteration: in
     print(f"[Iteration {iteration}] Capturing screenshots for {len(handles)} tab(s)...")
     for idx, handle in enumerate(handles, start=1):
         driver.switch_to.window(handle)
-        time.sleep(1)  # allow page render
+        time.sleep(0.1)  # allow page render
         filename = f"iter{iteration}_tab{idx}.png"
         path = os.path.join(output_dir, filename)
         if driver.save_screenshot(path):

@@ -664,7 +664,7 @@ class VisualCandleStrategyAnalyzer:
         results = {
             "STM": stm_result,
             "TD": td_result,
-            "HORIZONTAL_LINE": hl_result
+            "Zigzag": hl_result
         }
         
         # Create summary text with candle details
@@ -757,12 +757,12 @@ Horizontal Line Signal (Looking Both Ways):
         
         results, output_path = self.create_visual_analysis(candle_x)
         
-        print(f"\n🎯 FINAL RESULTS:")
-        print(f"STM Signal: {results['STM']}")
-        print(f"TD Signal: {results['TD']}")
-        print(f"Horizontal Line Signal: {results['HORIZONTAL_LINE']}")
+        # print(f"\n🎯 FINAL RESULTS:")
+        # print(f"STM Signal: {results['STM']}")
+        # print(f"TD Signal: {results['TD']}")
+        # print(f"Horizontal Line Signal: {results['Zigzag']}")
         print(f"JSON Output: {json.dumps(results)}")
-        print(f"📸 Visual output saved to: {output_path}")
+        # print(f"📸 Visual output saved to: {output_path}")
         
         return results
 

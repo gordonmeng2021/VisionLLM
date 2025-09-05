@@ -359,7 +359,7 @@ class CandleStrategyAnalyzer:
         # Report findings and return first color found
         for color in colors:
             if color_detections[color]:
-                print(f"🎨 Found {len(color_detections[color])} {color} pixels at x={x}: y positions {color_detections[color][:5]}{'...' if len(color_detections[color]) > 5 else ''}")
+                # print(f"🎨 Found {len(color_detections[color])} {color} pixels at x={x}: y positions {color_detections[color][:5]}{'...' if len(color_detections[color]) > 5 else ''}")
                 return color  # Return first color found
         
         # print(f"❌ No target colors found at x={x}")
@@ -413,7 +413,7 @@ class CandleStrategyAnalyzer:
         else:  # 'both'
             y_range = range(height)  # Entire height
         
-        print(f"🔍 Scanning x={x} for {colors} with horizontal validation in direction '{direction}'")
+        # print(f"🔍 Scanning x={x} for {colors} with horizontal validation in direction '{direction}'")
         
         for color in colors:
             validated_positions = []
@@ -427,11 +427,11 @@ class CandleStrategyAnalyzer:
             
             # If we found valid horizontal lines for this color, return it
             if validated_positions:
-                print(f"🎨 Found {len(validated_positions)} validated {color} horizontal lines at x={x}")
-                print(f"    Y positions: {validated_positions[:5]}{'...' if len(validated_positions) > 5 else ''}")
+                # print(f"🎨 Found {len(validated_positions)} validated {color} horizontal lines at x={x}")
+                # print(f"    Y positions: {validated_positions[:5]}{'...' if len(validated_positions) > 5 else ''}")
                 return color, validated_positions
         
-        print(f"❌ No validated horizontal lines found at x={x}")
+        # print(f"❌ No validated horizontal lines found at x={x}")
         return 'none', []
     
     def analyze_horizontal_line_signal(self, candle_x):
@@ -446,7 +446,7 @@ class CandleStrategyAnalyzer:
         Returns:
             str: 'buy' for fuchsia, 'sell' for aqua, 'none' if no valid horizontal lines found
         """
-        print(f"🔍 Analyzing Horizontal Line signal at x={candle_x} (looking up and down for aqua/fuchsia)")
+        # print(f"🔍 Analyzing Horizontal Line signal at x={candle_x} (looking up and down for aqua/fuchsia)")
         
         height = self.rgb_image.shape[0]
         
@@ -454,22 +454,22 @@ class CandleStrategyAnalyzer:
         aqua_pixels = []
         fuchsia_pixels = []
         
-        print("🔍 Step 1: Scanning vertical line for aqua/fuchsia pixels...")
+        # print("🔍 Step 1: Scanning vertical line for aqua/fuchsia pixels...")
         for y in range(height):
             if self.detect_color_at_position('aqua', candle_x, y):
                 aqua_pixels.append(y)
             elif self.detect_color_at_position('fuchsia', candle_x, y):
                 fuchsia_pixels.append(y)
         
-        print(f"   Found {len(aqua_pixels)} aqua pixels and {len(fuchsia_pixels)} fuchsia pixels")
+        # print(f"   Found {len(aqua_pixels)} aqua pixels and {len(fuchsia_pixels)} fuchsia pixels")
         
         # Step 2: If no aqua or fuchsia pixels found, return none
         if not aqua_pixels and not fuchsia_pixels:
-            print("❌ No aqua or fuchsia pixels found on vertical line")
+            # print("❌ No aqua or fuchsia pixels found on vertical line")
             return 'none'
         
         # Step 3: Check horizontal line validation for found pixels
-        print("🔍 Step 2: Validating horizontal lines for detected pixels...")
+        # print("🔍 Step 2: Validating horizontal lines for detected pixels...")
         
         # Check fuchsia pixels first (priority for buy signal)
         if fuchsia_pixels:
@@ -487,7 +487,7 @@ class CandleStrategyAnalyzer:
                     print(f"✅ Valid aqua horizontal line found at y={y}")
                     return 'sell'
         
-        print("❌ No valid horizontal lines found (90 pixel requirement not met)")
+        # print("❌ No valid horizontal lines found (90 pixel requirement not met)")
         return 'none'
     
     def run_analysis(self):
@@ -512,9 +512,9 @@ class CandleStrategyAnalyzer:
         candle_x = second_rightmost['center']
         
         # Analyze signals
-        print("\n" + "=" * 50)
-        print("📈 SIGNAL ANALYSIS")
-        print("=" * 50)
+        # print("\n" + "=" * 50)
+        # print("📈 SIGNAL ANALYSIS")
+        # print("=" * 50)
         
         stm_signal = self.analyze_stm_signal(candle_x)
         td_signal = self.analyze_td_signal(candle_x)
@@ -524,13 +524,13 @@ class CandleStrategyAnalyzer:
         results = {
             "STM": stm_signal,
             "TD": td_signal,
-            "HORIZONTAL_LINE": horizontal_line_signal
+            "Zigzag": horizontal_line_signal
         }
         
-        print(f"\n🎯 FINAL RESULTS:")
-        print(f"STM Signal: {stm_signal}")
-        print(f"TD Signal: {td_signal}")
-        print(f"Horizontal Line Signal: {horizontal_line_signal}")
+        # print(f"\n🎯 FINAL RESULTS:")
+        # print(f"STM Signal: {stm_signal}")
+        # print(f"TD Signal: {td_signal}")
+        # print(f"Horizontal Line Signal: {horizontal_line_signal}")
         print(f"JSON Output: {json.dumps(results)}")
         
         return results

@@ -12,7 +12,7 @@ from color_detection_tools.unified_color_detector import UnifiedColorDetector
 
 def main():
     """Detect purple colors in the test image."""
-    target_image = 'cropped_images/test.png'
+    target_image = '/Users/meng/Desktop/2025 Backtester/VisionLLM/cropped_images/test.png'
     
     if not os.path.exists(target_image):
         print(f"❌ Target image '{target_image}' not found.")

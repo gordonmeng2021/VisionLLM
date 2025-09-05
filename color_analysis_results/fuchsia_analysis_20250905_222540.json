@@ -1,0 +1,794 @@
+{
+  "analysis_info": {
+    "timestamp": "20250905_222540",
+    "image_path": "/Users/meng/Desktop/2025 Backtester/VisionLLM/cropped_images/test.png",
+    "image_dimensions": [
+      1062,
+      910,
+      4
+    ],
+    "total_pixels": 966420,
+    "unique_colors": 538
+  },
+  "color_detection": {
+    "color_name": "fuchsia",
+    "color_info": {
+      "name": "Fuchsia",
+      "description": "Bright magenta/pink colors with high red and blue, low green"
+    },
+    "detected_colors_count": 85,
+    "total_detected_pixels": 5841,
+    "percentage_of_image": 0.6043956043956045
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        234,
+        51,
+        247
+      ],
+      "pixel_count": 5525,
+      "percentage": 0.5716976055959107
+    },
+    {
+      "rgb": [
+        241,
+        156,
+        249
+      ],
+      "pixel_count": 34,
+      "percentage": 0.0035181391113594503
+    },
+    {
+      "rgb": [
+        170,
+        98,
+        191
+      ],
+      "pixel_count": 27,
+      "percentage": 0.002793816353138387
+    },
+    {
+      "rgb": [
+        239,
+        138,
+        249
+      ],
+      "pixel_count": 24,
+      "percentage": 0.0024833923139007882
+    },
+    {
+      "rgb": [
+        234,
+        52,
+        247
+      ],
+      "pixel_count": 17,
+      "percentage": 0.0017590695556797251
+    },
+    {
+      "rgb": [
+        179,
+        38,
+        189
+      ],
+      "pixel_count": 16,
+      "percentage": 0.001655594875933859
+    },
+    {
+      "rgb": [
+        235,
+        89,
+        247
+      ],
+      "pixel_count": 12,
+      "percentage": 0.0012416961569503941
+    },
+    {
+      "rgb": [
+        241,
+        160,
+        250
+      ],
+      "pixel_count": 11,
+      "percentage": 0.001138221477204528
+    },
+    {
+      "rgb": [
+        242,
+        166,
+        250
+      ],
+      "pixel_count": 6,
+      "percentage": 0.0006208480784751971
+    },
+    {
+      "rgb": [
+        234,
+        54,
+        247
+      ],
+      "pixel_count": 6,
+      "percentage": 0.0006208480784751971
+    },
+    {
+      "rgb": [
+        234,
+        66,
+        247
+      ],
+      "pixel_count": 6,
+      "percentage": 0.0006208480784751971
+    },
+    {
+      "rgb": [
+        234,
+        56,
+        247
+      ],
+      "pixel_count": 5,
+      "percentage": 0.0005173733987293309
+    },
+    {
+      "rgb": [
+        235,
+        72,
+        247
+      ],
+      "pixel_count": 5,
+      "percentage": 0.0005173733987293309
+    },
+    {
+      "rgb": [
+        234,
+        61,
+        247
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        234,
+        60,
+        247
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        235,
+        85,
+        247
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        240,
+        144,
+        249
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        236,
+        98,
+        248
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        234,
+        53,
+        247
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        238,
+        129,
+        248
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        237,
+        108,
+        248
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        234,
+        63,
+        247
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        235,
+        71,
+        247
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        234,
+        57,
+        247
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0004138987189834647
+    },
+    {
+      "rgb": [
+        235,
+        81,
+        247
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        236,
+        102,
+        248
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        240,
+        149,
+        249
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        235,
+        68,
+        247
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        234,
+        58,
+        247
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        240,
+        153,
+        249
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        235,
+        74,
+        247
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        234,
+        64,
+        247
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        242,
+        163,
+        250
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        236,
+        90,
+        247
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        234,
+        55,
+        247
+      ],
+      "pixel_count": 3,
+      "percentage": 0.00031042403923759853
+    },
+    {
+      "rgb": [
+        181,
+        39,
+        191
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        235,
+        70,
+        247
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        237,
+        110,
+        248
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        236,
+        94,
+        247
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        240,
+        147,
+        249
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        236,
+        104,
+        248
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        235,
+        78,
+        247
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        236,
+        92,
+        247
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        241,
+        159,
+        249
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        237,
+        115,
+        248
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        237,
+        118,
+        248
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        241,
+        158,
+        249
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        235,
+        69,
+        247
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        235,
+        77,
+        247
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        236,
+        96,
+        247
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        234,
+        67,
+        247
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        241,
+        161,
+        250
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        239,
+        142,
+        249
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        238,
+        121,
+        248
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        235,
+        80,
+        247
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00020694935949173236
+    },
+    {
+      "rgb": [
+        241,
+        157,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        238,
+        125,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        235,
+        83,
+        247
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        237,
+        109,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        235,
+        76,
+        247
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        234,
+        59,
+        247
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        241,
+        154,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        237,
+        113,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        236,
+        95,
+        247
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        239,
+        141,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        239,
+        133,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        234,
+        62,
+        247
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        238,
+        123,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        240,
+        148,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        237,
+        114,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        236,
+        99,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        239,
+        136,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        240,
+        152,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        234,
+        65,
+        247
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        241,
+        155,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        239,
+        135,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        238,
+        127,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        237,
+        112,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        238,
+        131,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        237,
+        119,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        235,
+        73,
+        247
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        238,
+        130,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        240,
+        146,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        237,
+        107,
+        248
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    },
+    {
+      "rgb": [
+        240,
+        145,
+        249
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00010347467974586618
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/fuchsia_detection_20250905_222537.png",
+    "report": "color_analysis_results/fuchsia_analysis_20250905_222540.json"
+  }
+}
