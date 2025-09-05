@@ -28,5 +28,8 @@ Steps:
 
 
 ### alert
-### add zigzag indicator
+
+
+###*** add zigzag indicator
+
 ### auto open multiple symbol tabs

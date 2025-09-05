@@ -1,18 +1,3 @@
-#!/usr/bin/env python3
-"""
-Orchestrator to automate periodic refresh and screenshot capture of all open
-browser tabs using Selenium, then run the strategy analyzer on each image.
-
-Behavior:
-- Launch Chrome and attempt TradingView login (reusing the flow from scrape.py)
-- Allow user to open/arrange all desired tabs; proceed after user types 'ok'
-- Every 5 minutes on the dot (e.g., 21:30:00, 21:35:00, ...): capture all tabs
-- 30 seconds before each 5-minute mark (e.g., 21:29:30, 21:34:30, ...): refresh all tabs
-- Save images under screen_caps/YYYYMMDD/HHMM/ with descriptive filenames
-- Run strategy analyzer for each captured image concurrently and print signals
-- Log all actions to a rotating log file plus console output
-"""
-
 import os
 import sys
 import time
@@ -22,6 +7,10 @@ from logging.handlers import RotatingFileHandler
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+#### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
+stock_list = ["TSLA", "NVDA", "AAPL"]
+
 try:
     import cv2
     import pytesseract
@@ -429,6 +418,16 @@ def main():
             logger.warning(f"Login flow encountered an issue: {e}. Continuing anyway.")
 
         wait_for_user_ready(logger)
+        # get the first tab's url
+        first_tab_url = driver.current_url
+        if "%3A" in first_tab_url:
+            base, _ = first_tab_url.split("%3A", 1)  # split once, discard the old stock part
+            for stock in stock_list:
+                new_url = f"{base}%3A{stock}"
+                # Open new tab with the URL
+                driver.execute_script(f"window.open('{new_url}', '_blank');")
+        else:
+            pass
 
         base_output_dir = "screen_caps"
         logger.info("Entering scheduled loop: refresh at -30s, capture at 5-minute marks.")
