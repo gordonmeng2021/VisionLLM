@@ -69,6 +69,24 @@ class CandleStrategyAnalyzer:
                 lambda r, g, b: b > max(r, g) * 1.2,   # Blue significantly dominant
                 lambda r, g, b: max(r, g, b) - min(r, g, b) > 15,  # Color variation
                 lambda r, g, b: b > 40,                # Blue present
+            ],
+            'aqua': [
+                lambda r, g, b: b > 100 and g > 100,   # High blue and green components
+                lambda r, g, b: r < min(b, g) * 0.6,   # Red significantly lower than blue and green
+                lambda r, g, b: abs(int(b) - int(g)) < 100,  # Blue and green should be reasonably similar
+                lambda r, g, b: min(b, g) > max(b, g) * 0.7,  # Both blue and green should be substantial
+                lambda r, g, b: g > 80,                # Ensure sufficient green to distinguish from pure blue
+                lambda r, g, b: b > g * 0.8,           # Blue should be at least 80% of green value
+                lambda r, g, b: int(b) + int(g) > 2 * int(r) + 80,   # Aqua color space rule
+                lambda r, g, b: max(b, g, r) - min(b, g, r) > 30,  # Good color variation
+            ],
+            'fuchsia': [
+                lambda r, g, b: r > 150 and b > 150,   # High red and blue
+                lambda r, g, b: g < min(r, b) * 0.7,   # Green much lower than red and blue
+                lambda r, g, b: abs(int(r) - int(b)) < 80,  # Red and blue should be reasonably similar
+                lambda r, g, b: max(r, b) > g * 1.5,   # Either red or blue dominates over green
+                lambda r, g, b: max(r, g, b) - min(r, g, b) > 40,  # Good color variation
+                lambda r, g, b: int(r) + int(b) > 2 * int(g) + 100,   # Fuchsia color space rule
             ]
         }
     
@@ -271,6 +289,50 @@ class CandleStrategyAnalyzer:
         rules = self.color_rules[color_name]
         return all(rule(r, g, b) for rule in rules)
     
+    def validate_horizontal_line(self, color_name, x, y, pixels_range=45):
+        """
+        Validate if a color forms a horizontal line by checking exactly ±pixels_range around the detected pixel.
+        
+        Args:
+            color_name (str): The color to validate
+            x (int): X coordinate of the detected pixel
+            y (int): Y coordinate of the detected pixel
+            pixels_range (int): Range to check left and right (default 45)
+        
+        Returns:
+            bool: True if horizontal line of exactly 90 pixels (45 left + 45 right) is found
+        """
+        if (x < 0 or x >= self.rgb_image.shape[1] or 
+            y < 0 or y >= self.rgb_image.shape[0]):
+            return False
+        
+        width = self.rgb_image.shape[1]
+        
+        # Check left side (exactly 45 pixels)
+        left_valid = True
+        for dx in range(1, pixels_range + 1):
+            check_x = x - dx
+            if check_x < 0:
+                left_valid = False
+                break
+            if not self.detect_color_at_position(color_name, check_x, y):
+                left_valid = False
+                break
+        
+        # Check right side (exactly 45 pixels)
+        right_valid = True
+        for dx in range(1, pixels_range + 1):
+            check_x = x + dx
+            if check_x >= width:
+                right_valid = False
+                break
+            if not self.detect_color_at_position(color_name, check_x, y):
+                right_valid = False
+                break
+        
+        # Valid horizontal line only if we have exactly 45 pixels on both sides
+        return left_valid and right_valid
+    
     def scan_vertical_line_for_colors(self, x, colors, direction='both'):
         """Scan a vertical line for specific colors and return detailed results."""
         height = self.rgb_image.shape[0]
@@ -329,6 +391,105 @@ class CandleStrategyAnalyzer:
         else:
             return 'none'
     
+    def scan_vertical_line_with_horizontal_validation(self, x, colors, direction='both'):
+        """
+        Scan a vertical line for specific colors and validate horizontal lines.
+        
+        Args:
+            x (int): X coordinate to scan
+            colors (list): List of colors to look for
+            direction (str): 'up', 'down', or 'both'
+        
+        Returns:
+            tuple: (color_found, validated_positions) where color_found is the first valid color
+        """
+        height = self.rgb_image.shape[0]
+        
+        # Determine scan range based on direction
+        if direction == 'down':
+            y_range = range(height // 2, height)  # From middle down
+        elif direction == 'up':
+            y_range = range(0, height // 2)  # From top to middle
+        else:  # 'both'
+            y_range = range(height)  # Entire height
+        
+        print(f"🔍 Scanning x={x} for {colors} with horizontal validation in direction '{direction}'")
+        
+        for color in colors:
+            validated_positions = []
+            
+            # Scan for the color
+            for y in y_range:
+                if self.detect_color_at_position(color, x, y):
+                    # Found the color, now validate horizontal line
+                    if self.validate_horizontal_line(color, x, y):
+                        validated_positions.append(y)
+            
+            # If we found valid horizontal lines for this color, return it
+            if validated_positions:
+                print(f"🎨 Found {len(validated_positions)} validated {color} horizontal lines at x={x}")
+                print(f"    Y positions: {validated_positions[:5]}{'...' if len(validated_positions) > 5 else ''}")
+                return color, validated_positions
+        
+        print(f"❌ No validated horizontal lines found at x={x}")
+        return 'none', []
+    
+    def analyze_horizontal_line_signal(self, candle_x):
+        """
+        Analyze the new horizontal line indicator with correct logic:
+        1. First check if vertical line hits aqua or fuchsia
+        2. Only if hit, then validate horizontal line (90 pixels: 45 left + 45 right)
+        
+        Args:
+            candle_x (int): X coordinate of the second rightmost candle
+        
+        Returns:
+            str: 'buy' for fuchsia, 'sell' for aqua, 'none' if no valid horizontal lines found
+        """
+        print(f"🔍 Analyzing Horizontal Line signal at x={candle_x} (looking up and down for aqua/fuchsia)")
+        
+        height = self.rgb_image.shape[0]
+        
+        # Step 1: First scan the vertical line to see if we hit aqua or fuchsia at all
+        aqua_pixels = []
+        fuchsia_pixels = []
+        
+        print("🔍 Step 1: Scanning vertical line for aqua/fuchsia pixels...")
+        for y in range(height):
+            if self.detect_color_at_position('aqua', candle_x, y):
+                aqua_pixels.append(y)
+            elif self.detect_color_at_position('fuchsia', candle_x, y):
+                fuchsia_pixels.append(y)
+        
+        print(f"   Found {len(aqua_pixels)} aqua pixels and {len(fuchsia_pixels)} fuchsia pixels")
+        
+        # Step 2: If no aqua or fuchsia pixels found, return none
+        if not aqua_pixels and not fuchsia_pixels:
+            print("❌ No aqua or fuchsia pixels found on vertical line")
+            return 'none'
+        
+        # Step 3: Check horizontal line validation for found pixels
+        print("🔍 Step 2: Validating horizontal lines for detected pixels...")
+        
+        # Check fuchsia pixels first (priority for buy signal)
+        if fuchsia_pixels:
+            print(f"   Checking {len(fuchsia_pixels)} fuchsia pixels for horizontal validation...")
+            for y in fuchsia_pixels:
+                if self.validate_horizontal_line('fuchsia', candle_x, y):
+                    print(f"✅ Valid fuchsia horizontal line found at y={y}")
+                    return 'buy'
+        
+        # Check aqua pixels
+        if aqua_pixels:
+            print(f"   Checking {len(aqua_pixels)} aqua pixels for horizontal validation...")
+            for y in aqua_pixels:
+                if self.validate_horizontal_line('aqua', candle_x, y):
+                    print(f"✅ Valid aqua horizontal line found at y={y}")
+                    return 'sell'
+        
+        print("❌ No valid horizontal lines found (90 pixel requirement not met)")
+        return 'none'
+    
     def run_analysis(self):
         """Run the complete strategy analysis."""
         # print("🚀 Starting Strategy Analysis")
@@ -357,16 +518,19 @@ class CandleStrategyAnalyzer:
         
         stm_signal = self.analyze_stm_signal(candle_x)
         td_signal = self.analyze_td_signal(candle_x)
+        horizontal_line_signal = self.analyze_horizontal_line_signal(candle_x)
         
         # Prepare results
         results = {
             "STM": stm_signal,
-            "TD": td_signal
+            "TD": td_signal,
+            "HORIZONTAL_LINE": horizontal_line_signal
         }
         
         print(f"\n🎯 FINAL RESULTS:")
         print(f"STM Signal: {stm_signal}")
         print(f"TD Signal: {td_signal}")
+        print(f"Horizontal Line Signal: {horizontal_line_signal}")
         print(f"JSON Output: {json.dumps(results)}")
         
         return results

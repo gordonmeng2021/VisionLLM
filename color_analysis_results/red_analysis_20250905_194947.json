@@ -1,0 +1,38 @@
+{
+  "analysis_info": {
+    "timestamp": "20250905_194947",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1292,
+      1170,
+      4
+    ],
+    "total_pixels": 1511640,
+    "unique_colors": 599
+  },
+  "color_detection": {
+    "color_name": "red",
+    "color_info": {
+      "name": "Red",
+      "description": "Colors with dominant red component, excluding orange"
+    },
+    "detected_colors_count": 1,
+    "total_detected_pixels": 4012,
+    "percentage_of_image": 0.2654071075123707
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        223,
+        72,
+        76
+      ],
+      "pixel_count": 4012,
+      "percentage": 0.2654071075123707
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/red_detection_20250905_194943.png",
+    "report": "color_analysis_results/red_analysis_20250905_194947.json"
+  }
+}

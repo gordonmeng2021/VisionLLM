@@ -1,0 +1,128 @@
+{
+  "analysis_info": {
+    "timestamp": "20250905_192354",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      898,
+      102,
+      4
+    ],
+    "total_pixels": 91596,
+    "unique_colors": 311
+  },
+  "color_detection": {
+    "color_name": "fuchsia",
+    "color_info": {
+      "name": "Fuchsia",
+      "description": "Bright magenta/pink colors with high red and blue, low green"
+    },
+    "detected_colors_count": 11,
+    "total_detected_pixels": 17,
+    "percentage_of_image": 0.01855976243504083
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        176,
+        110,
+        195
+      ],
+      "pixel_count": 4,
+      "percentage": 0.00436700292589196
+    },
+    {
+      "rgb": [
+        160,
+        79,
+        183
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00218350146294598
+    },
+    {
+      "rgb": [
+        174,
+        105,
+        194
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00218350146294598
+    },
+    {
+      "rgb": [
+        165,
+        88,
+        187
+      ],
+      "pixel_count": 2,
+      "percentage": 0.00218350146294598
+    },
+    {
+      "rgb": [
+        163,
+        85,
+        185
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00109175073147299
+    },
+    {
+      "rgb": [
+        183,
+        122,
+        200
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00109175073147299
+    },
+    {
+      "rgb": [
+        176,
+        109,
+        195
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00109175073147299
+    },
+    {
+      "rgb": [
+        160,
+        80,
+        183
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00109175073147299
+    },
+    {
+      "rgb": [
+        166,
+        90,
+        187
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00109175073147299
+    },
+    {
+      "rgb": [
+        183,
+        121,
+        200
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00109175073147299
+    },
+    {
+      "rgb": [
+        187,
+        130,
+        204
+      ],
+      "pixel_count": 1,
+      "percentage": 0.00109175073147299
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/fuchsia_detection_20250905_192350.png",
+    "report": "color_analysis_results/fuchsia_analysis_20250905_192354.json"
+  }
+}

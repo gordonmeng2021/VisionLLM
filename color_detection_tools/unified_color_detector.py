@@ -93,6 +93,45 @@ class UnifiedColorDetector:
                     lambda r, g, b: max(r, g, b) - min(r, g, b) > 15,  # Some color variation
                     lambda r, g, b: g > 80 or (g > r * 1.5 and g > b * 0.8),  # Either bright green OR green dominant over red with reasonable blue
                 ]
+            },
+            'gray': {
+                'name': 'Gray',
+                'description': 'Colors with similar RGB values (neutral colors), excluding black and white',
+                'rules': [
+                    lambda r, g, b: abs(int(r) - int(g)) <= 15,  # Red and green are similar
+                    lambda r, g, b: abs(int(g) - int(b)) <= 15,  # Green and blue are similar
+                    lambda r, g, b: abs(int(r) - int(b)) <= 15,  # Red and blue are similar
+                    lambda r, g, b: max(r, g, b) - min(r, g, b) <= 20,  # Low color variation
+                    lambda r, g, b: min(r, g, b) >= 50,    # Exclude black colors (raised from 10 to 50)
+                    lambda r, g, b: max(r, g, b) <= 200,   # Not pure white (to avoid very bright whites)
+                    lambda r, g, b: max(r, g, b) >= 70,    # Ensure it's bright enough to be considered gray
+                ]
+            },
+            'fuchsia': {
+                'name': 'Fuchsia',
+                'description': 'Bright magenta/pink colors with high red and blue, low green',
+                'rules': [
+                    lambda r, g, b: r > 150 and b > 150,   # High red and blue
+                    lambda r, g, b: g < min(r, b) * 0.7,   # Green much lower than red and blue
+                    lambda r, g, b: abs(int(r) - int(b)) < 80,  # Red and blue should be reasonably similar
+                    lambda r, g, b: max(r, b) > g * 1.5,   # Either red or blue dominates over green
+                    lambda r, g, b: max(r, g, b) - min(r, g, b) > 40,  # Good color variation
+                    lambda r, g, b: int(r) + int(b) > 2 * int(g) + 100,   # Fuchsia color space rule
+                ]
+            },
+            'aqua': {
+                'name': 'Aqua',
+                'description': 'Cyan/aqua colors with high blue and green, low red - distinct from pure blue',
+                'rules': [
+                    lambda r, g, b: b > 100 and g > 100,   # High blue and green components
+                    lambda r, g, b: r < min(b, g) * 0.6,   # Red significantly lower than blue and green
+                    lambda r, g, b: abs(int(b) - int(g)) < 100,  # Blue and green should be reasonably similar
+                    lambda r, g, b: min(b, g) > max(b, g) * 0.7,  # Both blue and green should be substantial
+                    lambda r, g, b: g > 80,                # Ensure sufficient green to distinguish from pure blue
+                    lambda r, g, b: b > g * 0.8,           # Blue should be at least 80% of green value
+                    lambda r, g, b: int(b) + int(g) > 2 * int(r) + 80,   # Aqua color space rule
+                    lambda r, g, b: max(b, g, r) - min(b, g, r) > 30,  # Good color variation
+                ]
             }
         }
     
