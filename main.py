@@ -8,9 +8,10 @@ from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import platform
+import pytz
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-stock_list = ["NVDA"]
+stock_list = ["NVDA","AAPL","TSLA"]
 
 try:
     import cv2
@@ -125,16 +126,14 @@ def configure_logging(log_path: str) -> logging.Logger:
 
 def wait_for_user_ready(logger: logging.Logger) -> None:
     logger.info("Browser is now open. Open all desired tabs and sign in if needed.")
-    logger.info("Type 'k' here to start the scheduled refresh/capture loop.")
     print("Browser is now open. Open all desired tabs and sign in if needed.")
-    print("Type 'k' here to start the scheduled refresh/capture loop.")
     while True:
         try:
-            user_input = input('Enter "k" to continue: ').strip().lower()
+            user_input = input('Enter to continue: ').strip().lower()
         except EOFError:
             time.sleep(1)
             continue
-        if user_input == "k":
+        if user_input == "":
             logger.info("User confirmed start. Beginning scheduled operations.")
             print("Starting scheduled operations...")
             return
@@ -293,15 +292,46 @@ def crop_screenshot(image_path: str, output_dir: str, logger: logging.Logger) ->
         return None, None
 
 
-def refresh_single_tab(driver, tab_info: dict, index: int, logger: logging.Logger) -> bool:
-    """Refresh a single tab and return success status."""
+def open_new_tab(driver, url: str, logger: logging.Logger) -> str:
+    """Open a new tab with given URL and return its handle."""
     try:
-        driver.switch_to.window(tab_info["handle"])
-        driver.refresh()
-        # logger.info(f"Refreshed tab {index}: {tab_info['url']}")
+        old_handles = set(driver.window_handles)
+        driver.execute_script(f"window.open('{url}', '_blank');")
+        
+        # Wait for new tab
+        for _ in range(50):  # 5 seconds max
+            new_handles = set(driver.window_handles) - old_handles
+            if new_handles:
+                new_handle = list(new_handles)[0]
+                driver.switch_to.window(new_handle)
+                driver.get(url)
+                time.sleep(0.1)  # Wait for page to load
+                return new_handle
+            time.sleep(0.1)
+        return None
+    except Exception as e:
+        logger.error(f"Error opening new tab for {url}: {e}")
+        return None
+
+
+def close_tab_safely(driver, handle: str, logger: logging.Logger) -> bool:
+    """Close a tab safely with error handling."""
+    try:
+        # Check if tab still exists
+        if handle not in driver.window_handles:
+            return True  # Already closed
+        
+        driver.switch_to.window(handle)
+        driver.close()
         return True
     except WebDriverException as e:
-        logger.error(f"Failed to refresh tab {index}: {e}")
+        if "no such window" in str(e).lower() or "target window already closed" in str(e).lower():
+            return True  # Already closed
+        else:
+            logger.error(f"Error closing tab: {e}")
+            return False
+    except Exception as e:
+        logger.error(f"Unexpected error closing tab: {e}")
         return False
 
 
@@ -325,27 +355,61 @@ def capture_single_tab(driver, tab_info: dict, index: int, output_dir: str, time
         return None
 
 
-def refresh_all_tabs_parallel(driver, logger: logging.Logger, max_workers: int = 4) -> None:
-    """Refresh all tabs in parallel."""
+def refresh_all_tabs_parallel(driver, logger: logging.Logger, max_workers: int = 4) -> bool:
+    """Replace all tabs by opening new ones with same URLs and closing old ones."""
     try:
-        tabs = get_tab_metadata(driver)
-        # logger.info(f"Refreshing {len(tabs)} tab(s) in parallel...")
+        # Get current tabs
+        old_tabs = get_tab_metadata(driver)
+        logger.info(f"Replacing {len(old_tabs)} tab(s)...")
         
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = []
-            for index, tab in enumerate(tabs, start=1):
-                future = executor.submit(refresh_single_tab, driver, tab, index, logger)
-                futures.append(future)
-            
-            # Wait for all refreshes to complete
-            for future in as_completed(futures):
-                try:
-                    future.result()
-                except Exception as e:
-                    logger.error(f"Refresh future failed: {e}")
+        if not old_tabs:
+            logger.warning("No tabs found to replace")
+            return True
+        
+        # Open new tabs
+        new_handles = []
+        for tab in old_tabs:
+            logger.info(f"Opening new tab for: {tab['url']}")
+            new_handle = open_new_tab(driver, tab['url'], logger)
+            if new_handle:
+                new_handles.append(new_handle)
+            else:
+                logger.error(f"Failed to open tab for: {tab['url']}")
+                return False
+        
+        # Verify new tabs are loaded
+        logger.info("Verifying new tabs are loaded...")
+        for i, handle in enumerate(new_handles, 1):
+            driver.switch_to.window(handle)
+            time.sleep(0.1)
+            if driver.current_url and driver.current_url != "about:blank":
+                # logger.info(f"✓ New tab {i} loaded")
+                pass
+            else:
+                logger.error(f"✗ New tab {i} not loaded")
+                return False
+        
+        # Close old tabs SEQUENTIALLY (this is the key fix)
+        logger.info("Closing old tabs sequentially...")
+        for i, tab in enumerate(old_tabs, 1):
+            logger.info(f"Closing old tab {i}/{len(old_tabs)}")
+            success = close_tab_safely(driver, tab['handle'], logger)
+            if success:
+                # logger.info(f"✓ Closed old tab {i}")
+                pass
+            else:
+                logger.error(f"✗ Failed to close old tab {i}")
+            time.sleep(0.1)  # Small delay between closes
+        
+        # Verify result
+        final_tabs = get_tab_metadata(driver)
+        # logger.info(f"Final tabs: {len(final_tabs)}")
+        
+        return len(final_tabs) == len(old_tabs)
                     
     except Exception as e:
-        logger.exception(f"Unexpected error during parallel refresh: {e}")
+        logger.exception(f"Unexpected error during tab replacement: {e}")
+        return False
 
 
 def ensure_capture_dir(base_dir: str, capture_time: datetime) -> str:
@@ -498,47 +562,49 @@ def main():
 
         while True:
             now = datetime.now()
-            # if the time now is more than 4:00AM, stop the loop
-            if now.hour >= 8:
-                logger.info("Time is after 8:00AM. Stopping scheduled loop.")
-                print("Time is after 8:00AM. Stopping scheduled loop.")
-                ## Keep open a new tab of QQQ, then close all other tabs.
-            
             capture_time = ceil_to_next_5min_mark(now)
             refresh_time = capture_time - timedelta(seconds=30)
 
-            if now >= refresh_time:
-                refresh_delay = 0
+            # Check if we need to refresh tabs (only at 5-minute mark - 30s)
+            if now >= refresh_time and now < capture_time:
+                logger.info("Time to refresh tabs (5-minute mark - 30s)")
+                replacement_success = refresh_all_tabs_parallel(driver, logger, max_workers=min(8, max(2, os.cpu_count() or 4)))
+                if not replacement_success:
+                    logger.warning("Tab replacement had issues, but continuing with capture...")
+                
+                # Wait until capture time
+                now = datetime.now()
+                if now < capture_time:
+                    capture_delay = (capture_time - now).total_seconds()
+                    if capture_delay > 0:
+                        time.sleep(capture_delay)
             else:
-                refresh_delay = (refresh_time - now).total_seconds()
+                # Wait until refresh time
+                if now < refresh_time:
+                    refresh_delay = (refresh_time - now).total_seconds()
+                    if refresh_delay > 0:
+                        time.sleep(refresh_delay)
+                    continue  # Go back to check timing again
 
-            # logger.info(f"Next capture at {capture_time.strftime('%H:%M:%S')}; refreshing at {refresh_time.strftime('%H:%M:%S')} (in {max(0, int(refresh_delay))}s)")
-            if refresh_delay > 0:
-                time.sleep(refresh_delay)
-
-            # logger.info("Refreshing all tabs...")
-            refresh_all_tabs_parallel(driver, logger, max_workers=min(8, max(2, os.cpu_count() or 4)))
-
+            # At capture time (5-minute mark), just capture without refreshing
             now = datetime.now()
             if now >= capture_time:
-                capture_delay = 0
-            else:
-                capture_delay = (capture_time - now).total_seconds()
+                us_time_now = datetime.now(pytz.timezone('US/Eastern'))
+                # if False:
+                if not ((us_time_now.hour >= 4 and us_time_now.hour < 20) or (us_time_now.hour == 20 and us_time_now.minute < 1)):
+                    # print("Not in market hours. Skipping capture...")
+                    continue
+                else:
+                    logger.info("Time to capture screenshots (5-minute mark)")
+                    ## Running the main strategy.
+                    images = capture_all_tabs_sequential(driver, logger, base_output_dir, capture_time)
+                    time_output_dir = ensure_capture_dir(base_output_dir, capture_time)
+                    try:
+                        run_strategy_concurrently(images, time_output_dir, logger, max_workers=min(8, max(2, os.cpu_count() or 4)))
+                    except Exception as e:
+                        logger.exception(f"Error running strategy analysis: {e}")
+                    ## Running the main strategy.
 
-            if capture_delay > 0:
-                time.sleep(capture_delay)
-
-            # logger.info(f"Capturing screenshots at {capture_time.strftime('%H:%M:%S')}...")
-            images = capture_all_tabs_sequential(driver, logger, base_output_dir, capture_time)
-
-            # Get the specific time directory for temp_crops
-            time_output_dir = ensure_capture_dir(base_output_dir, capture_time)
-            
-            try:
-                # logger.info("Processing images and analyzing strategies...")
-                run_strategy_concurrently(images, time_output_dir, logger, max_workers=min(8, max(2, os.cpu_count() or 4)))
-            except Exception as e:
-                logger.exception(f"Error running strategy analysis: {e}")
 
     except KeyboardInterrupt:
         logger.info("KeyboardInterrupt received. Shutting down.")

@@ -25,14 +25,17 @@ Steps:
 
 
 ??? 跟PID or what?
-
-
 ### alert -done
 ### logging -done
-
 ### close tab then reopen again at 5-30s... not refresh only
 ### auto start logic.
-
-
 ### all three - > 1.0 confidence buy
 ### only two -> 0.5 confidence to buy (zigzag + ???)
+#### only open new tabs -30s, and then refresh only at 00.
+
+
+
+## not enought candle i.e. image width too short.
+***** 問號，係咪indicator 會update 快過 00整點即refresh一次之後再cap
+***** 問號 90 pixel too long? Maybe can set shorter
+### next step paper trade record to csv file.
