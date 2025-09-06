@@ -14,7 +14,7 @@ def crop_image(image_path, output_dir="cropped_images"):
     # Load the image
     try:
         img = Image.open(image_path)
-        print(f"Original image size: {img.size} (width x height)")
+        # print(f"Original image size: {img.size} (width x height)")
     except Exception as e:
         print(f"Error loading image: {e}")
         return
@@ -48,8 +48,8 @@ def crop_image(image_path, output_dir="cropped_images"):
         top_left_path = os.path.join(output_dir, "top_left_corner.png")
         top_left_crop.save(top_left_path)
         crops.append(("Top Left Corner", top_left_path, top_left_crop.size))
-        print(f"✓ Top left corner saved: {top_left_path}")
-        print(f"  Crop area: ({top_left_x}, {top_left_y}) to ({top_left_x + top_left_width}, {top_left_y + top_left_height})")
+        # print(f"✓ Top left corner saved: {top_left_path}")
+        # print(f"  Crop area: ({top_left_x}, {top_left_y}) to ({top_left_x + top_left_width}, {top_left_y + top_left_height})")
         
     except Exception as e:
         print(f"Error cropping top left: {e}")
@@ -66,8 +66,6 @@ def crop_image(image_path, output_dir="cropped_images"):
         vertical_path = os.path.join(output_dir, "vertical_rectangle.png")
         vertical_crop.save(vertical_path)
         crops.append(("Vertical Rectangle", vertical_path, vertical_crop.size))
-        print(f"✓ Vertical rectangle saved: {vertical_path}")
-        print(f"  Crop area: ({vertical_x}, {vertical_y}) to ({vertical_x + vertical_width}, {vertical_y + vertical_height})")
         
     except Exception as e:
         print(f"Error cropping vertical rectangle: {e}")

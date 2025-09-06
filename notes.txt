@@ -27,6 +27,12 @@ Steps:
 ??? 跟PID or what?
 
 
-### alert
-### auto open multiple symbol tabs
+### alert -done
+### logging -done
 
+### close tab then reopen again at 5-30s... not refresh only
+### auto start logic.
+
+
+### all three - > 1.0 confidence buy
+### only two -> 0.5 confidence to buy (zigzag + ???)

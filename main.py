@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import platform
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-stock_list = ["TSLA", "NVDA", "AAPL"]
+stock_list = ["NVDA"]
 
 try:
     import cv2
@@ -53,7 +53,7 @@ def play_alert_sound():
             os.system("paplay /usr/share/sounds/alsa/Front_Left.wav")
         elif system == "windows":
             import winsound
-            winsound.Beep(1000, 500)  # 1000Hz for 500ms
+            winsound.Beep(2000, 1000)  # 1000Hz for 500ms
         else:
             # Fallback: print bell character
             print("\a")
@@ -181,7 +181,6 @@ def extract_symbol_from_image(image_path: str, logger: logging.Logger) -> str:
             symbol = lines[0]
             # Remove common OCR noise characters
             symbol = ''.join(c for c in symbol if c.isalnum() or c in '.-_/')
-            logger.info(f"Extracted symbol: '{symbol}' from {image_path}")
             return symbol
         else:
             logger.warning(f"No text found in {image_path}")
@@ -210,7 +209,7 @@ def crop_screenshot(image_path: str, output_dir: str, logger: logging.Logger) ->
         # Load the image
         try:
             img = Image.open(image_path)
-            logger.info(f"Original image size: {img.size} (width x height)")
+            # logger.info(f"Original image size: {img.size} (width x height)")
         except Exception as e:
             logger.error(f"Error loading image {image_path}: {e}")
             return None, None
@@ -238,8 +237,8 @@ def crop_screenshot(image_path: str, output_dir: str, logger: logging.Logger) ->
             logger.warning(f"Image height {img_height} is smaller than required {vertical_y + vertical_height}. Adjusting vertical crop.")
             vertical_height = min(vertical_height, img_height - vertical_y)
         
-        logger.info(f"Using crop coordinates - Top left: ({top_left_x}, {top_left_y}, {top_left_width}, {top_left_height})")
-        logger.info(f"Using crop coordinates - Vertical: ({vertical_x}, {vertical_y}, {vertical_width}, {vertical_height})")
+        # logger.info(f"Using crop coordinates - Top left: ({top_left_x}, {top_left_y}, {top_left_width}, {top_left_height})")
+        # logger.info(f"Using crop coordinates - Vertical: ({vertical_x}, {vertical_y}, {vertical_width}, {vertical_height})")
         
         # Perform the crops
         crops = []
@@ -256,7 +255,7 @@ def crop_screenshot(image_path: str, output_dir: str, logger: logging.Logger) ->
             top_left_path = os.path.join(temp_crop_dir, "top_left_corner.png")
             top_left_crop.save(top_left_path)
             crops.append(("Top Left Corner", top_left_path, top_left_crop.size))
-            logger.info(f"✓ Top left corner saved: {top_left_path}")
+            # logger.info(f"✓ Top left corner saved: {top_left_path}")
             
         except Exception as e:
             logger.error(f"Error cropping top left: {e}")
@@ -274,7 +273,6 @@ def crop_screenshot(image_path: str, output_dir: str, logger: logging.Logger) ->
             vertical_path = os.path.join(temp_crop_dir, "vertical_rectangle.png")
             vertical_crop.save(vertical_path)
             crops.append(("Vertical Rectangle", vertical_path, vertical_crop.size))
-            logger.info(f"✓ Vertical rectangle saved: {vertical_path}")
             
         except Exception as e:
             logger.error(f"Error cropping vertical rectangle: {e}")
@@ -288,9 +286,6 @@ def crop_screenshot(image_path: str, output_dir: str, logger: logging.Logger) ->
             logger.error(f"Vertical crop file not found: {vertical_path}")
             return None, None
         
-        logger.info(f"Successfully cropped {image_path}")
-        logger.info(f"Top left: {top_left_path}")
-        logger.info(f"Vertical: {vertical_path}")
         return top_left_path, vertical_path
             
     except Exception as e:
@@ -303,7 +298,7 @@ def refresh_single_tab(driver, tab_info: dict, index: int, logger: logging.Logge
     try:
         driver.switch_to.window(tab_info["handle"])
         driver.refresh()
-        logger.info(f"Refreshed tab {index}: {tab_info['url']}")
+        # logger.info(f"Refreshed tab {index}: {tab_info['url']}")
         return True
     except WebDriverException as e:
         logger.error(f"Failed to refresh tab {index}: {e}")
@@ -320,7 +315,7 @@ def capture_single_tab(driver, tab_info: dict, index: int, output_dir: str, time
         
         ok = driver.save_screenshot(path)
         if ok:
-            logger.info(f"Saved screenshot: {path}")
+            # logger.info(f"Saved screenshot: {path}")
             return path
         else:
             logger.error(f"Failed to save screenshot for tab {index}")
@@ -334,7 +329,7 @@ def refresh_all_tabs_parallel(driver, logger: logging.Logger, max_workers: int =
     """Refresh all tabs in parallel."""
     try:
         tabs = get_tab_metadata(driver)
-        logger.info(f"Refreshing {len(tabs)} tab(s) in parallel...")
+        # logger.info(f"Refreshing {len(tabs)} tab(s) in parallel...")
         
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = []
@@ -367,7 +362,7 @@ def capture_all_tabs_sequential(driver, logger: logging.Logger, output_base: str
     output_dir = ensure_capture_dir(output_base, capture_time)
     timestamp_for_filename = capture_time.strftime("%Y%m%d_%H%M%S")
 
-    logger.info(f"Capturing screenshots for {len(tabs)} tab(s) sequentially → {output_dir}")
+    # logger.info(f"Capturing screenshots for {len(tabs)} tab(s) sequentially → {output_dir}")
     
     saved_paths = []
     for index, tab in enumerate(tabs, start=1):
@@ -416,7 +411,7 @@ def run_strategy_concurrently(image_paths: list, output_dir: str, logger: loggin
         logger.info("No images to analyze.")
         return
 
-    logger.info(f"Processing {len(image_paths)} image(s) with up to {max_workers} worker(s)...")
+    # logger.info(f"Processing {len(image_paths)} image(s) with up to {max_workers} worker(s)...")
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = {executor.submit(process_single_image, path, output_dir, logger): path for path in image_paths}
         for future in as_completed(futures):
@@ -432,7 +427,7 @@ def run_strategy_concurrently(image_paths: list, output_dir: str, logger: loggin
                     stm = result.get("STM", "none")
                     td = result.get("TD", "none")
                     zigzag = result.get("Zigzag", "none")
-                    logger.info(f"Analysis: {img_path} → Symbol={symbol}, STM={stm}, TD={td}, Zigzag={zigzag}")
+                    logger.info(f"🔥Analysis: Symbol={symbol}, STM={stm}, TD={td}, Zigzag={zigzag}")
                     
                     # Check for signal alignment and trigger alerts
                     is_aligned, signal_type = check_signal_alignment(stm, td, zigzag)
@@ -507,7 +502,7 @@ def main():
             if now.hour >= 8:
                 logger.info("Time is after 8:00AM. Stopping scheduled loop.")
                 print("Time is after 8:00AM. Stopping scheduled loop.")
-                break
+                ## Keep open a new tab of QQQ, then close all other tabs.
             
             capture_time = ceil_to_next_5min_mark(now)
             refresh_time = capture_time - timedelta(seconds=30)
@@ -517,11 +512,11 @@ def main():
             else:
                 refresh_delay = (refresh_time - now).total_seconds()
 
-            logger.info(f"Next capture at {capture_time.strftime('%H:%M:%S')}; refreshing at {refresh_time.strftime('%H:%M:%S')} (in {max(0, int(refresh_delay))}s)")
+            # logger.info(f"Next capture at {capture_time.strftime('%H:%M:%S')}; refreshing at {refresh_time.strftime('%H:%M:%S')} (in {max(0, int(refresh_delay))}s)")
             if refresh_delay > 0:
                 time.sleep(refresh_delay)
 
-            logger.info("Refreshing all tabs...")
+            # logger.info("Refreshing all tabs...")
             refresh_all_tabs_parallel(driver, logger, max_workers=min(8, max(2, os.cpu_count() or 4)))
 
             now = datetime.now()
@@ -533,14 +528,14 @@ def main():
             if capture_delay > 0:
                 time.sleep(capture_delay)
 
-            logger.info(f"Capturing screenshots at {capture_time.strftime('%H:%M:%S')}...")
+            # logger.info(f"Capturing screenshots at {capture_time.strftime('%H:%M:%S')}...")
             images = capture_all_tabs_sequential(driver, logger, base_output_dir, capture_time)
 
             # Get the specific time directory for temp_crops
             time_output_dir = ensure_capture_dir(base_output_dir, capture_time)
             
             try:
-                logger.info("Processing images and analyzing strategies...")
+                # logger.info("Processing images and analyzing strategies...")
                 run_strategy_concurrently(images, time_output_dir, logger, max_workers=min(8, max(2, os.cpu_count() or 4)))
             except Exception as e:
                 logger.exception(f"Error running strategy analysis: {e}")
