@@ -1,0 +1,25 @@
+{
+    "ib_connection": {
+        "host": "127.0.0.1",
+        "port": 4002,
+        "client_id": null
+    },
+    "trading": {
+        "initial_capital": 1000,
+        "position_size_pct": 0.1,
+        "symbols": ["NVDA", "AAPL", "TSLA", "QQQ"],
+        "fibonacci_levels": {
+            "take_profit_ratio": 0.618,
+            "stop_loss_ratio": 0.382
+        }
+    },
+    "market_hours": {
+        "daily_close_time": "07:59",
+        "timezone": "US/Eastern"
+    },
+    "logging": {
+        "log_level": "INFO",
+        "log_file": "main.log",
+        "trading_log_file": "ib_trading_log.txt"
+    }
+}

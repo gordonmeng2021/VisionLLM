@@ -1,0 +1,1 @@
+Trade_ID,Entry_Time,Exit_Time,Symbol,Signal_Type,Action,Shares,Entry_Price,Exit_Price,Take_Profit,Stop_Loss,PnL_Dollar,PnL_Percent,Exit_Reason,Duration_Minutes,STM_Signal,TD_Signal,Zigzag_Signal,Market_Hours,Order_Type,Notes
