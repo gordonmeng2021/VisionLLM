@@ -1,0 +1,38 @@
+{
+  "analysis_info": {
+    "timestamp": "20250912_213957",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1364,
+      174,
+      4
+    ],
+    "total_pixels": 237336,
+    "unique_colors": 283
+  },
+  "color_detection": {
+    "color_name": "purple",
+    "color_info": {
+      "name": "Purple",
+      "description": "Colors with blue dominance, moderate red, and low green - distinct from fuchsia"
+    },
+    "detected_colors_count": 1,
+    "total_detected_pixels": 1,
+    "percentage_of_image": 0.0004213435804092089
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        111,
+        40,
+        131
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0004213435804092089
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/purple_detection_20250912_213953.png",
+    "report": "color_analysis_results/purple_analysis_20250912_213957.json"
+  }
+}

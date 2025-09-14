@@ -567,9 +567,13 @@ def check_signal_alignment(stm: str, td: str, zigzag: str) -> tuple:
     Returns:
         tuple: (is_aligned, signal_type) where signal_type is 'buy', 'sell', or 'none'
     """
-    if stm == "buy" and td == "buy" and zigzag == "buy":
+    # if stm == "buy" and td == "buy" and zigzag == "buy":
+    #     return True, "buy"
+    # elif stm == "sell" and td == "sell" and zigzag == "sell":
+    #     return True, "sell"
+    if stm == "buy" and zigzag == "buy":
         return True, "buy"
-    elif stm == "sell" and td == "sell" and zigzag == "sell":
+    elif stm == "sell" and zigzag == "sell":
         return True, "sell"
     else:
         return False, "none"
@@ -857,7 +861,6 @@ def refresh_all_tabs_parallel(driver, logger: logging.Logger, max_workers: int =
     try:
         # Get current tabs
         old_tabs = get_tab_metadata(driver)
-        logger.info(f"Replacing {len(old_tabs)} tab(s)...")
         
         if not old_tabs:
             logger.warning("No tabs found to replace")
@@ -866,7 +869,6 @@ def refresh_all_tabs_parallel(driver, logger: logging.Logger, max_workers: int =
         # Open new tabs
         new_handles = []
         for tab in old_tabs:
-            logger.info(f"Opening new tab for: {tab['url']}")
             new_handle = open_new_tab(driver, tab['url'], logger)
             if new_handle:
                 new_handles.append(new_handle)
@@ -875,7 +877,6 @@ def refresh_all_tabs_parallel(driver, logger: logging.Logger, max_workers: int =
                 return False
         
         # Verify new tabs are loaded
-        logger.info("Verifying new tabs are loaded...")
         for i, handle in enumerate(new_handles, 1):
             driver.switch_to.window(handle)
             time.sleep(0.1)
@@ -887,9 +888,7 @@ def refresh_all_tabs_parallel(driver, logger: logging.Logger, max_workers: int =
                 return False
         
         # Close old tabs SEQUENTIALLY (this is the key fix)
-        logger.info("Closing old tabs sequentially...")
         for i, tab in enumerate(old_tabs, 1):
-            logger.info(f"Closing old tab {i}/{len(old_tabs)}")
             success = close_tab_safely(driver, tab['handle'], logger)
             if success:
                 # logger.info(f"✓ Closed old tab {i}")
@@ -1136,7 +1135,6 @@ def main():
 
             # Check if we need to refresh tabs (only at 5-minute mark - 30s)
             if now >= refresh_time and now < capture_time:
-                logger.info("Time to refresh tabs (5-minute mark - 30s)")
                 replacement_success = refresh_all_tabs_parallel(driver, logger, max_workers=min(8, max(2, os.cpu_count() or 4)))
                 if not replacement_success:
                     logger.warning("Tab replacement had issues, but continuing with capture...")

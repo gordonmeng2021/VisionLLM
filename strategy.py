@@ -24,7 +24,7 @@ class CandleStrategyAnalyzer:
         self.candle_positions = []
         self.candle_width = None
         
-        # Color detection rules (same as unified_color_detector.py)
+        # Color detection rules (synchronized with unified_color_detector.py)
         self.color_rules = {
             'red': [
                 lambda r, g, b: r > max(g, b) * 1.2,   # Red dominant but not as strict
@@ -49,36 +49,39 @@ class CandleStrategyAnalyzer:
                 lambda r, g, b: max(r, g, b) - min(r, g, b) > 25,  # Color variation
             ],
             'purple': [
-                lambda r, g, b: b >= max(r, g) * 0.7,  # Blue significant
-                lambda r, g, b: g < r and g < b,       # Green lower than R and B
-                lambda r, g, b: max(r, g, b) - min(r, g, b) > 20,  # Color variation
-                lambda r, g, b: r > 20,                # Red present
-                lambda r, g, b: b > 30,                # Blue present
+                lambda r, g, b: b > max(r, g) * 1.05,  # Blue is the dominant component (stricter than fuchsia)
+                lambda r, g, b: g < min(r, b) * 0.5,   # Green much lower than red and blue
+                lambda r, g, b: r > 20 and r < 180,    # Red present but not too bright (distinct from fuchsia)
+                lambda r, g, b: b > 30 and b < 220,    # Blue present but not too bright
+                lambda r, g, b: max(r, g, b) - min(r, g, b) > 20,  # Good color variation
+                lambda r, g, b: b > r * 1.02,          # Blue slightly higher than red (purple characteristic)
+                lambda r, g, b: int(r) + int(b) < 2 * int(g) + 250,  # Not as bright as fuchsia
+                lambda r, g, b: abs(int(r) - int(b)) > 15,  # Red and blue should be different (not like fuchsia)
+                lambda r, g, b: r < 200,               # Red not too bright (exclude bright fuchsia)
             ],
             'yellow': [
-                lambda r, g, b: r > 100 and g > 100,   # High red and green
-                lambda r, g, b: abs(int(r) - int(g)) < 80,       # Red and green similar
-                lambda r, g, b: b < min(r, g) * 0.65,  # Blue less than 65% of min(R,G)
-                lambda r, g, b: b < 150,               # Blue absolute limit
-                lambda r, g, b: min(r, g) > max(r, g) * 0.6,   # R and G reasonably close
-                lambda r, g, b: int(r) + int(g) > 2 * int(b) + 50,    # Yellow color space
-                lambda r, g, b: r > g * 0.7 and g > r * 0.7,   # Neither R nor G dominates
-                lambda r, g, b: r > 50 and g > 50,     # Minimum brightness
+                lambda r, g, b: r > 100 and g > 100,   # High red and green (lowered threshold)
+                lambda r, g, b: abs(int(r) - int(g)) < 80,       # Red and green should be similar (more relaxed)
+                lambda r, g, b: b < min(r, g) * 0.65,  # Blue less than 65% of min(R,G) (more relaxed)
+                lambda r, g, b: b < 150,               # Blue absolute limit (increased)
+                lambda r, g, b: min(r, g) > max(r, g) * 0.6,   # R and G should be reasonably close (more relaxed)
+                lambda r, g, b: int(r) + int(g) > 2 * int(b) + 50,    # Yellow color space rule (more relaxed)
+                lambda r, g, b: r > g * 0.7 and g > r * 0.7,   # Neither R nor G dominates too much (more relaxed)
+                lambda r, g, b: r > 50 and g > 50,     # Minimum brightness to avoid dark colors
             ],
             'blue': [
                 lambda r, g, b: b > max(r, g) * 1.2,   # Blue significantly dominant
                 lambda r, g, b: max(r, g, b) - min(r, g, b) > 15,  # Color variation
                 lambda r, g, b: b > 40,                # Blue present
             ],
-            'aqua': [
-                lambda r, g, b: b > 100 and g > 100,   # High blue and green components
-                lambda r, g, b: r < min(b, g) * 0.6,   # Red significantly lower than blue and green
-                lambda r, g, b: abs(int(b) - int(g)) < 100,  # Blue and green should be reasonably similar
-                lambda r, g, b: min(b, g) > max(b, g) * 0.7,  # Both blue and green should be substantial
-                lambda r, g, b: g > 80,                # Ensure sufficient green to distinguish from pure blue
-                lambda r, g, b: b > g * 0.8,           # Blue should be at least 80% of green value
-                lambda r, g, b: int(b) + int(g) > 2 * int(r) + 80,   # Aqua color space rule
-                lambda r, g, b: max(b, g, r) - min(b, g, r) > 30,  # Good color variation
+            'gray': [
+                lambda r, g, b: abs(int(r) - int(g)) <= 15,  # Red and green are similar
+                lambda r, g, b: abs(int(g) - int(b)) <= 15,  # Green and blue are similar
+                lambda r, g, b: abs(int(r) - int(b)) <= 15,  # Red and blue are similar
+                lambda r, g, b: max(r, g, b) - min(r, g, b) <= 20,  # Low color variation
+                lambda r, g, b: min(r, g, b) >= 50,    # Exclude black colors (raised from 10 to 50)
+                lambda r, g, b: max(r, g, b) <= 200,   # Not pure white (to avoid very bright whites)
+                lambda r, g, b: max(r, g, b) >= 70,    # Ensure it's bright enough to be considered gray
             ],
             'fuchsia': [
                 lambda r, g, b: r > 150 and b > 150,   # High red and blue
@@ -87,6 +90,17 @@ class CandleStrategyAnalyzer:
                 lambda r, g, b: max(r, b) > g * 1.5,   # Either red or blue dominates over green
                 lambda r, g, b: max(r, g, b) - min(r, g, b) > 40,  # Good color variation
                 lambda r, g, b: int(r) + int(b) > 2 * int(g) + 100,   # Fuchsia color space rule
+            ],
+            'aqua': [
+                lambda r, g, b: b > 100 and g > 100,   # High blue and green components
+                lambda r, g, b: r < min(b, g) * 0.6,   # Red significantly lower than blue and green
+                lambda r, g, b: b >= g * 0.9,          # Blue should be at least 90% of green (allows blue to be slightly lower)
+                lambda r, g, b: g >= b * 0.8,          # Green should be at least 80% of blue (allows green to be slightly lower)
+                lambda r, g, b: g > r * 1.2,           # Green should be significantly higher than red
+                lambda r, g, b: b > r * 1.2,           # Blue should be significantly higher than red
+                lambda r, g, b: abs(int(b) - int(g)) < 80,  # Blue and green should be reasonably close
+                lambda r, g, b: int(b) + int(g) > 2 * int(r) + 80,   # Aqua color space rule
+                lambda r, g, b: max(b, g, r) - min(b, g, r) > 30,  # Good color variation
             ]
         }
     
@@ -289,7 +303,7 @@ class CandleStrategyAnalyzer:
         rules = self.color_rules[color_name]
         return all(rule(r, g, b) for rule in rules)
     
-    def validate_horizontal_line(self, color_name, x, y, pixels_range=45):
+    def validate_horizontal_line(self, color_name, x, y, pixels_range=30):
         """
         Validate if a color forms a horizontal line by checking exactly ±pixels_range around the detected pixel.
         

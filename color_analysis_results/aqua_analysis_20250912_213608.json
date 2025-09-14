@@ -1,0 +1,38 @@
+{
+  "analysis_info": {
+    "timestamp": "20250912_213608",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1234,
+      264,
+      4
+    ],
+    "total_pixels": 325776,
+    "unique_colors": 244
+  },
+  "color_detection": {
+    "color_name": "aqua",
+    "color_info": {
+      "name": "Aqua",
+      "description": "Cyan/aqua colors with high blue and green, low red - distinct from pure blue"
+    },
+    "detected_colors_count": 1,
+    "total_detected_pixels": 2454,
+    "percentage_of_image": 0.7532783262118756
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        69,
+        151,
+        130
+      ],
+      "pixel_count": 2454,
+      "percentage": 0.7532783262118756
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/aqua_detection_20250912_213557.png",
+    "report": "color_analysis_results/aqua_analysis_20250912_213608.json"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "analysis_info": {
+    "timestamp": "20250912_214202",
+    "image_path": "/Users/meng/Desktop/2025 Backtester/VisionLLM/cropped_images/test.png",
+    "image_dimensions": [
+      1234,
+      264,
+      4
+    ],
+    "total_pixels": 325776,
+    "unique_colors": 244
+  },
+  "color_detection": {
+    "color_name": "purple",
+    "color_info": {
+      "name": "Purple",
+      "description": "Colors with blue dominance, moderate red, and low green - distinct from fuchsia"
+    },
+    "detected_colors_count": 2,
+    "total_detected_pixels": 21,
+    "percentage_of_image": 0.006446147045822897
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        112,
+        40,
+        132
+      ],
+      "pixel_count": 14,
+      "percentage": 0.0042974313638819315
+    },
+    {
+      "rgb": [
+        144,
+        49,
+        170
+      ],
+      "pixel_count": 7,
+      "percentage": 0.0021487156819409658
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/purple_detection_20250912_214148.png",
+    "report": "color_analysis_results/purple_analysis_20250912_214202.json"
+  }
+}

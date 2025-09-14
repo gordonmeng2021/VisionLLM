@@ -125,14 +125,15 @@ class UnifiedColorDetector:
             },
             'aqua': {
                 'name': 'Aqua',
-                'description': 'Cyan/aqua colors with high blue and green, low red - distinct from pure blue',
+                'description': 'Cyan/aqua colors with high blue and green, low red - distinct from pure green',
                 'rules': [
                     lambda r, g, b: b > 100 and g > 100,   # High blue and green components
                     lambda r, g, b: r < min(b, g) * 0.6,   # Red significantly lower than blue and green
-                    lambda r, g, b: abs(int(b) - int(g)) < 100,  # Blue and green should be reasonably similar
-                    lambda r, g, b: min(b, g) > max(b, g) * 0.7,  # Both blue and green should be substantial
-                    lambda r, g, b: g > 80,                # Ensure sufficient green to distinguish from pure blue
-                    lambda r, g, b: b > g * 0.8,           # Blue should be at least 80% of green value
+                    lambda r, g, b: b >= g * 0.9,          # Blue should be at least 90% of green (allows blue to be slightly lower)
+                    lambda r, g, b: g >= b * 0.8,          # Green should be at least 80% of blue (allows green to be slightly lower)
+                    lambda r, g, b: g > r * 1.2,           # Green should be significantly higher than red
+                    lambda r, g, b: b > r * 1.2,           # Blue should be significantly higher than red
+                    lambda r, g, b: abs(int(b) - int(g)) < 80,  # Blue and green should be reasonably close
                     lambda r, g, b: int(b) + int(g) > 2 * int(r) + 80,   # Aqua color space rule
                     lambda r, g, b: max(b, g, r) - min(b, g, r) > 30,  # Good color variation
                 ]

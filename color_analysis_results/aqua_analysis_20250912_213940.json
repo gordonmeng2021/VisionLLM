@@ -1,0 +1,371 @@
+{
+  "analysis_info": {
+    "timestamp": "20250912_213940",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1364,
+      174,
+      4
+    ],
+    "total_pixels": 237336,
+    "unique_colors": 283
+  },
+  "color_detection": {
+    "color_name": "aqua",
+    "color_info": {
+      "name": "Aqua",
+      "description": "Cyan/aqua colors with high blue and green, low red - distinct from pure green"
+    },
+    "detected_colors_count": 38,
+    "total_detected_pixels": 4406,
+    "percentage_of_image": 1.8564398152829744
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        117,
+        251,
+        253
+      ],
+      "pixel_count": 4123,
+      "percentage": 1.7371995820271682
+    },
+    {
+      "rgb": [
+        118,
+        251,
+        253
+      ],
+      "pixel_count": 62,
+      "percentage": 0.026123301985370953
+    },
+    {
+      "rgb": [
+        127,
+        251,
+        253
+      ],
+      "pixel_count": 21,
+      "percentage": 0.008848215188593387
+    },
+    {
+      "rgb": [
+        139,
+        252,
+        253
+      ],
+      "pixel_count": 17,
+      "percentage": 0.007162840866956551
+    },
+    {
+      "rgb": [
+        120,
+        251,
+        253
+      ],
+      "pixel_count": 14,
+      "percentage": 0.005898810125728924
+    },
+    {
+      "rgb": [
+        124,
+        251,
+        253
+      ],
+      "pixel_count": 14,
+      "percentage": 0.005898810125728924
+    },
+    {
+      "rgb": [
+        119,
+        251,
+        253
+      ],
+      "pixel_count": 14,
+      "percentage": 0.005898810125728924
+    },
+    {
+      "rgb": [
+        88,
+        192,
+        193
+      ],
+      "pixel_count": 12,
+      "percentage": 0.005056122964910506
+    },
+    {
+      "rgb": [
+        122,
+        251,
+        253
+      ],
+      "pixel_count": 12,
+      "percentage": 0.005056122964910506
+    },
+    {
+      "rgb": [
+        131,
+        252,
+        253
+      ],
+      "pixel_count": 12,
+      "percentage": 0.005056122964910506
+    },
+    {
+      "rgb": [
+        132,
+        252,
+        253
+      ],
+      "pixel_count": 11,
+      "percentage": 0.0046347793845012975
+    },
+    {
+      "rgb": [
+        134,
+        252,
+        253
+      ],
+      "pixel_count": 11,
+      "percentage": 0.0046347793845012975
+    },
+    {
+      "rgb": [
+        125,
+        251,
+        253
+      ],
+      "pixel_count": 7,
+      "percentage": 0.002949405062864462
+    },
+    {
+      "rgb": [
+        141,
+        252,
+        253
+      ],
+      "pixel_count": 7,
+      "percentage": 0.002949405062864462
+    },
+    {
+      "rgb": [
+        60,
+        133,
+        134
+      ],
+      "pixel_count": 6,
+      "percentage": 0.002528061482455253
+    },
+    {
+      "rgb": [
+        121,
+        251,
+        253
+      ],
+      "pixel_count": 6,
+      "percentage": 0.002528061482455253
+    },
+    {
+      "rgb": [
+        126,
+        251,
+        253
+      ],
+      "pixel_count": 6,
+      "percentage": 0.002528061482455253
+    },
+    {
+      "rgb": [
+        142,
+        252,
+        253
+      ],
+      "pixel_count": 6,
+      "percentage": 0.002528061482455253
+    },
+    {
+      "rgb": [
+        129,
+        251,
+        253
+      ],
+      "pixel_count": 6,
+      "percentage": 0.002528061482455253
+    },
+    {
+      "rgb": [
+        143,
+        252,
+        253
+      ],
+      "pixel_count": 5,
+      "percentage": 0.0021067179020460443
+    },
+    {
+      "rgb": [
+        123,
+        251,
+        253
+      ],
+      "pixel_count": 4,
+      "percentage": 0.0016853743216368356
+    },
+    {
+      "rgb": [
+        130,
+        252,
+        253
+      ],
+      "pixel_count": 3,
+      "percentage": 0.0012640307412276266
+    },
+    {
+      "rgb": [
+        146,
+        252,
+        253
+      ],
+      "pixel_count": 3,
+      "percentage": 0.0012640307412276266
+    },
+    {
+      "rgb": [
+        130,
+        251,
+        253
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0008426871608184178
+    },
+    {
+      "rgb": [
+        150,
+        252,
+        253
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0008426871608184178
+    },
+    {
+      "rgb": [
+        133,
+        252,
+        253
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0008426871608184178
+    },
+    {
+      "rgb": [
+        138,
+        252,
+        253
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0008426871608184178
+    },
+    {
+      "rgb": [
+        147,
+        252,
+        253
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0008426871608184178
+    },
+    {
+      "rgb": [
+        140,
+        252,
+        253
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0008426871608184178
+    },
+    {
+      "rgb": [
+        145,
+        252,
+        253
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0008426871608184178
+    },
+    {
+      "rgb": [
+        149,
+        252,
+        253
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0008426871608184178
+    },
+    {
+      "rgb": [
+        90,
+        195,
+        196
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0008426871608184178
+    },
+    {
+      "rgb": [
+        137,
+        252,
+        253
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0004213435804092089
+    },
+    {
+      "rgb": [
+        144,
+        252,
+        253
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0004213435804092089
+    },
+    {
+      "rgb": [
+        151,
+        252,
+        253
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0004213435804092089
+    },
+    {
+      "rgb": [
+        136,
+        252,
+        253
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0004213435804092089
+    },
+    {
+      "rgb": [
+        148,
+        252,
+        253
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0004213435804092089
+    },
+    {
+      "rgb": [
+        135,
+        252,
+        253
+      ],
+      "pixel_count": 1,
+      "percentage": 0.0004213435804092089
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/aqua_detection_20250912_213922.png",
+    "report": "color_analysis_results/aqua_analysis_20250912_213940.json"
+  }
+}
