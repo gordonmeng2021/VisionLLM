@@ -44,3 +44,4 @@ Steps:
 ### Check the time for checking the 賣吾賣order 耐吾耐
 
 ***** check the program 有冇bug
+*** check the main.log, current loop problem for the connection.
