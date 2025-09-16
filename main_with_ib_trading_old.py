@@ -6,8 +6,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
-import threading
-import queue
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import platform
 import pytz
 import json
@@ -15,9 +14,10 @@ import random
 import numpy as np
 import pandas as pd
 import csv
+import threading
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-stock_list = ["NVDA","AAPL","TSLA","NIO","CRWV","NBIS","AMD","NFLX","IBM"]
+stock_list = ["NVDA","AAPL","TSLA"]
 # Special symbols that should always be included
 special_symbols = ["QQQ"]
 
@@ -107,6 +107,10 @@ class IBTradingManager:
         self.trades_csv_file = "trading_records.csv"
         self._initialize_log_files()
         self._initialize_csv_file()
+        
+        # Thread-local IB connections for use under ThreadPoolExecutor
+        self._thread_local = threading.local()
+        self._thread_ib_conns = []  # keep references for cleanup
     
     def _generate_client_id(self):
         """Generate a unique client ID."""
@@ -190,19 +194,61 @@ class IBTradingManager:
         except Exception as e:
             self.logger.error(f"Failed to connect to IB: {str(e)}")
             return False
+
+    def _get_thread_ib(self):
+        """Get or create a per-thread IB connection with a fresh client ID.
+        Used when running under ThreadPoolExecutor to avoid sharing a single IB instance across threads.
+        """
+        if not IB_AVAILABLE:
+            return None
+        try:
+            ib = getattr(self._thread_local, 'ib', None)
+            if ib is not None and ib.isConnected():
+                return ib
+            # Create a new IB connection for this thread
+            ib = IB()
+            client_id = self._generate_client_id()
+            self.logger.info(f"[Thread {threading.get_ident()}] Connecting IB with client ID {client_id}")
+            ib.connect(self.ib_host, self.ib_port, clientId=client_id)
+            # Cache on thread-local and keep reference for cleanup
+            self._thread_local.ib = ib
+            self._thread_ib_conns.append(ib)
+            return ib
+        except Exception as e:
+            self.logger.error(f"[Thread {threading.get_ident()}] Failed to create thread-local IB: {e}")
+            return None
     
     def disconnect(self):
         """Disconnect from Interactive Brokers API."""
         if self.ib and self.ib.isConnected():
             self.ib.disconnect()
             self.logger.info("Disconnected from IB")
+        # Disconnect any thread-local IB connections
+        try:
+            for tib in list(self._thread_ib_conns):
+                try:
+                    if tib and tib.isConnected():
+                        tib.disconnect()
+                except Exception:
+                    pass
+            self._thread_ib_conns.clear()
+        except Exception:
+            pass
     
     def get_current_price(self, symbol: str) -> float:
         """Get current market price for a symbol."""
         try:
             contract = self.contracts[symbol]
-            ticker = self.ib.reqMktData(contract, '', False, False)
-            self.ib.sleep(1)  # Wait for data
+            ib = self._get_thread_ib() or self.ib
+            if ib is None:
+                self.logger.error("No IB connection available for price request")
+                return None
+            ticker = ib.reqMktData(contract, '', False, False)
+            # Small wait for data tick
+            try:
+                ib.sleep(1)
+            except Exception:
+                time.sleep(1)
             
             if ticker.last and ticker.last > 0:
                 price = ticker.last
@@ -214,7 +260,10 @@ class IBTradingManager:
                 self.logger.warning(f"No price data available for {symbol}")
                 return None
             
-            self.ib.cancelMktData(contract)
+            try:
+                ib.cancelMktData(contract)
+            except Exception:
+                pass
             return float(price)
         except Exception as e:
             self.logger.error(f"Error getting price for {symbol}: {e}")
@@ -282,6 +331,10 @@ class IBTradingManager:
             market_close = current_us_time.replace(hour=16, minute=0, second=0, microsecond=0)
             
             contract = self.contracts[symbol]
+            ib = self._get_thread_ib() or self.ib
+            if ib is None:
+                self.logger.error("No IB connection available for placing order")
+                return False
             
             if signal_type == 'buy':
                 action = 'BUY'
@@ -310,7 +363,7 @@ class IBTradingManager:
                 self.logger.info(f"Placing limit order: {action} {shares} shares of {symbol} at ${limit_price:.2f}")
             
             # Place the order
-            trade = self.ib.placeOrder(contract, order)
+            trade = ib.placeOrder(contract, order)
             
             # Generate unique trade ID
             trade_id = self._generate_trade_id()
@@ -382,6 +435,10 @@ class IBTradingManager:
             
             contract = self.contracts[symbol]
             shares = position_info['shares']
+            ib = self._get_thread_ib() or self.ib
+            if ib is None:
+                self.logger.error("No IB connection available for closing position")
+                return
             
             # Place closing order
             if market_open <= current_us_time < market_close:
@@ -394,7 +451,7 @@ class IBTradingManager:
                     outsideRth=True
                 )
             
-            trade = self.ib.placeOrder(contract, order)
+            trade = ib.placeOrder(contract, order)
             
             # Calculate P&L
             if position_info['signal_type'] == 'buy':
@@ -1007,68 +1064,38 @@ def run_strategy_concurrently(image_paths: list, output_dir: str, logger: loggin
         logger.info("No images to analyze.")
         return
 
-    task_queue = queue.Queue()
-    result_queue = queue.Queue()
-
-    for path in image_paths:
-        task_queue.put(path)
-
-    def worker() -> None:
-        while True:
+    # logger.info(f"Processing {len(image_paths)} image(s) with up to {max_workers} worker(s)...")
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(process_single_image, path, output_dir, logger, trading_manager): path for path in image_paths}
+        for future in as_completed(futures):
+            path = futures[future]
             try:
-                path = task_queue.get_nowait()
-            except queue.Empty:
-                break
-            try:
-                img_path, result = process_single_image(path, output_dir, logger, trading_manager)
-                result_queue.put((img_path, result, None))
+                img_path, result = future.result()
+                if "error" in result:
+                    logger.error(f"Processing failed for {img_path}: {result['error']}")
+                    # Clean terminal output for errors
+                    print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\",\"Zigzag\":\"error\"}}")
+                else:
+                    symbol = result.get("symbol", "UNKNOWN")
+                    stm = result.get("STM", "none")
+                    td = result.get("TD", "none")
+                    zigzag = result.get("Zigzag", "none")
+                    logger.info(f"🔥Analysis: Symbol={symbol}, STM={stm}, TD={td}, Zigzag={zigzag}")
+                    
+                    # Check for signal alignment and trigger alerts
+                    is_aligned, signal_type = check_signal_alignment(stm, td, zigzag)
+                    if is_aligned:
+                        # Play alert sound
+                        play_alert_sound()
+                        # Show prominent alert message
+                        show_alert_message(symbol, signal_type, stm, td, zigzag, logger)
+                    
+                    # Clean terminal output - only JSON
+                    print(f"🔥JSON Output: {{\"Symbol\":\"{symbol}\",\"STM\":\"{stm}\",\"TD\":\"{td}\",\"Zigzag\":\"{zigzag}\"}}")
             except Exception as e:
-                result_queue.put((path, None, e))
-            finally:
-                task_queue.task_done()
-
-    num_workers = max(1, min(max_workers, len(image_paths)))
-    threads = [threading.Thread(target=worker, name=f"strategy-worker-{i+1}") for i in range(num_workers)]
-
-    for t in threads:
-        t.start()
-
-    completed = 0
-    total = len(image_paths)
-    while completed < total:
-        try:
-            img_path, result, err = result_queue.get(timeout=0.2)
-        except queue.Empty:
-            continue
-
-        if err is not None:
-            logger.exception(f"Exception in processing for {img_path}: {err}")
-            print('JSON Output: {"Symbol":"ERROR","STM":"error","TD":"error","Zigzag":"error"}')
-        else:
-            if "error" in result:
-                logger.error(f"Processing failed for {img_path}: {result['error']}")
-                print('JSON Output: {"Symbol":"ERROR","STM":"error","TD":"error","Zigzag":"error"}')
-            else:
-                symbol = result.get("symbol", "UNKNOWN")
-                stm = result.get("STM", "none")
-                td = result.get("TD", "none")
-                zigzag = result.get("Zigzag", "none")
-                logger.info(f"🔥Analysis: Symbol={symbol}, STM={stm}, TD={td}, Zigzag={zigzag}")
-
-                # Check for signal alignment and trigger alerts
-                is_aligned, signal_type = check_signal_alignment(stm, td, zigzag)
-                if is_aligned:
-                    # Play alert sound
-                    play_alert_sound()
-                    # Show prominent alert message
-                    show_alert_message(symbol, signal_type, stm, td, zigzag, logger)
-
-                print(f"🔥JSON Output: {{\"Symbol\":\"{symbol}\",\"STM\":\"{stm}\",\"TD\":\"{td}\",\"Zigzag\":\"{zigzag}\"}}")
-
-        completed += 1
-
-    for t in threads:
-        t.join()
+                logger.exception(f"Exception in processing for {path}: {e}")
+                # Clean terminal output for exceptions
+                print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\",\"Zigzag\":\"error\"}}")
 
 
 def ceil_to_next_5min_mark(now: datetime) -> datetime:
@@ -1153,8 +1180,7 @@ def main():
 
             # Check for daily position closure at 07:59 US/Eastern
             if trading_manager and us_time_now.hour == 7 and us_time_now.minute == 59:
-                # trading_manager.close_all_positions_daily()
-                print("Pretending to close all positions daily")
+                trading_manager.close_all_positions_daily()
                 time.sleep(130)  # Sleep for 2 minutes to avoid multiple closures
                 continue
 

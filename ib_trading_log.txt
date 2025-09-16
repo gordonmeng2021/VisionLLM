@@ -1,1 +1,40 @@
 ==== IB Trading Log Start ====
+
+============================================================
+TRADE ENTRY: AAPL
+Trade ID: TRADE_20250915_212429_932
+Time: 2025-09-15 09:24:29.681333-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $237.20
+Take Profit: $243.06
+Stop Loss: $233.58
+Order Type: Limit @ $239.57
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: AAPL
+Trade ID: TRADE_20250915_212958_718
+Time: 2025-09-15 09:29:58.639178-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $237.01
+Take Profit: $242.87
+Stop Loss: $233.39
+Order Type: Limit @ $239.38
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: AAPL
+Trade ID: TRADE_20250915_213306_866
+Time: 2025-09-15 09:33:06.081461-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $237.38
+Take Profit: $243.25
+Stop Loss: $233.75
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================

@@ -1,0 +1,61 @@
+2025-09-15 21:24:18,098 [INFO] Regular symbols: ['AAPL']
+2025-09-15 21:24:18,098 [INFO] Special symbols: []
+2025-09-15 21:24:18,098 [INFO] All tracked symbols: ['AAPL']
+2025-09-15 21:24:18,098 [INFO] Using existing trading CSV file: trading_records.csv
+2025-09-15 21:24:18,098 [INFO] Connecting to IB at 127.0.0.1:4002 with client ID 28...
+2025-09-15 21:24:18,671 [INFO] Connected to IB!
+2025-09-15 21:24:18,671 [INFO] Created stock contract for AAPL
+2025-09-15 21:24:18,671 [INFO] Connected. Waiting 10 seconds before requesting market data...
+2025-09-15 21:24:29,680 [INFO] Current AAPL price: $237.20
+2025-09-15 21:24:29,680 [INFO] Placing BUY order for 1 share of AAPL...
+2025-09-15 21:24:29,681 [INFO] Placing limit order: BUY 1 shares of AAPL at $239.57
+2025-09-15 21:24:29,685 [INFO] Order placed for AAPL: BUY 1 shares
+2025-09-15 21:24:29,685 [INFO] Take Profit: $243.06, Stop Loss: $233.58
+2025-09-15 21:24:29,685 [INFO] Order placement returned success (submission sent to IB).
+2025-09-15 21:24:34,691 [INFO] Disconnected from IB
+2025-09-15 21:24:34,691 [INFO] Test script finished.
+2025-09-15 21:28:41,261 [INFO] Regular symbols: ['AAPL']
+2025-09-15 21:28:41,261 [INFO] Special symbols: []
+2025-09-15 21:28:41,261 [INFO] All tracked symbols: ['AAPL']
+2025-09-15 21:28:41,261 [INFO] Using existing trading CSV file: trading_records.csv
+2025-09-15 21:28:41,261 [INFO] Connecting to IB at 127.0.0.1:4002 with client ID 24...
+2025-09-15 21:28:41,935 [INFO] Connected to IB!
+2025-09-15 21:28:41,935 [INFO] Created stock contract for AAPL
+2025-09-15 21:28:41,935 [INFO] Connected. Scheduling trade task(s) with ThreadPoolExecutor...
+2025-09-15 21:28:51,938 [ERROR] Error getting price for AAPL: There is no current event loop in thread 'ThreadPoolExecutor-0_0'.
+2025-09-15 21:28:51,938 [ERROR] No price received for AAPL. Aborting symbol task.
+2025-09-15 21:28:51,938 [ERROR] Order placement failed for AAPL.
+2025-09-15 21:28:55,497 [INFO] Disconnected from IB
+2025-09-15 21:28:55,498 [INFO] Test script finished.
+2025-09-15 21:29:47,223 [INFO] Regular symbols: ['AAPL']
+2025-09-15 21:29:47,223 [INFO] Special symbols: []
+2025-09-15 21:29:47,223 [INFO] All tracked symbols: ['AAPL']
+2025-09-15 21:29:47,223 [INFO] Using existing trading CSV file: trading_records.csv
+2025-09-15 21:29:47,223 [INFO] Connecting to IB at 127.0.0.1:4002 with client ID 22...
+2025-09-15 21:29:47,630 [INFO] Connected to IB!
+2025-09-15 21:29:47,630 [INFO] Created stock contract for AAPL
+2025-09-15 21:29:47,630 [INFO] Connected. Using ThreadPoolExecutor only for non-IB work; IB calls stay on main thread.
+2025-09-15 21:29:58,637 [INFO] Current AAPL price: $237.01
+2025-09-15 21:29:58,638 [INFO] Placing BUY order for 1 share of AAPL...
+2025-09-15 21:29:58,639 [INFO] Placing limit order: BUY 1 shares of AAPL at $239.38
+2025-09-15 21:29:58,641 [INFO] Order placed for AAPL: BUY 1 shares
+2025-09-15 21:29:58,642 [INFO] Take Profit: $242.87, Stop Loss: $233.39
+2025-09-15 21:29:58,642 [INFO] Order placement success for AAPL (submission sent to IB).
+2025-09-15 21:30:00,519 [INFO] Disconnected from IB
+2025-09-15 21:30:00,520 [INFO] Test script finished.
+2025-09-15 21:32:54,565 [INFO] Regular symbols: ['AAPL']
+2025-09-15 21:32:54,565 [INFO] Special symbols: []
+2025-09-15 21:32:54,565 [INFO] All tracked symbols: ['AAPL']
+2025-09-15 21:32:54,565 [INFO] Using existing trading CSV file: trading_records.csv
+2025-09-15 21:32:54,565 [INFO] Connecting to IB at 127.0.0.1:4002 with client ID 6...
+2025-09-15 21:32:55,072 [INFO] Connected to IB!
+2025-09-15 21:32:55,072 [INFO] Created stock contract for AAPL
+2025-09-15 21:32:55,072 [INFO] Connected in worker thread. Waiting 10 seconds before requesting market data...
+2025-09-15 21:33:06,080 [INFO] Current AAPL price: $237.38
+2025-09-15 21:33:06,080 [INFO] Placing BUY order for 1 share of AAPL...
+2025-09-15 21:33:06,081 [INFO] Placing market order: BUY 1 shares of AAPL
+2025-09-15 21:33:06,084 [INFO] Order placed for AAPL: BUY 1 shares
+2025-09-15 21:33:06,084 [INFO] Take Profit: $243.25, Stop Loss: $233.75
+2025-09-15 21:33:11,090 [INFO] Disconnected from IB
+2025-09-15 21:33:11,090 [INFO] Order placement success for AAPL (submission sent to IB).
+2025-09-15 21:33:11,091 [INFO] Test script finished.

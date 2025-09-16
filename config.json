@@ -7,7 +7,7 @@
     "trading": {
         "initial_capital": 1000,
         "position_size_pct": 0.1,
-        "symbols": ["NVDA", "AAPL", "TSLA", "QQQ"],
+        "symbols": ["NVDA", "AAPL", "TSLA","NIO","CRWV","NBIS","AMD","NFLX","IBM","QQQ"],
         "fibonacci_levels": {
             "take_profit_ratio": 0.618,
             "stop_loss_ratio": 0.382
