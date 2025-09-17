@@ -54,14 +54,13 @@ class UnifiedColorDetector:
                 'name': 'Yellow',
                 'description': 'Colors with similar high red and green values, controlled blue',
                 'rules': [
-                    lambda r, g, b: r > 100 and g > 100,   # High red and green (lowered threshold)
-                    lambda r, g, b: abs(int(r) - int(g)) < 80,       # Red and green should be similar (more relaxed)
-                    lambda r, g, b: b < min(r, g) * 0.65,  # Blue less than 65% of min(R,G) (more relaxed)
-                    lambda r, g, b: b < 150,               # Blue absolute limit (increased)
-                    lambda r, g, b: min(r, g) > max(r, g) * 0.6,   # R and G should be reasonably close (more relaxed)
-                    lambda r, g, b: int(r) + int(g) > 2 * int(b) + 50,    # Yellow color space rule (more relaxed)
-                    lambda r, g, b: r > g * 0.7 and g > r * 0.7,   # Neither R nor G dominates too much (more relaxed)
-                    lambda r, g, b: r > 50 and g > 50,     # Minimum brightness to avoid dark colors
+                    lambda r, g, b: r > 120 and g > 120,   # Slightly higher minimum for R and G
+                    lambda r, g, b: abs(int(r) - int(g)) <= 60,    # R and G closer to each other
+                    lambda r, g, b: r > g * 0.85 and g > r * 0.85, # Tighten R/G balance to avoid orange
+                    lambda r, g, b: b < min(r, g) * 0.55,  # Lower blue proportion a bit
+                    lambda r, g, b: b < 140,               # Slightly lower absolute blue cap
+                    lambda r, g, b: max(r, g, b) - min(r, g, b) >= 28,  # Exclude near-white (low chroma)
+                    lambda r, g, b: int(r) + int(g) > 2 * int(b) + 60,  # Slightly stronger yellow space rule
                 ]
             },
             'orange': {

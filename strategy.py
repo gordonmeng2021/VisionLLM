@@ -5,10 +5,10 @@ Analyzes candlestick chart images to detect candles and color signals for tradin
 """
 
 import numpy as np
-from PIL import Image
 import json
 import sys
 import os
+from color_detection_tools.unified_color_detector import UnifiedColorDetector
 
 class CandleStrategyAnalyzer:
     def __init__(self, image_path):
@@ -24,109 +24,22 @@ class CandleStrategyAnalyzer:
         self.candle_positions = []
         self.candle_width = None
         
-        # Color detection rules (synchronized with unified_color_detector.py)
+        # Use UnifiedColorDetector as the single source of truth for color rules
+        self.unified_detector = UnifiedColorDetector(image_path)
+        # Map to the plain list-of-rules format used by this analyzer
         self.color_rules = {
-            'red': [
-                lambda r, g, b: r > max(g, b) * 1.2,   # Red dominant but not as strict
-                lambda r, g, b: r > 100,               # High red value
-                lambda r, g, b: g < r * 0.6,           # Green much lower than red (stricter to avoid orange)
-                lambda r, g, b: b < r * 0.6,           # Blue much lower than red
-                lambda r, g, b: r - g > 50,            # Red significantly higher than green (avoid orange)
-                lambda r, g, b: max(r, g, b) - min(r, g, b) > 40,  # Good color variation
-            ],
-            'green': [
-                lambda r, g, b: g > max(r, b),         # Green is highest component
-                lambda r, g, b: g > 50,                # Minimum green value
-                lambda r, g, b: g - max(r, b) > 10,    # Green noticeably higher (more lenient)
-                lambda r, g, b: max(r, g, b) - min(r, g, b) > 15,  # Some color variation
-                lambda r, g, b: g > 80 or (g > r * 1.5 and g > b * 0.8),  # Either bright green OR green dominant over red with reasonable blue
-            ],
-            'orange': [
-                lambda r, g, b: r > g and g > b,       # R > G > B
-                lambda r, g, b: r > 80,                # High red
-                lambda r, g, b: g > 30 and g < r * 0.8,  # Medium green
-                lambda r, g, b: b < min(r, g) * 0.5,   # Low blue
-                lambda r, g, b: max(r, g, b) - min(r, g, b) > 25,  # Color variation
-            ],
-            'purple': [
-                lambda r, g, b: b > max(r, g) * 1.05,  # Blue is the dominant component (stricter than fuchsia)
-                lambda r, g, b: g < min(r, b) * 0.5,   # Green much lower than red and blue
-                lambda r, g, b: r > 20 and r < 180,    # Red present but not too bright (distinct from fuchsia)
-                lambda r, g, b: b > 30 and b < 220,    # Blue present but not too bright
-                lambda r, g, b: max(r, g, b) - min(r, g, b) > 20,  # Good color variation
-                lambda r, g, b: b > r * 1.02,          # Blue slightly higher than red (purple characteristic)
-                lambda r, g, b: int(r) + int(b) < 2 * int(g) + 250,  # Not as bright as fuchsia
-                lambda r, g, b: abs(int(r) - int(b)) > 15,  # Red and blue should be different (not like fuchsia)
-                lambda r, g, b: r < 200,               # Red not too bright (exclude bright fuchsia)
-            ],
-            'yellow': [
-                lambda r, g, b: r > 100 and g > 100,   # High red and green (lowered threshold)
-                lambda r, g, b: abs(int(r) - int(g)) < 80,       # Red and green should be similar (more relaxed)
-                lambda r, g, b: b < min(r, g) * 0.65,  # Blue less than 65% of min(R,G) (more relaxed)
-                lambda r, g, b: b < 150,               # Blue absolute limit (increased)
-                lambda r, g, b: min(r, g) > max(r, g) * 0.6,   # R and G should be reasonably close (more relaxed)
-                lambda r, g, b: int(r) + int(g) > 2 * int(b) + 50,    # Yellow color space rule (more relaxed)
-                lambda r, g, b: r > g * 0.7 and g > r * 0.7,   # Neither R nor G dominates too much (more relaxed)
-                lambda r, g, b: r > 50 and g > 50,     # Minimum brightness to avoid dark colors
-            ],
-            'blue': [
-                lambda r, g, b: b > max(r, g) * 1.2,   # Blue significantly dominant
-                lambda r, g, b: max(r, g, b) - min(r, g, b) > 15,  # Color variation
-                lambda r, g, b: b > 40,                # Blue present
-            ],
-            'gray': [
-                lambda r, g, b: abs(int(r) - int(g)) <= 15,  # Red and green are similar
-                lambda r, g, b: abs(int(g) - int(b)) <= 15,  # Green and blue are similar
-                lambda r, g, b: abs(int(r) - int(b)) <= 15,  # Red and blue are similar
-                lambda r, g, b: max(r, g, b) - min(r, g, b) <= 20,  # Low color variation
-                lambda r, g, b: min(r, g, b) >= 50,    # Exclude black colors (raised from 10 to 50)
-                lambda r, g, b: max(r, g, b) <= 200,   # Not pure white (to avoid very bright whites)
-                lambda r, g, b: max(r, g, b) >= 70,    # Ensure it's bright enough to be considered gray
-            ],
-            'fuchsia': [
-                lambda r, g, b: r > 150 and b > 150,   # High red and blue
-                lambda r, g, b: g < min(r, b) * 0.7,   # Green much lower than red and blue
-                lambda r, g, b: abs(int(r) - int(b)) < 80,  # Red and blue should be reasonably similar
-                lambda r, g, b: max(r, b) > g * 1.5,   # Either red or blue dominates over green
-                lambda r, g, b: max(r, g, b) - min(r, g, b) > 40,  # Good color variation
-                lambda r, g, b: int(r) + int(b) > 2 * int(g) + 100,   # Fuchsia color space rule
-            ],
-            'aqua': [
-                lambda r, g, b: b > 100 and g > 100,   # High blue and green components
-                lambda r, g, b: r < min(b, g) * 0.6,   # Red significantly lower than blue and green
-                lambda r, g, b: b >= g * 0.9,          # Blue should be at least 90% of green (allows blue to be slightly lower)
-                lambda r, g, b: g >= b * 0.8,          # Green should be at least 80% of blue (allows green to be slightly lower)
-                lambda r, g, b: g > r * 1.2,           # Green should be significantly higher than red
-                lambda r, g, b: b > r * 1.2,           # Blue should be significantly higher than red
-                lambda r, g, b: abs(int(b) - int(g)) < 80,  # Blue and green should be reasonably close
-                lambda r, g, b: int(b) + int(g) > 2 * int(r) + 80,   # Aqua color space rule
-                lambda r, g, b: max(b, g, r) - min(b, g, r) > 30,  # Good color variation
-            ]
+            color_name: color_info['rules']
+            for color_name, color_info in self.unified_detector.color_rules.items()
         }
     
     def load_image(self):
         """Load and prepare the image for analysis."""
-        try:
-            pil_image = Image.open(self.image_path)
-            self.image_array = np.array(pil_image)
-            print(f"✅ Image loaded: {self.image_array.shape}")
-            
-            # Convert to RGB (handle RGBA)
-            if len(self.image_array.shape) == 3:
-                if self.image_array.shape[2] == 4:  # RGBA
-                    self.rgb_image = self.image_array[:, :, :3]
-                else:  # RGB
-                    self.rgb_image = self.image_array
-            else:
-                # print("❌ Unsupported image format")
-                return False
-            
-            # print(f"✅ RGB image shape: {self.rgb_image.shape}")
-            return True
-            
-        except Exception as e:
-            # print(f"❌ Error loading image: {e}")
+        # Delegate image loading to UnifiedColorDetector to keep consistency
+        if not self.unified_detector.load_image():
             return False
+        self.image_array = self.unified_detector.image_array
+        self.rgb_image = self.unified_detector.rgb_image
+        return True
     
     def detect_candles(self):
         """Detect candles by finding horizontal continuity of red/green pixels."""

@@ -787,7 +787,7 @@ def get_tab_metadata(driver) -> list:
     tab_infos = []
     for handle in driver.window_handles:
         driver.switch_to.window(handle)
-        time.sleep(0.05)
+        time.sleep(0.2)
         current_url = driver.current_url or "about:blank"
         title = driver.title or ""
         host = urlparse(current_url).hostname or "unknown"
@@ -981,7 +981,7 @@ def capture_single_tab(driver, tab_info: dict, index: int, output_dir: str, time
     """Capture a single tab and return the saved path."""
     try:
         driver.switch_to.window(tab_info["handle"])
-        time.sleep(0.03)
+        time.sleep(0.1)
         filename = f"{timestamp_for_filename}_tab{index}_{tab_info['host']}.png"
         path = os.path.join(output_dir, filename)
         
@@ -1020,7 +1020,7 @@ def refresh_all_tabs_parallel(driver, logger: logging.Logger, max_workers: int =
         # Verify new tabs are loaded
         for i, handle in enumerate(new_handles, 1):
             driver.switch_to.window(handle)
-            time.sleep(0.05)
+            time.sleep(0.1)
             if driver.current_url and driver.current_url != "about:blank":
                 # logger.info(f"✓ New tab {i} loaded")
                 pass
@@ -1036,7 +1036,7 @@ def refresh_all_tabs_parallel(driver, logger: logging.Logger, max_workers: int =
                 pass
             else:
                 logger.error(f"✗ Failed to close old tab {i}")
-            time.sleep(0.02)  # Small delay between closes
+            time.sleep(0.1)  # Small delay between closes
         
         # Verify result
         final_tabs = get_tab_metadata(driver)
@@ -1196,66 +1196,6 @@ def ceil_to_next_5min_mark(now: datetime) -> datetime:
     return next_mark
 
 
-def precise_sleep_until(target_time: datetime) -> None:
-    """Sleep until target_time with sub-100ms precision, minimizing drift."""
-    while True:
-        now = datetime.now()
-        remaining = (target_time - now).total_seconds()
-        if remaining <= 0:
-            break
-        # Coarse sleep when far, fine-grained as we approach
-        if remaining > 1.0:
-            time.sleep(remaining - 0.8)
-        elif remaining > 0.2:
-            time.sleep(remaining - 0.15)
-        elif remaining > 0.05:
-            time.sleep(remaining - 0.02)
-        else:
-            time.sleep(remaining)
-            break
-
-
-def capture_and_analyze_streamed(driver, logger: logging.Logger, output_base: str, capture_time: datetime, trading_manager: IBTradingManager = None, max_workers: int = 4) -> None:
-    """Capture tabs sequentially but analyze each image as soon as it's saved (overlapped)."""
-    tabs = get_tab_metadata(driver)
-    output_dir = ensure_capture_dir(output_base, capture_time)
-    timestamp_for_filename = capture_time.strftime("%Y%m%d_%H%M%S")
-
-    if not tabs:
-        logger.info("No tabs to capture.")
-        return
-
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = []
-        for index, tab in enumerate(tabs, start=1):
-            try:
-                path = capture_single_tab(driver, tab, index, output_dir, timestamp_for_filename, logger)
-                if path:
-                    futures.append(executor.submit(process_single_image, path, output_dir, logger, trading_manager))
-            except Exception as e:
-                logger.error(f"Capture failed for tab {index}: {e}")
-
-        for future in as_completed(futures):
-            try:
-                img_path, result = future.result()
-                if "error" in result:
-                    logger.error(f"Processing failed for {img_path}: {result['error']}")
-                    print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\",\"Zigzag\":\"error\"}}")
-                else:
-                    symbol = result.get("symbol", "UNKNOWN")
-                    stm = result.get("STM", "none")
-                    td = result.get("TD", "none")
-                    zigzag = result.get("Zigzag", "none")
-                    logger.info(f"🔥Analysis: Symbol={symbol}, STM={stm}, TD={td}, Zigzag={zigzag}")
-                    is_aligned, signal_type = check_signal_alignment(stm, td, zigzag)
-                    if is_aligned:
-                        play_alert_sound()
-                        show_alert_message(symbol, signal_type, stm, td, zigzag, logger)
-                    print(f"🔥JSON Output: {{\"Symbol\":\"{symbol}\",\"STM\":\"{stm}\",\"TD\":\"{td}\",\"Zigzag\":\"{zigzag}\"}}")
-            except Exception as e:
-                logger.exception(f"Exception in streamed processing: {e}")
-                print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\",\"Zigzag\":\"error\"}}")
-
 def main():
     logger = configure_logging("main.log")
 
@@ -1272,7 +1212,7 @@ def main():
                 symbols=stock_list,
                 special_symbols=special_symbols,
                 logger=logger,
-                init_capital=1000  # $10,000 initial capital
+                init_capital=10000  # $10,000 initial capital
             )
             
             # Connect to IB
@@ -1338,19 +1278,25 @@ def main():
 
             #########################################################
 
-            # Refresh exactly at refresh_time, then wait precisely to capture_time
-            if now < refresh_time:
-                precise_sleep_until(refresh_time)
+            # Check if we need to refresh tabs (only at 5-minute mark - 30s)
+            if now >= refresh_time and now < capture_time:
                 replacement_success = refresh_all_tabs_parallel(driver, logger, max_workers=min(8, max(2, os.cpu_count() or 4)))
                 if not replacement_success:
                     logger.warning("Tab replacement had issues, but continuing with capture...")
-                precise_sleep_until(capture_time)
-            elif now >= refresh_time and now < capture_time:
-                replacement_success = refresh_all_tabs_parallel(driver, logger, max_workers=min(8, max(2, os.cpu_count() or 4)))
-                if not replacement_success:
-                    logger.warning("Tab replacement had issues, but continuing with capture...")
-                precise_sleep_until(capture_time)
-            # else: now >= capture_time → fall through to capture immediately
+                
+                # Wait until capture time
+                now = datetime.now()
+                if now < capture_time:
+                    capture_delay = (capture_time - now).total_seconds()
+                    if capture_delay > 0:
+                        time.sleep(capture_delay)
+            else:
+                # Wait until refresh time
+                if now < refresh_time:
+                    refresh_delay = (refresh_time - now).total_seconds()
+                    if refresh_delay > 0:
+                        time.sleep(refresh_delay)
+                    continue  # Go back to check timing again
 
             #########################################################
 
@@ -1365,18 +1311,14 @@ def main():
                     continue
                 else:
                     logger.info("Time to capture screenshots (5-minute mark)")
-                    # Streamed capture+analysis for minimal gap between first and last symbol
+                    ## Running the main strategy with IB integration.
+                    images = capture_all_tabs_sequential(driver, logger, base_output_dir, capture_time)
+                    time_output_dir = ensure_capture_dir(base_output_dir, capture_time)
                     try:
-                        capture_and_analyze_streamed(
-                            driver,
-                            logger,
-                            base_output_dir,
-                            capture_time,
-                            trading_manager,
-                            max_workers=min(8, max(2, os.cpu_count() or 4))
-                        )
+                        run_strategy_concurrently(images, time_output_dir, logger, trading_manager, max_workers=min(8, max(2, os.cpu_count() or 4)))
                     except Exception as e:
-                        logger.exception(f"Error running streamed capture+analysis: {e}")
+                        logger.exception(f"Error running strategy analysis: {e}")
+                    ## Running the main strategy with IB integration.
 
     except KeyboardInterrupt:
         logger.info("KeyboardInterrupt received. Shutting down.")

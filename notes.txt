@@ -34,15 +34,10 @@ Steps:
 #### only open new tabs -30s, and then refresh only at 00.
 
 
-
-
-
-
 ## not enought candle i.e. image width too short.
 ***** 問號，係咪indicator 會update 快過 00整點即refresh一次之後再cap
 ***** 問號 90 pixel too long? Maybe can set shorter (AB=CD is 90pixel, but the longer then easier to reach)
 ### Check the time for checking the 賣吾賣order 耐吾耐
 
 ***** check the program 有冇bug
-*** check the main.log, current loop problem for the connection.
 *** 10 tabs, 要令到last two no delay

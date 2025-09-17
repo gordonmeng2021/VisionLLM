@@ -1,0 +1,38 @@
+{
+  "analysis_info": {
+    "timestamp": "20250917_153759",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1430,
+      250,
+      3
+    ],
+    "total_pixels": 357500,
+    "unique_colors": 31
+  },
+  "color_detection": {
+    "color_name": "yellow",
+    "color_info": {
+      "name": "Yellow",
+      "description": "Colors with similar high red and green values, controlled blue"
+    },
+    "detected_colors_count": 1,
+    "total_detected_pixels": 29,
+    "percentage_of_image": 0.008111888111888113
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        244,
+        181,
+        88
+      ],
+      "pixel_count": 29,
+      "percentage": 0.008111888111888113
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/yellow_detection_20250917_153707.png",
+    "report": "color_analysis_results/yellow_analysis_20250917_153759.json"
+  }
+}

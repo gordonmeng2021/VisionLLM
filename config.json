@@ -2,7 +2,7 @@
     "ib_connection": {
         "host": "127.0.0.1",
         "port": 4002,
-        "client_id": null
+        "client_id": 69
     },
     "trading": {
         "initial_capital": 1000,

@@ -1,0 +1,92 @@
+{
+  "analysis_info": {
+    "timestamp": "20250917_153903",
+    "image_path": "cropped_images/test.png",
+    "image_dimensions": [
+      1430,
+      250,
+      3
+    ],
+    "total_pixels": 357500,
+    "unique_colors": 31
+  },
+  "color_detection": {
+    "color_name": "gray",
+    "color_info": {
+      "name": "Gray",
+      "description": "Colors with similar RGB values (neutral colors), excluding black and white"
+    },
+    "detected_colors_count": 7,
+    "total_detected_pixels": 658,
+    "percentage_of_image": 0.18405594405594405
+  },
+  "detected_colors": [
+    {
+      "rgb": [
+        121,
+        123,
+        133
+      ],
+      "pixel_count": 440,
+      "percentage": 0.12307692307692308
+    },
+    {
+      "rgb": [
+        75,
+        75,
+        75
+      ],
+      "pixel_count": 87,
+      "percentage": 0.024335664335664337
+    },
+    {
+      "rgb": [
+        195,
+        195,
+        195
+      ],
+      "pixel_count": 84,
+      "percentage": 0.023496503496503496
+    },
+    {
+      "rgb": [
+        135,
+        135,
+        135
+      ],
+      "pixel_count": 32,
+      "percentage": 0.008951048951048951
+    },
+    {
+      "rgb": [
+        198,
+        198,
+        198
+      ],
+      "pixel_count": 7,
+      "percentage": 0.001958041958041958
+    },
+    {
+      "rgb": [
+        85,
+        85,
+        85
+      ],
+      "pixel_count": 6,
+      "percentage": 0.0016783216783216783
+    },
+    {
+      "rgb": [
+        142,
+        142,
+        142
+      ],
+      "pixel_count": 2,
+      "percentage": 0.0005594405594405594
+    }
+  ],
+  "output_files": {
+    "visualization": "color_analysis_results/gray_detection_20250917_153902.png",
+    "report": "color_analysis_results/gray_analysis_20250917_153903.json"
+  }
+}

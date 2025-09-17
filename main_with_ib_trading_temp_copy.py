@@ -18,8 +18,8 @@ import threading
 import asyncio
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-# stock_list = ["NVDA","AAPL","TSLA"]
-stock_list = []
+stock_list = ["NVDA","AAPL","TSLA","NIO","CRWV","NBIS","AMD","NFLX","IBM"]
+# stock_list = []
 # Special symbols that should always be included
 special_symbols = ["QQQ"]
 
@@ -39,13 +39,124 @@ except ImportError:
     WebDriverException = Exception
     SELENIUM_AVAILABLE = False
 
-# IB Trading imports
+# IB Trading imports (ibapi replacement for ib_async)
 try:
-    from ib_async import *
+    from ibapi.client import EClient
+    from ibapi.wrapper import EWrapper
+    from ibapi.contract import Contract
+    from ibapi.order import Order
     IB_AVAILABLE = True
 except ImportError:
     IB_AVAILABLE = False
-    print("Warning: ib_async not available. Trading functionality disabled.")
+    print("Warning: ibapi not available. Trading functionality disabled.")
+
+# Lightweight ibapi threaded app wrapper (reference: test.py)
+class IBApiApp(EWrapper, EClient):
+    def __init__(self, logger: logging.Logger):
+        EClient.__init__(self, self)
+        self.logger = logger or logging.getLogger(__name__)
+        self._thread = None
+        self._connected_event = threading.Event()
+        self._next_id_event = threading.Event()
+        self.next_order_id = None
+        self._req_id = 1000
+        self._lock = threading.Lock()
+        self.reqId_to_symbol = {}
+        self.symbol_to_price = {}
+
+    # Connection helpers
+    def connect_and_start(self, host: str, port: int, client_id: int, wait_timeout: float = 5.0):
+        self.connect(host, port, client_id)
+        self._thread = threading.Thread(target=self.run, daemon=True)
+        self._thread.start()
+        # Wait for nextValidId which signals readiness
+        if not self._next_id_event.wait(timeout=wait_timeout):
+            raise RuntimeError("Timed out waiting for nextValidId from TWS/Gateway")
+
+    def disconnect(self):
+        try:
+            super().disconnect()
+        except Exception:
+            pass
+
+    # EWrapper callbacks
+    def nextValidId(self, orderId: int):
+        self.next_order_id = orderId
+        self._next_id_event.set()
+
+    def error(self, reqId, errorCode, errorString, advancedOrderRejectJson=""):
+        try:
+            self.logger.error(f"IB Error reqId={reqId}, code={errorCode}, msg={errorString}")
+        except Exception:
+            pass
+
+    def tickPrice(self, reqId, tickType, price, attrib):
+        # 4 = LAST price, 1 = BID, 2 = ASK, 9 = CLOSE
+        if price is None or price <= 0:
+            return
+        symbol = self.reqId_to_symbol.get(reqId)
+        if not symbol:
+            return
+        # Prefer LAST, else mid of BID/ASK, else CLOSE
+        if tickType == 4 or tickType == 9:
+            self.symbol_to_price[symbol] = price
+        elif tickType in (1, 2):
+            # Just record, mid handled elsewhere if needed
+            # For simplicity, store last seen bid/ask by composing a key
+            key = f"{symbol}_t{tickType}"
+            self.symbol_to_price[key] = price
+            bid = self.symbol_to_price.get(f"{symbol}_t1")
+            ask = self.symbol_to_price.get(f"{symbol}_t2")
+            if bid and ask and bid > 0 and ask > 0:
+                self.symbol_to_price[symbol] = (bid + ask) / 2.0
+
+    # Convenience APIs
+    def request_market_price(self, symbol: str, timeout: float = 2.0) -> float:
+        with self._lock:
+            self._req_id += 1
+            req_id = self._req_id
+        # Build contract
+        contract = Contract()
+        contract.symbol = symbol
+        contract.secType = 'STK'
+        contract.exchange = 'SMART'
+        contract.currency = 'USD'
+        self.reqId_to_symbol[req_id] = symbol
+        try:
+            self.reqMktData(req_id, contract, '', False, False, [])
+        except Exception as e:
+            self.logger.error(f"reqMktData failed for {symbol}: {e}")
+            return None
+        # Poll for price up to timeout
+        deadline = time.time() + timeout
+        price = None
+        while time.time() < deadline:
+            price = self.symbol_to_price.get(symbol)
+            if price and price > 0:
+                break
+            time.sleep(0.05)
+        try:
+            self.cancelMktData(req_id)
+        except Exception:
+            pass
+        return price if price and price > 0 else None
+
+    def place_order(self, contract: Contract, order: Order):
+        # Ensure we have a valid next order id
+        start = time.time()
+        while self.next_order_id is None and (time.time() - start) < 5.0:
+            time.sleep(0.05)
+        if self.next_order_id is None:
+            raise RuntimeError("No next order id available from IB")
+        with self._lock:
+            order_id = self.next_order_id
+            self.next_order_id += 1
+        try:
+            super().placeOrder(order_id, contract, order)
+        except Exception as e:
+            self.logger.error(f"placeOrder failed for {contract.symbol}: {e}")
+            raise
+        return order_id
 
 # Reuse existing Selenium helpers and login flow
 try:
@@ -169,29 +280,27 @@ class IBTradingManager:
         return f"TRADE_{timestamp}_{random_suffix}"
     
     def connect(self):
-        """Connect to Interactive Brokers API."""
+        """Connect to Interactive Brokers API using ibapi."""
         if not IB_AVAILABLE:
             self.logger.error("IB API not available. Cannot connect.")
             return False
-            
-        self.ib = IB()
-        self.logger.info(f"Connecting to IB at {self.ib_host}:{self.ib_port} with client ID {self.ib_client_id}...")
-        
+
         try:
-            self.ib.connect(self.ib_host, self.ib_port, clientId=self.ib_client_id)
+            self.ib = IBApiApp(self.logger)
+            self.logger.info(f"Connecting to IB at {self.ib_host}:{self.ib_port} with client ID {self.ib_client_id}...")
+            self.ib.connect_and_start(self.ib_host, self.ib_port, self.ib_client_id)
             self.logger.info("Connected to IB!")
-            
+
             # Create stock contracts for each symbol (regular + special)
             for symbol in self.all_symbols:
-                if symbol == "QQQ":
-                    # QQQ is an ETF, create ETF contract
-                    self.contracts[symbol] = Stock(symbol, 'SMART', 'USD')
-                    self.logger.info(f"Created ETF contract for {symbol}")
-                else:
-                    # Regular stock contract
-                    self.contracts[symbol] = Stock(symbol, 'SMART', 'USD')
-                    self.logger.info(f"Created stock contract for {symbol}")
-            
+                c = Contract()
+                c.symbol = symbol
+                c.secType = 'STK'
+                c.exchange = 'SMART'
+                c.currency = 'USD'
+                self.contracts[symbol] = c
+                self.logger.info(f"Created stock contract for {symbol}")
+
             return True
         except Exception as e:
             self.logger.error(f"Failed to connect to IB: {str(e)}")
@@ -199,9 +308,12 @@ class IBTradingManager:
     
     def disconnect(self):
         """Disconnect from Interactive Brokers API."""
-        if self.ib and self.ib.isConnected():
-            self.ib.disconnect()
-            self.logger.info("Disconnected from IB")
+        if self.ib:
+            try:
+                self.ib.disconnect()
+                self.logger.info("Disconnected from IB")
+            except Exception:
+                pass
         # Disconnect any thread-local IB connections
         try:
             for tib in list(self._thread_ib_conns):
@@ -215,34 +327,15 @@ class IBTradingManager:
             pass
     
     def get_current_price(self, symbol: str) -> float:
-        """Get current market price for a symbol."""
+        """Get current market price for a symbol using ibapi market data callbacks."""
         try:
-            contract = self.contracts[symbol]
-            ib = self.ib
-            if ib is None:
+            if self.ib is None:
                 self.logger.error("No IB connection available for price request")
                 return None
-            ticker = ib.reqMktData(contract, '', False, False)
-            # Small wait for data tick
-            try:
-                ib.sleep(0.7)
-            except Exception:
-                time.sleep(1)
-            
-            if ticker.last and ticker.last > 0:
-                price = ticker.last
-            elif ticker.close and ticker.close > 0:
-                price = ticker.close
-            elif ticker.bid and ticker.ask:
-                price = (ticker.bid + ticker.ask) / 2
-            else:
+            price = self.ib.request_market_price(symbol)
+            if price is None:
                 self.logger.warning(f"No price data available for {symbol}")
                 return None
-            
-            try:
-                ib.cancelMktData(contract)
-            except Exception:
-                pass
             return float(price)
         except Exception as e:
             self.logger.error(f"Error getting price for {symbol}: {e}")
@@ -327,22 +420,29 @@ class IBTradingManager:
             
             if is_market_hours:
                 # Market hours - use market order
-                order = MarketOrder(action=action, totalQuantity=shares)
+                order = Order()
+                order.action = action
+                order.orderType = 'MKT'
+                order.totalQuantity = shares
+                order.tif = 'DAY'
                 order_type = "Market"
                 self.logger.info(f"Placing market order: {action} {shares} shares of {symbol}")
             else:
                 # Outside market hours - use limit order
-                order = LimitOrder(
-                    action=action,
-                    totalQuantity=shares,
-                    lmtPrice=round(limit_price, 2),
-                    outsideRth=True
-                )
+                order = Order()
+                order.action = action
+                order.orderType = 'LMT'
+                order.lmtPrice = round(limit_price, 2)
+                order.totalQuantity = shares
+                order.tif = 'DAY'
+                order.outsideRth = True
+                order.eTradeOnly = ""
+                order.firmQuoteOnly = ""
                 order_type = f"Limit @ ${limit_price:.2f}"
                 self.logger.info(f"Placing limit order: {action} {shares} shares of {symbol} at ${limit_price:.2f}")
-            
+
             # Place the order
-            trade = ib.placeOrder(contract, order)
+            trade = self.ib.place_order(contract, order)
             
             # Generate unique trade ID
             trade_id = self._generate_trade_id()
@@ -414,23 +514,27 @@ class IBTradingManager:
             
             contract = self.contracts[symbol]
             shares = position_info['shares']
-            ib = self.ib
-            if ib is None:
+            if self.ib is None:
                 self.logger.error("No IB connection available for closing position")
                 return
             
             # Place closing order
             if market_open <= current_us_time < market_close:
-                order = MarketOrder(action=action, totalQuantity=shares)
+                order = Order()
+                order.action = action
+                order.orderType = 'MKT'
+                order.totalQuantity = shares
+                order.tif = 'DAY'
             else:
-                order = LimitOrder(
-                    action=action,
-                    totalQuantity=shares,
-                    lmtPrice=round(limit_price, 2),
-                    outsideRth=True
-                )
+                order = Order()
+                order.action = action
+                order.orderType = 'LMT'
+                order.lmtPrice = round(limit_price, 2)
+                order.totalQuantity = shares
+                order.tif = 'DAY'
+                order.outsideRth = True
             
-            trade = ib.placeOrder(contract, order)
+            trade = self.ib.place_order(contract, order)
             
             # Calculate P&L
             if position_info['signal_type'] == 'buy':
@@ -1004,11 +1108,11 @@ def process_single_image(image_path: str, output_dir: str, logger: logging.Logge
                 # Check for signal alignment
                 is_aligned, signal_type = check_signal_alignment(stm, td, zigzag)
                 
-                is_aligned = True # fk
+                # is_aligned = True # fk
                 if is_aligned:
                     # Get current market price
                     current_price = trading_manager.get_current_price(symbol)
-                    
+                    print(f"Current price: {current_price}")
                     if current_price:
                         # Check if we have an opposite position to close first
                         trading_manager.handle_opposite_signal(symbol, signal_type)
@@ -1108,7 +1212,7 @@ def main():
                 symbols=stock_list,
                 special_symbols=special_symbols,
                 logger=logger,
-                init_capital=10000  # $10,000 initial capital
+                init_capital=1000  # $10,000 initial capital
             )
             
             # Connect to IB
@@ -1160,7 +1264,8 @@ def main():
 
             # Check for daily position closure at 07:59 US/Eastern
             if trading_manager and us_time_now.hour == 7 and us_time_now.minute == 59:
-                trading_manager.close_all_positions_daily()
+                # trading_manager.close_all_positions_daily()
+                print("Daily position closure: Closing all positions")
                 time.sleep(130)  # Sleep for 2 minutes to avoid multiple closures
                 continue
 
@@ -1170,6 +1275,8 @@ def main():
                     trading_manager.check_exit_conditions()
                 except Exception as e:
                     logger.error(f"Error checking exit conditions: {e}")
+
+            #########################################################
 
             # Check if we need to refresh tabs (only at 5-minute mark - 30s)
             if now >= refresh_time and now < capture_time:
@@ -1191,11 +1298,14 @@ def main():
                         time.sleep(refresh_delay)
                     continue  # Go back to check timing again
 
+            #########################################################
+
             # At capture time (5-minute mark), just capture without refreshing
             now = datetime.now()
+            # if True: # fk
             if now >= capture_time:
                 us_time_now = datetime.now(pytz.timezone('US/Eastern'))
-                # if False:
+                # if False: # fk
                 if not ((us_time_now.hour >= 4 and us_time_now.hour < 20) or (us_time_now.hour == 20 and us_time_now.minute < 1)):
                     # print("Not in market hours. Skipping capture...")
                     continue
@@ -1209,7 +1319,6 @@ def main():
                     except Exception as e:
                         logger.exception(f"Error running strategy analysis: {e}")
                     ## Running the main strategy with IB integration.
-
 
     except KeyboardInterrupt:
         logger.info("KeyboardInterrupt received. Shutting down.")
