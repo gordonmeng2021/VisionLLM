@@ -15,9 +15,11 @@ import numpy as np
 import pandas as pd
 import csv
 import threading
+import asyncio
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-stock_list = ["NVDA","AAPL","TSLA"]
+# stock_list = ["NVDA","AAPL","TSLA"]
+stock_list = []
 # Special symbols that should always be included
 special_symbols = ["QQQ"]
 
@@ -194,29 +196,6 @@ class IBTradingManager:
         except Exception as e:
             self.logger.error(f"Failed to connect to IB: {str(e)}")
             return False
-
-    def _get_thread_ib(self):
-        """Get or create a per-thread IB connection with a fresh client ID.
-        Used when running under ThreadPoolExecutor to avoid sharing a single IB instance across threads.
-        """
-        if not IB_AVAILABLE:
-            return None
-        try:
-            ib = getattr(self._thread_local, 'ib', None)
-            if ib is not None and ib.isConnected():
-                return ib
-            # Create a new IB connection for this thread
-            ib = IB()
-            client_id = self._generate_client_id()
-            self.logger.info(f"[Thread {threading.get_ident()}] Connecting IB with client ID {client_id}")
-            ib.connect(self.ib_host, self.ib_port, clientId=client_id)
-            # Cache on thread-local and keep reference for cleanup
-            self._thread_local.ib = ib
-            self._thread_ib_conns.append(ib)
-            return ib
-        except Exception as e:
-            self.logger.error(f"[Thread {threading.get_ident()}] Failed to create thread-local IB: {e}")
-            return None
     
     def disconnect(self):
         """Disconnect from Interactive Brokers API."""
@@ -239,14 +218,14 @@ class IBTradingManager:
         """Get current market price for a symbol."""
         try:
             contract = self.contracts[symbol]
-            ib = self._get_thread_ib() or self.ib
+            ib = self.ib
             if ib is None:
                 self.logger.error("No IB connection available for price request")
                 return None
             ticker = ib.reqMktData(contract, '', False, False)
             # Small wait for data tick
             try:
-                ib.sleep(1)
+                ib.sleep(0.7)
             except Exception:
                 time.sleep(1)
             
@@ -331,7 +310,7 @@ class IBTradingManager:
             market_close = current_us_time.replace(hour=16, minute=0, second=0, microsecond=0)
             
             contract = self.contracts[symbol]
-            ib = self._get_thread_ib() or self.ib
+            ib = self.ib
             if ib is None:
                 self.logger.error("No IB connection available for placing order")
                 return False
@@ -435,7 +414,7 @@ class IBTradingManager:
             
             contract = self.contracts[symbol]
             shares = position_info['shares']
-            ib = self._get_thread_ib() or self.ib
+            ib = self.ib
             if ib is None:
                 self.logger.error("No IB connection available for closing position")
                 return
@@ -1025,6 +1004,7 @@ def process_single_image(image_path: str, output_dir: str, logger: logging.Logge
                 # Check for signal alignment
                 is_aligned, signal_type = check_signal_alignment(stm, td, zigzag)
                 
+                is_aligned = True # fk
                 if is_aligned:
                     # Get current market price
                     current_price = trading_manager.get_current_price(symbol)

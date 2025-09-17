@@ -1,1 +1,4 @@
 Trade_ID,Entry_Time,Exit_Time,Symbol,Signal_Type,Action,Shares,Entry_Price,Exit_Price,Take_Profit,Stop_Loss,PnL_Dollar,PnL_Percent,Exit_Reason,Duration_Minutes,STM_Signal,TD_Signal,Zigzag_Signal,Market_Hours,Order_Type,Notes
+TRADE_20250916_211002_254,2025-09-16 09:10:02,,QQQ,NONE,ENTRY,1,592.81,,578.1557367999999,601.8681368,,,,,none,none,none,No,Limit @ $586.88,Trade entry
+TRADE_20250916_212002_191,2025-09-16 09:20:02,,QQQ,NONE,ENTRY,1,592.84,,578.1849952,601.8985952,,,,,none,none,none,No,Limit @ $586.91,Trade entry
+TRADE_20250916_222453_403,2025-09-16 10:24:53,,QQQ,BUY,ENTRY,1,591.79,,606.4190488,582.7474487999999,,,,,buy,buy,buy,Yes,Market,Trade entry

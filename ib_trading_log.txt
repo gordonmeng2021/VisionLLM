@@ -38,3 +38,42 @@ Stop Loss: $233.75
 Order Type: Market
 Signals - STM: buy, TD: buy, Zigzag: buy
 ============================================================
+
+============================================================
+TRADE ENTRY: QQQ
+Trade ID: TRADE_20250916_211002_254
+Time: 2025-09-16 09:10:02.393958-04:00
+Signal Type: NONE
+Shares: 1
+Entry Price: $592.81
+Take Profit: $578.16
+Stop Loss: $601.87
+Order Type: Limit @ $586.88
+Signals - STM: none, TD: none, Zigzag: none
+============================================================
+
+============================================================
+TRADE ENTRY: QQQ
+Trade ID: TRADE_20250916_212002_191
+Time: 2025-09-16 09:20:02.405962-04:00
+Signal Type: NONE
+Shares: 1
+Entry Price: $592.84
+Take Profit: $578.18
+Stop Loss: $601.90
+Order Type: Limit @ $586.91
+Signals - STM: none, TD: none, Zigzag: none
+============================================================
+
+============================================================
+TRADE ENTRY: QQQ
+Trade ID: TRADE_20250916_222453_403
+Time: 2025-09-16 10:24:53.214029-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $591.79
+Take Profit: $606.42
+Stop Loss: $582.75
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================

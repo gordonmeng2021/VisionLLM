@@ -1,511 +1,966 @@
-2025-09-15 23:43:56,742 [INFO] Browser is now open. Open all desired tabs and sign in if needed.
-2025-09-15 23:44:12,524 [INFO] User confirmed start. Beginning scheduled operations.
-2025-09-15 23:44:12,584 [INFO] Entering scheduled loop: refresh at -30s, capture at 5-minute marks.
-2025-09-15 23:45:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-15 23:45:02,962 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
-2025-09-15 23:45:03,033 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-15 23:45:03,278 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-15 23:45:03,512 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-15 23:50:00,004 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-15 23:50:02,255 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-15 23:50:03,439 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-15 23:50:03,525 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
-2025-09-15 23:50:03,532 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-15 23:55:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-15 23:55:03,351 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-15 23:55:03,396 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
-2025-09-15 23:55:03,523 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-15 23:55:03,539 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 00:00:00,006 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:00:03,270 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 00:00:03,307 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 00:00:03,512 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:00:03,528 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
-2025-09-16 00:05:00,003 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:05:03,335 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
-2025-09-16 00:05:03,426 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:05:03,474 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=sell, Zigzag=none
-2025-09-16 00:05:03,489 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 00:10:00,007 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:10:02,968 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=sell, Zigzag=none
-2025-09-16 00:10:02,996 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
-2025-09-16 00:10:03,435 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 00:10:03,492 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:15:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:15:03,284 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:15:03,336 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:15:03,376 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=sell, Zigzag=none
-2025-09-16 00:15:03,494 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
-2025-09-16 00:20:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:20:03,239 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:20:03,316 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 00:20:03,343 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:20:03,448 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
-2025-09-16 00:25:00,000 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:25:03,098 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:25:03,155 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 00:25:03,448 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
-2025-09-16 00:25:03,460 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:30:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:30:02,803 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 00:30:02,856 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:30:03,249 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:30:03,489 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
-2025-09-16 00:35:00,007 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:35:02,921 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 00:35:03,374 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:35:03,413 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
-2025-09-16 00:35:03,518 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:40:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:40:02,963 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 00:40:03,125 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:40:03,415 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 00:40:03,493 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:45:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:45:03,129 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 00:45:03,251 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:45:03,272 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:45:03,464 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 00:50:00,003 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:50:02,956 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 00:50:03,244 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:50:03,410 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 00:50:03,438 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 00:55:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 00:55:02,564 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
-2025-09-16 00:55:02,610 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 00:55:03,458 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 00:55:03,464 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:00:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:00:02,794 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 01:00:02,809 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:00:03,317 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:00:03,480 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:05:00,001 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:05:02,989 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:05:03,137 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:05:03,438 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 01:05:03,480 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:10:00,007 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:10:02,615 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:10:02,640 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:10:03,474 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 01:10:03,474 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:15:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:15:02,286 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:15:02,743 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:15:03,379 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:15:03,506 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 01:20:00,003 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:20:02,881 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:20:02,963 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:20:03,406 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:20:03,464 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 01:25:00,007 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:25:02,251 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 01:25:03,005 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:25:03,460 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 01:25:03,500 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:30:00,005 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:30:02,459 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 01:30:02,638 [INFO] 🔥Analysis: Symbol=NVDA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 01:30:03,461 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:30:03,490 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:35:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:35:03,296 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 01:35:03,459 [INFO] 🔥Analysis: Symbol=NVDA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 01:35:03,476 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:35:03,482 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:40:00,001 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:40:02,828 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:40:02,879 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 01:40:03,448 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:40:03,523 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 01:45:00,006 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:45:02,247 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 01:45:03,442 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:45:03,513 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:45:03,562 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 01:50:00,007 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:50:03,301 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:50:03,383 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:50:03,441 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 01:50:03,484 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 01:55:00,004 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 01:55:02,855 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:55:02,995 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 01:55:03,355 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 01:55:03,535 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:00:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:00:03,305 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:00:03,350 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:00:03,365 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:00:03,553 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 02:05:00,001 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:05:02,398 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 02:05:02,818 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:05:03,475 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:05:03,546 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=sell, Zigzag=none
-2025-09-16 02:10:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:10:02,279 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:10:03,484 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 02:10:03,507 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=sell, Zigzag=none
-2025-09-16 02:10:03,533 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:15:00,001 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:15:02,863 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:15:02,979 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:15:03,521 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
-2025-09-16 02:15:03,529 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=sell, Zigzag=none
-2025-09-16 02:20:00,005 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:20:02,679 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:20:02,679 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=sell, Zigzag=none
-2025-09-16 02:20:03,508 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
-2025-09-16 02:20:03,524 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:25:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:25:02,212 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:25:03,121 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=sell, Zigzag=none
-2025-09-16 02:25:03,348 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 02:25:03,458 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 02:30:00,004 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:30:03,359 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 02:30:03,394 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:30:03,425 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:30:03,455 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 02:35:00,000 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:35:02,916 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 02:35:03,153 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 02:35:03,258 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:35:03,496 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:40:00,004 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:40:03,278 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:40:03,352 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 02:40:03,367 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 02:40:03,482 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:45:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:45:03,013 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:45:03,144 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 02:45:03,334 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:45:03,458 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 02:50:00,006 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:50:02,232 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:50:02,655 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:50:03,271 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 02:50:03,494 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 02:55:00,000 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 02:55:03,117 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 02:55:03,235 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 02:55:03,387 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 02:55:03,493 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 03:00:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:00:02,927 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:00:02,988 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:00:03,550 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
-2025-09-16 03:00:03,550 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 03:05:00,006 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:05:03,275 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:05:03,341 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:05:03,482 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=buy
-2025-09-16 03:05:03,545 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 03:10:00,010 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:10:03,228 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:10:03,348 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:10:03,513 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=buy, Zigzag=none
-2025-09-16 03:10:03,565 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 03:15:00,004 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:15:03,009 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:15:03,099 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:15:03,402 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 03:15:03,539 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=buy, Zigzag=none
-2025-09-16 03:20:00,005 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:20:02,250 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=buy, Zigzag=none
-2025-09-16 03:20:03,377 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:20:03,403 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 03:20:03,569 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:25:00,001 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:25:02,889 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:25:02,955 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:25:03,355 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:25:03,538 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 03:30:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:30:02,905 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:30:03,112 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:30:03,212 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 03:30:03,534 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:35:00,006 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:35:03,289 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:35:03,332 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:35:03,354 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 03:35:03,528 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:40:00,005 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:40:02,861 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:40:03,313 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:40:03,483 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 03:40:03,522 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:45:00,006 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:45:03,022 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:45:03,060 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:45:03,392 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=none, Zigzag=none
-2025-09-16 03:45:03,536 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:50:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:50:02,609 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:50:02,673 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:50:03,562 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:50:03,562 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=sell, Zigzag=none
-2025-09-16 03:55:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 03:55:03,009 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 03:55:03,174 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 03:55:03,385 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=sell, Zigzag=none
-2025-09-16 03:55:03,558 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:00:00,005 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:00:02,252 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:00:03,410 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:00:03,425 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:00:03,554 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=sell, Zigzag=none
-2025-09-16 04:05:00,005 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:05:02,687 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:05:02,739 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:05:03,536 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=sell, Zigzag=none
-2025-09-16 04:05:03,570 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:10:00,010 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:10:03,463 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:10:03,536 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
-2025-09-16 04:10:03,565 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:10:03,565 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
-2025-09-16 04:15:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:15:02,784 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:15:02,846 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
-2025-09-16 04:15:03,375 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:15:03,537 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
-2025-09-16 04:20:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:20:02,566 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
-2025-09-16 04:20:02,642 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:20:03,520 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:20:03,520 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
-2025-09-16 04:25:00,001 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:25:03,278 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 04:25:03,327 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:25:03,335 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:25:03,513 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:30:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:30:03,206 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:30:03,250 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:30:03,341 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 04:30:03,505 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:35:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:35:02,697 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:35:02,774 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 04:35:03,398 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:35:03,518 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:40:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:40:02,643 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:40:02,693 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:40:03,303 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 04:40:03,516 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:45:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:45:03,086 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 04:45:03,162 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:45:03,520 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:45:03,540 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:50:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:50:02,663 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:50:02,886 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:50:03,350 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:50:03,514 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 04:55:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 04:55:02,219 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 04:55:03,367 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:55:03,390 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 04:55:03,493 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:00:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:00:02,752 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:00:02,787 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:00:03,432 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:00:03,522 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=buy, Zigzag=none
-2025-09-16 05:05:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:05:02,316 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:05:02,667 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=buy, Zigzag=none
-2025-09-16 05:05:03,517 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:05:03,517 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:10:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:10:03,141 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:10:03,208 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:10:03,320 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:10:03,500 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=buy, Zigzag=none
-2025-09-16 05:15:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:15:03,534 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:15:03,537 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:15:03,537 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:15:03,537 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=buy, Zigzag=none
-2025-09-16 05:20:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:20:03,392 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=buy, Zigzag=none
-2025-09-16 05:20:03,417 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:20:03,425 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:20:03,486 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:25:00,004 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:25:02,227 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:25:03,370 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:25:03,451 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:25:03,460 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:30:00,004 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:30:03,112 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:30:03,171 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:30:03,242 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:30:03,471 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:35:00,010 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:35:02,273 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:35:02,978 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:35:03,478 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:35:03,496 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:40:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:40:02,945 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:40:03,149 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:40:03,456 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:40:03,496 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=buy
-2025-09-16 05:45:00,010 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:45:03,300 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:45:03,422 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:45:03,452 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:45:03,536 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=buy
-2025-09-16 05:50:00,001 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:50:02,557 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:50:03,113 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
-2025-09-16 05:50:03,249 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:50:03,509 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:55:00,001 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 05:55:02,842 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 05:55:02,880 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 05:55:03,375 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 05:55:03,511 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:00:00,009 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:00:02,250 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 06:00:03,288 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:00:03,505 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:00:03,533 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:05:00,004 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:05:02,826 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:05:02,853 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:05:03,356 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:05:03,533 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:10:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:10:02,659 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:10:02,917 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 06:10:03,393 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:10:03,529 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=none, Zigzag=none
-2025-09-16 06:15:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:15:02,586 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:15:03,046 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 06:15:03,358 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:15:03,487 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 06:20:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:20:02,680 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:20:03,165 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 06:20:03,438 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=none, Zigzag=none
-2025-09-16 06:20:03,489 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:25:00,016 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:25:02,217 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:25:02,999 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 06:25:03,486 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:25:03,513 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 06:30:00,010 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:30:02,314 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 06:30:03,213 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:30:03,510 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:30:03,531 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:35:00,004 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:35:03,223 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:35:03,360 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 06:35:03,412 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
-2025-09-16 06:35:03,464 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 06:40:00,005 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:40:03,360 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 06:40:03,390 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 06:40:03,439 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 06:40:03,492 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 06:45:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:45:02,676 [INFO] 🔥Analysis: Symbol=NVDA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 06:45:02,757 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 06:45:03,521 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 06:45:03,539 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 06:50:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:50:03,275 [INFO] 🔥Analysis: Symbol=NVDA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 06:50:03,367 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 06:50:03,400 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 06:50:03,507 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 06:55:00,002 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 06:55:02,977 [INFO] 🔥Analysis: Symbol=NVDA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 06:55:03,255 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
-2025-09-16 06:55:03,401 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 06:55:03,505 [INFO] 🔥Analysis: Symbol=TSLA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 07:00:00,001 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:00:02,298 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 07:00:03,268 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:00:03,388 [INFO] 🔥Analysis: Symbol=NVDA, STM=buy, TD=buy, Zigzag=none
-2025-09-16 07:00:03,493 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:05:00,010 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:05:02,210 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 07:05:03,390 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:05:03,437 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:05:03,492 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:10:00,006 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:10:02,677 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 07:10:02,730 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:10:03,413 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:10:03,504 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:15:00,007 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:15:02,739 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:15:02,935 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 07:15:03,462 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:15:03,529 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:20:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:20:02,847 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:20:03,305 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:20:03,426 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:20:03,544 [INFO] [Thread 13455405056] Connecting IB with client ID 53
-2025-09-16 07:20:03,544 [ERROR] [Thread 13455405056] Failed to create thread-local IB: There is no current event loop in thread 'ThreadPoolExecutor-91_1'.
-2025-09-16 07:20:03,548 [ERROR] Error getting price for AAPL: There is no current event loop in thread 'ThreadPoolExecutor-91_1'.
-2025-09-16 07:20:03,548 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=buy
-2025-09-16 07:20:05,939 [WARNING] ALERT: All signals aligned for AAPL - BUY (STM:buy, TD:buy, Zigzag:buy)
-2025-09-16 07:25:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:25:02,981 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:25:03,080 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
-2025-09-16 07:25:03,151 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:25:03,589 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
-2025-09-16 07:30:00,007 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:30:03,453 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
-2025-09-16 07:30:03,498 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
-2025-09-16 07:30:03,534 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:30:03,586 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:35:00,007 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:35:03,235 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
-2025-09-16 07:35:03,403 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
-2025-09-16 07:35:03,441 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:35:03,526 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:40:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:40:03,284 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:40:03,336 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
-2025-09-16 07:40:03,434 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:40:03,563 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 07:45:00,000 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:45:02,414 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=none, Zigzag=none
-2025-09-16 07:45:03,129 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
-2025-09-16 07:45:03,415 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 07:45:03,552 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:50:00,008 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:50:03,289 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 07:50:03,464 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 07:50:03,534 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:50:03,562 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:55:00,007 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 07:55:03,169 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 07:55:03,270 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:55:03,504 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 07:55:03,559 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 08:00:00,003 [INFO] Time to capture screenshots (5-minute mark)
-2025-09-16 08:00:03,141 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
-2025-09-16 08:00:03,201 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
-2025-09-16 08:00:03,449 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
-2025-09-16 08:00:03,511 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
-2025-09-16 08:56:19,869 [INFO] KeyboardInterrupt received. Shutting down.
-2025-09-16 08:56:19,874 [INFO] Closing all positions before shutdown...
-2025-09-16 08:56:19,875 [INFO] Disconnected from IB
-2025-09-16 08:56:19,880 [INFO] Browser closed. Done.
+2025-09-16 22:28:12,130 [INFO] Regular symbols: ['NVDA', 'AAPL', 'TSLA', 'NIO', 'CRWV', 'NBIS', 'AMD', 'NFLX', 'IBM']
+2025-09-16 22:28:12,130 [INFO] Special symbols: ['QQQ']
+2025-09-16 22:28:12,131 [INFO] All tracked symbols: ['QQQ', 'AAPL', 'NFLX', 'TSLA', 'IBM', 'NBIS', 'CRWV', 'NVDA', 'AMD', 'NIO']
+2025-09-16 22:28:12,131 [INFO] Using existing trading CSV file: trading_records.csv
+2025-09-16 22:28:12,131 [INFO] Connecting to IB at 127.0.0.1:4002 with client ID 44...
+2025-09-16 22:28:28,594 [INFO] Regular symbols: ['NVDA', 'AAPL', 'TSLA', 'NIO', 'CRWV', 'NBIS', 'AMD', 'NFLX', 'IBM']
+2025-09-16 22:28:28,594 [INFO] Special symbols: ['QQQ']
+2025-09-16 22:28:28,594 [INFO] All tracked symbols: ['TSLA', 'NVDA', 'QQQ', 'NFLX', 'CRWV', 'NBIS', 'NIO', 'AMD', 'AAPL', 'IBM']
+2025-09-16 22:28:28,594 [INFO] Using existing trading CSV file: trading_records.csv
+2025-09-16 22:28:28,594 [INFO] Connecting to IB at 127.0.0.1:4002 with client ID 42...
+2025-09-16 22:28:29,002 [INFO] Connected to IB!
+2025-09-16 22:28:29,002 [INFO] Created stock contract for TSLA
+2025-09-16 22:28:29,003 [INFO] Created stock contract for NVDA
+2025-09-16 22:28:29,003 [INFO] Created ETF contract for QQQ
+2025-09-16 22:28:29,003 [INFO] Created stock contract for NFLX
+2025-09-16 22:28:29,003 [INFO] Created stock contract for CRWV
+2025-09-16 22:28:29,003 [INFO] Created stock contract for NBIS
+2025-09-16 22:28:29,003 [INFO] Created stock contract for NIO
+2025-09-16 22:28:29,003 [INFO] Created stock contract for AMD
+2025-09-16 22:28:29,003 [INFO] Created stock contract for AAPL
+2025-09-16 22:28:29,003 [INFO] Created stock contract for IBM
+2025-09-16 22:28:29,003 [INFO] ✅ IB Trading Manager connected successfully
+2025-09-16 22:28:31,745 [INFO] Browser is now open. Open all desired tabs and sign in if needed.
+2025-09-16 22:28:41,962 [INFO] User confirmed start. Beginning scheduled operations.
+2025-09-16 22:28:42,095 [INFO] Entering scheduled loop: refresh at -30s, capture at 5-minute marks.
+2025-09-16 22:30:00,002 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 22:30:05,718 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:30:05,831 [INFO] 🔥Analysis: Symbol=CRWV, STM=buy, TD=none, Zigzag=none
+2025-09-16 22:30:07,633 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 22:30:08,100 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-16 22:30:08,192 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 22:30:08,211 [INFO] 🔥Analysis: Symbol=AAPL, STM=sell, TD=none, Zigzag=none
+2025-09-16 22:30:08,217 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:30:08,230 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 22:30:09,209 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 22:30:09,227 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 22:35:00,004 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 22:35:04,739 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-16 22:35:05,362 [INFO] 🔥Analysis: Symbol=CRWV, STM=buy, TD=none, Zigzag=none
+2025-09-16 22:35:05,898 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:35:07,721 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 22:35:07,831 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 22:35:07,875 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:35:08,049 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 22:35:08,201 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 22:35:09,077 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 22:35:09,106 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 22:40:00,009 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 22:40:04,767 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=buy
+2025-09-16 22:40:05,485 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 22:40:05,908 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 22:40:07,239 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 22:40:07,345 [INFO] 🔥Analysis: Symbol=CRWV, STM=buy, TD=buy, Zigzag=none
+2025-09-16 22:40:07,534 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 22:40:07,840 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:40:08,205 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:40:08,874 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 22:40:09,105 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 22:45:00,005 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 22:45:04,799 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=buy
+2025-09-16 22:45:05,386 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 22:45:06,027 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 22:45:06,911 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 22:45:07,287 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 22:45:07,587 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:45:07,974 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:45:08,298 [INFO] 🔥Analysis: Symbol=CRWV, STM=buy, TD=buy, Zigzag=none
+2025-09-16 22:45:08,843 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 22:45:09,151 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 22:50:00,000 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 22:50:04,828 [INFO] 🔥Analysis: Symbol=CRWV, STM=buy, TD=buy, Zigzag=none
+2025-09-16 22:50:05,355 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 22:50:06,386 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=buy
+2025-09-16 22:50:06,411 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 22:50:07,427 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 22:50:07,454 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=buy, Zigzag=none
+2025-09-16 22:50:08,184 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:50:08,418 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:50:08,879 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 22:50:09,162 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 22:55:00,001 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 22:55:04,759 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=buy
+2025-09-16 22:55:05,287 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=buy, Zigzag=none
+2025-09-16 22:55:05,889 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 22:55:06,873 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:55:06,920 [INFO] 🔥Analysis: Symbol=CRWV, STM=buy, TD=none, Zigzag=none
+2025-09-16 22:55:07,591 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
+2025-09-16 22:55:08,236 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 22:55:08,455 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 22:55:08,750 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 22:55:09,088 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 23:00:00,004 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:00:04,981 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=buy, Zigzag=none
+2025-09-16 23:00:05,184 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=buy
+2025-09-16 23:00:05,832 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:00:07,649 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
+2025-09-16 23:00:07,720 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:00:07,821 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:00:07,850 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 23:00:08,043 [INFO] 🔥Analysis: Symbol=CRWV, STM=buy, TD=none, Zigzag=none
+2025-09-16 23:00:08,943 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 23:00:08,943 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-16 23:05:00,001 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:05:04,791 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=buy, Zigzag=none
+2025-09-16 23:05:05,385 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-16 23:05:06,025 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:05:07,159 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 23:05:07,816 [INFO] 🔥Analysis: Symbol=CRWV, STM=buy, TD=none, Zigzag=none
+2025-09-16 23:05:07,870 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:05:07,936 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 23:05:08,219 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=sell
+2025-09-16 23:05:09,052 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 23:05:09,113 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-16 23:10:00,006 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:10:04,744 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-16 23:10:05,343 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:10:05,866 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 23:10:07,446 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 23:10:07,674 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:10:07,676 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:10:07,677 [INFO] 🔥Analysis: Symbol=CRWV, STM=buy, TD=buy, Zigzag=none
+2025-09-16 23:10:08,247 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
+2025-09-16 23:10:08,772 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 23:10:09,026 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-16 23:15:00,009 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:15:04,746 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-16 23:15:05,214 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 23:15:05,867 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:15:06,657 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 23:15:06,731 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:15:07,508 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-16 23:15:07,947 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:15:08,106 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
+2025-09-16 23:15:08,980 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 23:15:08,991 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-16 23:20:00,001 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:20:06,211 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:20:06,303 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 23:20:06,471 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 23:20:06,797 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 23:20:06,799 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-16 23:20:07,976 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:20:08,126 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:20:08,140 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-16 23:20:09,076 [INFO] 🔥Analysis: Symbol=NBIS, STM=buy, TD=none, Zigzag=none
+2025-09-16 23:20:09,095 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=none, Zigzag=none
+2025-09-16 23:25:00,002 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:25:06,089 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 23:25:06,412 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 23:25:06,553 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:25:06,586 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:25:07,351 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-16 23:25:08,173 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:25:08,197 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-16 23:25:08,200 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 23:25:08,812 [INFO] 🔥Analysis: Symbol=NBIS, STM=buy, TD=none, Zigzag=none
+2025-09-16 23:25:09,169 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 23:30:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:30:05,660 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=sell, Zigzag=none
+2025-09-16 23:30:05,918 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-16 23:30:05,959 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-16 23:30:07,456 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:30:07,669 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:30:07,915 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:30:07,981 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 23:30:08,222 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 23:30:09,135 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 23:30:09,140 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 23:35:00,009 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:35:05,488 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-16 23:35:05,513 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:35:06,239 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=sell
+2025-09-16 23:35:06,667 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 23:35:07,066 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=buy, Zigzag=none
+2025-09-16 23:35:07,922 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=sell, Zigzag=none
+2025-09-16 23:35:08,149 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:35:08,198 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-16 23:35:09,122 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 23:35:09,129 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 23:40:00,000 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:40:04,815 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-16 23:40:06,123 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-16 23:40:06,641 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:40:06,828 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 23:40:07,630 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=buy, Zigzag=none
+2025-09-16 23:40:07,789 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 23:40:08,004 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:40:08,248 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:40:08,724 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 23:40:09,193 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 23:45:00,006 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:45:04,782 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-16 23:45:05,485 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 23:45:05,967 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-16 23:45:07,485 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=buy, Zigzag=none
+2025-09-16 23:45:07,669 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:45:07,719 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 23:45:07,748 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:45:08,505 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:45:08,770 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 23:45:09,093 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 23:50:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:50:05,217 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 23:50:05,225 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-16 23:50:05,841 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:50:06,552 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 23:50:07,874 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:50:07,933 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 23:50:08,099 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:50:08,137 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-16 23:50:09,067 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-16 23:50:09,067 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 23:55:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-16 23:55:04,845 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-16 23:55:06,042 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-16 23:55:06,965 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:55:07,450 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-16 23:55:07,682 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-16 23:55:08,299 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-16 23:55:08,323 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-16 23:55:08,374 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-16 23:55:08,858 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-16 23:55:09,331 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 00:00:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:00:04,846 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 00:00:05,458 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 00:00:06,000 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:00:07,587 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 00:00:07,710 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:00:07,907 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:00:07,938 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:00:08,553 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:00:09,083 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:00:09,317 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 00:05:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:05:05,163 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 00:05:05,259 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 00:05:06,362 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:05:06,542 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 00:05:06,856 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:05:07,987 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:05:08,055 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=sell
+2025-09-17 00:05:08,225 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:05:09,144 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:05:09,144 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 00:10:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:10:04,803 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 00:10:05,441 [INFO] 🔥Analysis: Symbol=NVDA, STM=buy, TD=buy, Zigzag=none
+2025-09-17 00:10:05,941 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 00:10:07,922 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:10:08,153 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:10:08,188 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:10:08,231 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:10:08,257 [INFO] 🔥Analysis: Symbol=IBM, STM=sell, TD=none, Zigzag=none
+2025-09-17 00:10:09,154 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:10:09,183 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 00:15:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:15:04,815 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 00:15:05,458 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:15:06,369 [INFO] 🔥Analysis: Symbol=IBM, STM=sell, TD=none, Zigzag=none
+2025-09-17 00:15:06,600 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 00:15:07,618 [INFO] 🔥Analysis: Symbol=NVDA, STM=buy, TD=buy, Zigzag=none
+2025-09-17 00:15:08,023 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:15:08,159 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:15:08,310 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:15:09,194 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:15:09,251 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 00:20:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:20:06,486 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 00:20:06,575 [INFO] 🔥Analysis: Symbol=IBM, STM=sell, TD=none, Zigzag=none
+2025-09-17 00:20:07,107 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:20:07,395 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:20:08,125 [INFO] 🔥Analysis: Symbol=NVDA, STM=buy, TD=buy, Zigzag=none
+2025-09-17 00:20:08,198 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 00:20:08,367 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:20:08,379 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:20:08,922 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:20:09,395 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 00:25:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:25:05,065 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 00:25:05,563 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:25:06,469 [INFO] 🔥Analysis: Symbol=IBM, STM=sell, TD=none, Zigzag=none
+2025-09-17 00:25:06,471 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
+2025-09-17 00:25:08,061 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:25:08,169 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 00:25:08,195 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:25:08,328 [INFO] 🔥Analysis: Symbol=NVDA, STM=buy, TD=buy, Zigzag=none
+2025-09-17 00:25:09,267 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:25:09,273 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 00:30:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:30:05,130 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=none, Zigzag=none
+2025-09-17 00:30:05,761 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 00:30:06,491 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
+2025-09-17 00:30:06,522 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:30:08,327 [INFO] 🔥Analysis: Symbol=IBM, STM=sell, TD=none, Zigzag=none
+2025-09-17 00:30:08,376 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:30:08,376 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:30:08,406 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:30:08,877 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:30:09,354 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 00:35:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:35:05,673 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 00:35:05,862 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 00:35:06,592 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:35:07,115 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=buy, Zigzag=none
+2025-09-17 00:35:07,850 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:35:08,189 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
+2025-09-17 00:35:08,357 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:35:08,441 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:35:09,442 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 00:35:09,447 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:40:00,008 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:40:05,144 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 00:40:05,211 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 00:40:06,110 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=buy, Zigzag=none
+2025-09-17 00:40:07,250 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:40:07,601 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:40:07,745 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:40:07,747 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:40:08,271 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
+2025-09-17 00:40:09,125 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 00:40:09,139 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:45:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:45:05,131 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 00:45:07,195 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
+2025-09-17 00:45:07,424 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:45:07,506 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 00:45:07,522 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=buy, Zigzag=none
+2025-09-17 00:45:07,654 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:45:08,104 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:45:08,351 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:45:08,824 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:45:09,301 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=sell, Zigzag=none
+2025-09-17 00:50:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:50:05,498 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 00:50:06,158 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 00:50:06,334 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=buy, Zigzag=none
+2025-09-17 00:50:06,640 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:50:07,830 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 00:50:07,923 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
+2025-09-17 00:50:08,370 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:50:08,370 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:50:09,287 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:50:09,309 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=sell, Zigzag=none
+2025-09-17 00:55:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 00:55:05,488 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=buy, Zigzag=none
+2025-09-17 00:55:05,516 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 00:55:05,857 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=none, Zigzag=none
+2025-09-17 00:55:06,301 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 00:55:08,141 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 00:55:08,163 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:55:08,163 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 00:55:08,163 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=sell, Zigzag=none
+2025-09-17 00:55:09,059 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 00:55:09,099 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=sell, Zigzag=none
+2025-09-17 01:00:00,009 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 01:00:04,739 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 01:00:05,398 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 01:00:05,870 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 01:00:07,530 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 01:00:07,938 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 01:00:08,034 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=sell, Zigzag=none
+2025-09-17 01:00:08,168 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 01:00:08,168 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=buy, Zigzag=none
+2025-09-17 01:00:09,072 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 01:00:09,092 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 01:05:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 01:05:04,922 [INFO] 🔥Analysis: Symbol=CRWV, STM=sell, TD=sell, Zigzag=none
+2025-09-17 01:05:06,003 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 01:05:06,983 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 01:05:07,640 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 01:05:07,781 [INFO] 🔥Analysis: Symbol=NFLX, STM=buy, TD=buy, Zigzag=none
+2025-09-17 01:05:07,823 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=buy
+2025-09-17 01:05:08,192 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 01:05:08,437 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 01:05:08,901 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 01:05:09,375 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 01:10:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 01:10:06,251 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 01:10:06,655 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 01:10:06,761 [INFO] 🔥Analysis: Symbol=NFLX, STM=buy, TD=buy, Zigzag=buy
+2025-09-17 01:10:09,313 [WARNING] ALERT: All signals aligned for NFLX - BUY (STM:buy, TD:buy, Zigzag:buy)
+2025-09-17 01:10:09,319 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 01:10:09,319 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 01:10:09,319 [INFO] 🔥Analysis: Symbol=CRWV, STM=sell, TD=sell, Zigzag=none
+2025-09-17 01:10:09,319 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 01:10:09,319 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 01:10:09,319 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 01:10:09,319 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 03:41:01,011 [ERROR] Error getting price for NFLX: Not connected
+2025-09-17 03:41:01,012 [ERROR] Error during sequential IB actions for NFLX: unsupported format string passed to NoneType.__format__
+2025-09-17 03:45:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 03:45:06,943 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
+2025-09-17 03:45:07,374 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 03:45:07,499 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 03:45:07,590 [INFO] 🔥Analysis: Symbol=NFLX, STM=sell, TD=sell, Zigzag=none
+2025-09-17 03:45:07,653 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 03:45:07,804 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 03:45:08,144 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 03:45:08,263 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 03:45:08,780 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-17 03:45:09,231 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 03:50:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 03:50:06,139 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 03:50:06,331 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 03:50:06,473 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 03:50:07,516 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 03:50:07,570 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 03:50:07,783 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
+2025-09-17 03:50:08,001 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 03:50:08,327 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 03:50:09,291 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 03:50:09,302 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-17 03:55:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 03:55:07,459 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 03:55:07,821 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 03:55:07,869 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 03:55:07,935 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=sell, Zigzag=none
+2025-09-17 03:55:07,994 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=buy, Zigzag=none
+2025-09-17 03:55:08,047 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 03:55:08,084 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 03:55:08,229 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 03:55:09,249 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 03:55:09,252 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:00:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:00:06,395 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:00:06,623 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:00:06,925 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 04:00:07,002 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:00:07,010 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:00:07,939 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 04:00:08,197 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:00:08,245 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 04:00:09,190 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 04:00:09,227 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:05:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:05:06,518 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:05:06,777 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:05:06,873 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:05:06,910 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:05:06,928 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:05:08,147 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 04:05:08,161 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:05:08,283 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=buy
+2025-09-17 04:05:08,828 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 04:05:09,288 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:10:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:10:06,473 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:10:07,023 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=buy
+2025-09-17 04:10:07,096 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 04:10:07,158 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:10:07,270 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:10:07,336 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:10:08,163 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:10:08,209 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:10:09,174 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 04:10:09,201 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 04:15:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:15:06,617 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:15:06,772 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:15:07,167 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:15:07,355 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:15:07,371 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=buy
+2025-09-17 04:15:07,645 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 04:15:07,825 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:15:08,182 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:15:09,156 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 04:15:09,175 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 04:20:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:20:04,991 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:20:05,827 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:20:05,925 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 04:20:06,815 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:20:06,904 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:20:08,023 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:20:08,140 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:20:08,248 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 04:20:09,159 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 04:20:09,159 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 04:25:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:25:05,547 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 04:25:05,557 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:25:06,885 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:25:07,156 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=sell, Zigzag=none
+2025-09-17 04:25:07,911 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 04:25:07,945 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:25:08,232 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:25:08,362 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:25:09,259 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 04:25:09,280 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 04:30:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:30:05,120 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:30:05,886 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:30:06,232 [INFO] 🔥Analysis: Symbol=NFLX, STM=buy, TD=buy, Zigzag=none
+2025-09-17 04:30:06,417 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 04:30:08,010 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:30:08,156 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:30:08,217 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:30:08,261 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 04:30:08,727 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 04:30:09,188 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 04:35:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:35:05,386 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 04:35:05,446 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
+2025-09-17 04:35:05,933 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:35:07,243 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 04:35:07,588 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:35:07,617 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:35:07,841 [INFO] 🔥Analysis: Symbol=NFLX, STM=buy, TD=buy, Zigzag=none
+2025-09-17 04:35:08,231 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:35:09,108 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 04:35:09,139 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 04:40:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:40:06,085 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:40:06,238 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 04:40:06,385 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:40:06,485 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:40:08,145 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 04:40:08,278 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:40:08,309 [INFO] 🔥Analysis: Symbol=NFLX, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:40:08,323 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:40:09,296 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 04:40:09,300 [INFO] 🔥Analysis: Symbol=NBIS, STM=sell, TD=none, Zigzag=none
+2025-09-17 04:45:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:45:05,023 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:45:05,507 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:45:06,070 [INFO] 🔥Analysis: Symbol=NFLX, STM=buy, TD=buy, Zigzag=none
+2025-09-17 04:45:06,552 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 04:45:07,759 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:45:08,138 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 04:45:08,219 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:45:08,365 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=sell
+2025-09-17 04:45:09,307 [INFO] 🔥Analysis: Symbol=NBIS, STM=sell, TD=none, Zigzag=none
+2025-09-17 04:45:09,307 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:50:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:50:06,555 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 04:50:06,725 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:50:07,038 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:50:07,658 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:50:07,673 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:50:07,751 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 04:50:07,822 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:50:08,301 [INFO] 🔥Analysis: Symbol=NFLX, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:50:08,810 [INFO] 🔥Analysis: Symbol=NBIS, STM=sell, TD=none, Zigzag=none
+2025-09-17 04:50:09,283 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=buy, Zigzag=none
+2025-09-17 04:55:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 04:55:06,727 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 04:55:06,862 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:55:07,177 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 04:55:07,238 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 04:55:07,306 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 04:55:07,493 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 04:55:08,178 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
+2025-09-17 04:55:08,311 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 04:55:09,280 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 04:55:09,314 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=buy, Zigzag=none
+2025-09-17 05:00:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:00:05,897 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=sell, Zigzag=none
+2025-09-17 05:00:05,983 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:00:06,241 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 05:00:07,396 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
+2025-09-17 05:00:07,765 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 05:00:07,901 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:00:08,322 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:00:08,324 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
+2025-09-17 05:00:09,262 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:00:09,315 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=buy, Zigzag=none
+2025-09-17 05:05:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:05:07,303 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
+2025-09-17 05:05:07,527 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:05:07,811 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:05:07,893 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 05:05:07,997 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=sell, Zigzag=none
+2025-09-17 05:05:08,129 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 05:05:08,137 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:05:08,341 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=buy, Zigzag=none
+2025-09-17 05:05:09,179 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:05:09,359 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=none, Zigzag=none
+2025-09-17 05:10:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:10:07,489 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:10:07,574 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:10:07,641 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
+2025-09-17 05:10:07,781 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:10:07,804 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:10:07,818 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 05:10:07,869 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:10:08,335 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 05:10:08,885 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=none, Zigzag=none
+2025-09-17 05:10:09,345 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:15:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:15:05,199 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:15:06,487 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:15:06,678 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
+2025-09-17 05:15:06,850 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:15:07,144 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:15:08,202 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:15:08,338 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 05:15:08,467 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=sell, Zigzag=none
+2025-09-17 05:15:08,952 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:15:09,435 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 05:20:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:20:06,828 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:20:06,984 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=buy, Zigzag=none
+2025-09-17 05:20:07,300 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:20:07,513 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=sell, Zigzag=none
+2025-09-17 05:20:07,966 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:20:08,304 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:20:08,391 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 05:20:08,425 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:20:08,977 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 05:20:09,437 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:25:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:25:04,847 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:25:05,311 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=sell, Zigzag=none
+2025-09-17 05:25:05,889 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:25:07,192 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:25:07,343 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:25:08,186 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 05:25:08,213 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:25:08,274 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:25:09,171 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:25:09,192 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 05:30:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:30:07,323 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:30:07,404 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:30:07,576 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:30:07,913 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:30:07,994 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:30:08,018 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 05:30:08,044 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=sell, Zigzag=none
+2025-09-17 05:30:08,291 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:30:09,292 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 05:30:09,307 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:35:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:35:05,904 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:35:06,147 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=none, Zigzag=none
+2025-09-17 05:35:06,408 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:35:08,091 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:35:08,109 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:35:08,159 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 05:35:08,185 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 05:35:08,274 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:35:08,796 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:35:09,251 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=none, Zigzag=none
+2025-09-17 05:40:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:40:07,977 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:40:08,065 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=sell, Zigzag=none
+2025-09-17 05:40:08,176 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:40:08,205 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:40:08,235 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 05:40:08,266 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:40:08,266 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:40:08,266 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 05:40:09,269 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:40:09,277 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=none, Zigzag=none
+2025-09-17 05:45:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:45:06,897 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:45:07,075 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:45:08,051 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:45:08,139 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:45:08,312 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:45:08,354 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 05:45:08,354 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 05:45:08,354 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 05:45:09,349 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:45:09,366 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=buy, Zigzag=none
+2025-09-17 05:50:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:50:05,109 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:50:06,030 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 05:50:06,349 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 05:50:06,491 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:50:07,778 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:50:08,074 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:50:08,307 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:50:08,312 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 05:50:08,765 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 05:50:09,225 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=buy, Zigzag=none
+2025-09-17 05:55:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 05:55:06,727 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 05:55:06,848 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:55:07,301 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 05:55:07,479 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 05:55:07,739 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 05:55:07,812 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 05:55:08,340 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 05:55:08,366 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 05:55:09,379 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=none, Zigzag=none
+2025-09-17 05:55:09,380 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 06:00:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:00:06,964 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:00:07,346 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 06:00:07,487 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:00:07,650 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=buy, Zigzag=none
+2025-09-17 06:00:08,173 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:00:08,212 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:00:08,263 [INFO] 🔥Analysis: Symbol=IBM, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:00:08,349 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:00:09,343 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 06:00:09,369 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=none, Zigzag=none
+2025-09-17 06:05:00,001 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:05:04,806 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=buy, Zigzag=none
+2025-09-17 06:05:05,307 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:05:05,875 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:05:07,376 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:05:07,476 [INFO] 🔥Analysis: Symbol=IBM, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:05:07,529 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:05:07,889 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:05:08,239 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 06:05:09,163 [INFO] 🔥Analysis: Symbol=AMD, STM=buy, TD=none, Zigzag=none
+2025-09-17 06:05:09,175 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 06:10:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:10:05,106 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 06:10:05,292 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 06:10:05,873 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:10:06,396 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:10:07,441 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:10:07,683 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=buy
+2025-09-17 06:10:07,817 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:10:08,237 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:10:09,154 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 06:10:09,156 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 06:15:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:15:06,476 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:15:06,710 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:15:06,739 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:15:07,172 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 06:15:07,429 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:15:07,889 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=buy
+2025-09-17 06:15:08,304 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:15:08,334 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 06:15:09,331 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 06:15:09,331 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 06:20:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:20:04,789 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:20:05,329 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:20:06,377 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 06:20:06,616 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 06:20:07,519 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:20:08,199 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:20:08,276 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:20:08,293 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 06:20:09,209 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 06:20:09,226 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 06:25:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:25:05,492 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:25:05,494 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 06:25:05,999 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 06:25:06,894 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 06:25:06,914 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:25:08,181 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:25:08,250 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 06:25:08,290 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:25:09,238 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 06:25:09,238 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 06:30:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:30:04,968 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 06:30:05,880 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:30:05,901 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 06:30:06,699 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:30:07,311 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 06:30:07,433 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:30:08,048 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:30:08,244 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 06:30:09,169 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 06:30:09,182 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 06:35:00,002 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:35:04,855 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:35:05,439 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 06:35:05,912 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=sell
+2025-09-17 06:35:06,402 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:35:07,615 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 06:35:07,866 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 06:35:07,924 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:35:08,267 [INFO] 🔥Analysis: Symbol=IBM, STM=buy, TD=none, Zigzag=none
+2025-09-17 06:35:09,179 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 06:35:09,195 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 06:40:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:40:04,860 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:40:05,275 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:40:06,287 [INFO] 🔥Analysis: Symbol=IBM, STM=buy, TD=none, Zigzag=none
+2025-09-17 06:40:06,391 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:40:07,517 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:40:07,984 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 06:40:08,146 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:40:08,261 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:40:09,186 [INFO] 🔥Analysis: Symbol=NBIS, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:40:09,186 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 06:45:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:45:05,857 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 06:45:05,958 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:45:05,965 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 06:45:06,452 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:45:07,843 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=sell, Zigzag=none
+2025-09-17 06:45:08,016 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:45:08,218 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:45:08,317 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:45:09,258 [INFO] 🔥Analysis: Symbol=NBIS, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:45:09,259 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 06:50:00,001 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:50:05,012 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:50:05,371 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 06:50:05,906 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 06:50:07,218 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:50:07,329 [INFO] 🔥Analysis: Symbol=NVDA, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:50:07,332 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=sell, Zigzag=none
+2025-09-17 06:50:08,111 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=sell, Zigzag=none
+2025-09-17 06:50:08,246 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:50:09,142 [INFO] 🔥Analysis: Symbol=NBIS, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:50:09,155 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 06:55:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 06:55:05,685 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=none, Zigzag=none
+2025-09-17 06:55:05,919 [INFO] 🔥Analysis: Symbol=CRWV, STM=sell, TD=sell, Zigzag=none
+2025-09-17 06:55:05,919 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 06:55:06,760 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=sell, Zigzag=none
+2025-09-17 06:55:07,035 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 06:55:07,724 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:55:08,066 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 06:55:08,256 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 06:55:09,172 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 06:55:09,181 [INFO] 🔥Analysis: Symbol=NBIS, STM=sell, TD=none, Zigzag=none
+2025-09-17 07:00:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:00:04,839 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:00:05,390 [INFO] 🔥Analysis: Symbol=NIO, STM=sell, TD=none, Zigzag=none
+2025-09-17 07:00:05,912 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:00:06,901 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=sell, Zigzag=none
+2025-09-17 07:00:07,012 [INFO] 🔥Analysis: Symbol=CRWV, STM=sell, TD=sell, Zigzag=none
+2025-09-17 07:00:07,596 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:00:08,180 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:00:08,279 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 07:00:09,155 [INFO] 🔥Analysis: Symbol=NBIS, STM=sell, TD=none, Zigzag=none
+2025-09-17 07:00:09,205 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:05:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:05:04,842 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:05:06,742 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:05:07,181 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 07:05:07,579 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:05:07,756 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=none, Zigzag=none
+2025-09-17 07:05:07,942 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 07:05:08,033 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:05:08,362 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:05:08,809 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 07:05:09,272 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:10:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:10:05,476 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:10:05,822 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 07:10:05,921 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:10:06,808 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:10:06,861 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:10:08,178 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:10:08,216 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 07:10:08,223 [INFO] 🔥Analysis: Symbol=QQQ, STM=sell, TD=none, Zigzag=none
+2025-09-17 07:10:09,110 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 07:10:09,132 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:15:00,003 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:15:06,072 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 07:15:06,160 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:15:06,406 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 07:15:06,407 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:15:07,699 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:15:08,000 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:15:08,145 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=sell
+2025-09-17 07:15:08,270 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:15:09,249 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:15:09,250 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 07:20:00,008 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:20:04,914 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 07:20:05,410 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:20:05,968 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:20:06,551 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:20:07,663 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=sell
+2025-09-17 07:20:08,316 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 07:20:08,353 [INFO] 🔥Analysis: Symbol=TSLA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 07:20:08,401 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:20:09,333 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 07:20:09,333 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:25:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:25:05,798 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 07:25:05,868 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:25:05,990 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:25:06,479 [INFO] 🔥Analysis: Symbol=TSLA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 07:25:07,564 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 07:25:07,579 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:25:08,275 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 07:25:08,348 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:25:09,276 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:25:09,276 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 07:30:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:30:04,865 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 07:30:05,526 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:30:06,007 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 07:30:07,488 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:30:07,543 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 07:30:07,894 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:30:08,036 [INFO] 🔥Analysis: Symbol=TSLA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 07:30:08,359 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:30:08,976 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 07:30:09,264 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:35:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:35:05,239 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 07:35:05,471 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:35:06,303 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:35:06,426 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:35:07,330 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 07:35:07,342 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:35:08,238 [INFO] 🔥Analysis: Symbol=TSLA, STM=sell, TD=sell, Zigzag=none
+2025-09-17 07:35:08,262 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 07:35:09,021 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 07:35:09,173 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:40:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:40:04,885 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:40:05,345 [INFO] 🔥Analysis: Symbol=TSLA, STM=sell, TD=none, Zigzag=none
+2025-09-17 07:40:05,888 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:40:06,454 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 07:40:08,092 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:40:08,145 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 07:40:08,193 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 07:40:08,287 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:40:09,177 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:40:09,190 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 07:45:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:45:04,976 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:45:05,434 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:45:05,897 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 07:45:06,527 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:45:06,856 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
+2025-09-17 07:45:07,557 [INFO] 🔥Analysis: Symbol=AAPL, STM=none, TD=none, Zigzag=none
+2025-09-17 07:45:08,040 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:45:08,222 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:45:09,120 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=buy
+2025-09-17 07:45:09,148 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:50:00,004 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:50:04,758 [INFO] 🔥Analysis: Symbol=NIO, STM=none, TD=none, Zigzag=none
+2025-09-17 07:50:05,293 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:50:05,851 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:50:06,441 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 07:50:07,098 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
+2025-09-17 07:50:08,100 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:50:08,130 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:50:08,160 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:50:09,065 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=buy
+2025-09-17 07:50:09,086 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 07:55:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 07:55:04,960 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=buy, Zigzag=none
+2025-09-17 07:55:05,542 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 07:55:06,999 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:55:07,235 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 07:55:07,433 [INFO] 🔥Analysis: Symbol=NIO, STM=buy, TD=buy, Zigzag=none
+2025-09-17 07:55:07,632 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 07:55:08,192 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 07:55:08,519 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 07:55:08,996 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 07:55:09,387 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 08:00:00,010 [INFO] Time to capture screenshots (5-minute mark)
+2025-09-17 08:00:05,372 [INFO] 🔥Analysis: Symbol=CRWV, STM=none, TD=none, Zigzag=none
+2025-09-17 08:00:05,391 [INFO] 🔥Analysis: Symbol=IBM, STM=none, TD=none, Zigzag=none
+2025-09-17 08:00:05,935 [INFO] 🔥Analysis: Symbol=QQQ, STM=none, TD=none, Zigzag=none
+2025-09-17 08:00:06,660 [INFO] 🔥Analysis: Symbol=NFLX, STM=none, TD=none, Zigzag=none
+2025-09-17 08:00:06,868 [INFO] 🔥Analysis: Symbol=NVDA, STM=none, TD=none, Zigzag=none
+2025-09-17 08:00:08,079 [INFO] 🔥Analysis: Symbol=TSLA, STM=none, TD=none, Zigzag=none
+2025-09-17 08:00:08,127 [INFO] 🔥Analysis: Symbol=NIO, STM=buy, TD=buy, Zigzag=none
+2025-09-17 08:00:08,227 [INFO] 🔥Analysis: Symbol=AAPL, STM=buy, TD=none, Zigzag=none
+2025-09-17 08:00:09,090 [INFO] 🔥Analysis: Symbol=NBIS, STM=none, TD=none, Zigzag=none
+2025-09-17 08:00:09,129 [INFO] 🔥Analysis: Symbol=AMD, STM=none, TD=none, Zigzag=none
+2025-09-17 09:09:56,557 [INFO] KeyboardInterrupt received. Shutting down.
+2025-09-17 09:09:56,558 [INFO] Closing all positions before shutdown...
+2025-09-17 09:09:56,565 [INFO] Browser closed. Done.

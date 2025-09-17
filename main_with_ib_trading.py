@@ -6,8 +6,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
-import threading
-import queue
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import platform
 import pytz
 import json
@@ -15,6 +14,8 @@ import random
 import numpy as np
 import pandas as pd
 import csv
+import threading
+import asyncio
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
 stock_list = ["NVDA","AAPL","TSLA","NIO","CRWV","NBIS","AMD","NFLX","IBM"]
@@ -107,6 +108,10 @@ class IBTradingManager:
         self.trades_csv_file = "trading_records.csv"
         self._initialize_log_files()
         self._initialize_csv_file()
+        
+        # Thread-local IB connections for use under ThreadPoolExecutor
+        self._thread_local = threading.local()
+        self._thread_ib_conns = []  # keep references for cleanup
     
     def _generate_client_id(self):
         """Generate a unique client ID."""
@@ -196,26 +201,74 @@ class IBTradingManager:
         if self.ib and self.ib.isConnected():
             self.ib.disconnect()
             self.logger.info("Disconnected from IB")
+        # Disconnect any thread-local IB connections
+        try:
+            for tib in list(self._thread_ib_conns):
+                try:
+                    if tib and tib.isConnected():
+                        tib.disconnect()
+                except Exception:
+                    pass
+            self._thread_ib_conns.clear()
+        except Exception:
+            pass
     
     def get_current_price(self, symbol: str) -> float:
         """Get current market price for a symbol."""
         try:
             contract = self.contracts[symbol]
-            ticker = self.ib.reqMktData(contract, '', False, False)
-            self.ib.sleep(1)  # Wait for data
-            
-            if ticker.last and ticker.last > 0:
-                price = ticker.last
-            elif ticker.close and ticker.close > 0:
-                price = ticker.close
-            elif ticker.bid and ticker.ask:
-                price = (ticker.bid + ticker.ask) / 2
-            else:
-                self.logger.warning(f"No price data available for {symbol}")
+            ib = self.ib
+            if ib is None:
+                self.logger.error("No IB connection available for price request")
                 return None
-            
-            self.ib.cancelMktData(contract)
-            return float(price)
+
+            while True:
+                # Subscribe, wait briefly for ticks, then read
+                ticker = ib.reqMktData(contract, '', False, False)
+                try:
+                    ib.sleep(0.1)
+                except Exception:
+                    time.sleep(0.1)
+
+                price = None
+                if getattr(ticker, 'last', None) and ticker.last > 0:
+                    price = ticker.last
+                elif getattr(ticker, 'close', None) and ticker.close > 0:
+                    price = ticker.close
+                elif getattr(ticker, 'bid', None) and getattr(ticker, 'ask', None):
+                    try:
+                        if ticker.bid and ticker.ask:
+                            price = (ticker.bid + ticker.ask) / 2
+                    except Exception:
+                        price = None
+
+                # Always cancel this subscription before the next loop
+                try:
+                    ib.cancelMktData(contract)
+                except Exception:
+                    pass
+
+                # Print the value every attempt
+                try:
+                    # print(f"Price attempt for {symbol}: {price}")
+                    pass
+                except Exception:
+                    pass
+
+                # Return once we have a non-NaN numeric value
+                if price is not None:
+                    try:
+                        price_float = float(price)
+                        if not math.isnan(price_float):
+                            return price_float
+                    except Exception:
+                        pass
+
+                # Sleep 0.3s before retrying
+                try:
+                    ib.sleep(0.1)
+                except Exception:
+                    time.sleep(0.1)
         except Exception as e:
             self.logger.error(f"Error getting price for {symbol}: {e}")
             return None
@@ -282,6 +335,10 @@ class IBTradingManager:
             market_close = current_us_time.replace(hour=16, minute=0, second=0, microsecond=0)
             
             contract = self.contracts[symbol]
+            ib = self.ib
+            if ib is None:
+                self.logger.error("No IB connection available for placing order")
+                return False
             
             if signal_type == 'buy':
                 action = 'BUY'
@@ -310,7 +367,7 @@ class IBTradingManager:
                 self.logger.info(f"Placing limit order: {action} {shares} shares of {symbol} at ${limit_price:.2f}")
             
             # Place the order
-            trade = self.ib.placeOrder(contract, order)
+            trade = ib.placeOrder(contract, order)
             
             # Generate unique trade ID
             trade_id = self._generate_trade_id()
@@ -382,6 +439,10 @@ class IBTradingManager:
             
             contract = self.contracts[symbol]
             shares = position_info['shares']
+            ib = self.ib
+            if ib is None:
+                self.logger.error("No IB connection available for closing position")
+                return
             
             # Place closing order
             if market_open <= current_us_time < market_close:
@@ -394,7 +455,7 @@ class IBTradingManager:
                     outsideRth=True
                 )
             
-            trade = self.ib.placeOrder(contract, order)
+            trade = ib.placeOrder(contract, order)
             
             # Calculate P&L
             if position_info['signal_type'] == 'buy':
@@ -955,44 +1016,15 @@ def process_single_image(image_path: str, output_dir: str, logger: logging.Logge
         analyzer = CandleStrategyAnalyzer(vertical_path)
         results = analyzer.run_analysis()
         
-        # Add symbol to results
+        # Add symbol and alignment info to results only (no IB actions here)
         if "error" not in results:
             results["symbol"] = symbol
-            
-            # NEW: Handle IB Trading Integration
-            if trading_manager and symbol in trading_manager.all_symbols:
-                stm = results.get("STM", "none")
-                td = results.get("TD", "none") 
-                zigzag = results.get("Zigzag", "none")
-                
-                # Check for signal alignment
-                is_aligned, signal_type = check_signal_alignment(stm, td, zigzag)
-                
-                if is_aligned:
-                    # Get current market price
-                    current_price = trading_manager.get_current_price(symbol)
-                    
-                    if current_price:
-                        # Check if we have an opposite position to close first
-                        trading_manager.handle_opposite_signal(symbol, signal_type)
-                        
-                        # Place new order if we don't already have a position in this direction
-                        current_position = trading_manager.current_positions.get(symbol)
-                        if (current_position is None or 
-                            current_position['signal_type'] != signal_type):
-                            
-                            # Prepare signal data for CSV logging
-                            signal_data = {
-                                'STM': stm,
-                                'TD': td,
-                                'Zigzag': zigzag
-                            }
-                            
-                            success = trading_manager.place_order(symbol, signal_type, current_price, signal_data)
-                            if success:
-                                logger.info(f"🚀 TRADE EXECUTED: {signal_type.upper()} {symbol} at ${current_price:.2f}")
-                            else:
-                                logger.error(f"❌ TRADE FAILED: Could not execute {signal_type.upper()} for {symbol}")
+            stm = results.get("STM", "none")
+            td = results.get("TD", "none")
+            zigzag = results.get("Zigzag", "none")
+            is_aligned, signal_type = check_signal_alignment(stm, td, zigzag)
+            results["is_aligned"] = is_aligned
+            results["signal_type"] = signal_type
         
         return (image_path, results)
         
@@ -1007,68 +1039,78 @@ def run_strategy_concurrently(image_paths: list, output_dir: str, logger: loggin
         logger.info("No images to analyze.")
         return
 
-    task_queue = queue.Queue()
-    result_queue = queue.Queue()
+    aligned_signals = []  # collect aligned signals to act on sequentially
 
-    for path in image_paths:
-        task_queue.put(path)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(process_single_image, path, output_dir, logger, trading_manager): path for path in image_paths}
+        for future in as_completed(futures):
+            path = futures[future]
+            try:
+                img_path, result = future.result()
+                if "error" in result:
+                    logger.error(f"Processing failed for {img_path}: {result['error']}")
+                    print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\",\"Zigzag\":\"error\"}}")
+                else:
+                    symbol = result.get("symbol", "UNKNOWN")
+                    stm = result.get("STM", "none")
+                    td = result.get("TD", "none")
+                    zigzag = result.get("Zigzag", "none")
+                    is_aligned = result.get("is_aligned", False)
+                    signal_type = result.get("signal_type", "none")
+                    logger.info(f"🔥Analysis: Symbol={symbol}, STM={stm}, TD={td}, Zigzag={zigzag}")
 
-    def worker() -> None:
-        while True:
-            try:
-                path = task_queue.get_nowait()
-            except queue.Empty:
-                break
-            try:
-                img_path, result = process_single_image(path, output_dir, logger, trading_manager)
-                result_queue.put((img_path, result, None))
+                    if is_aligned:
+                        play_alert_sound()
+                        show_alert_message(symbol, signal_type, stm, td, zigzag, logger)
+                        aligned_signals.append({
+                            "symbol": symbol,
+                            "signal_type": signal_type,
+                            "stm": stm,
+                            "td": td,
+                            "zigzag": zigzag
+                        })
+
+                    print(f"🔥JSON Output: {{\"Symbol\":\"{symbol}\",\"STM\":\"{stm}\",\"TD\":\"{td}\",\"Zigzag\":\"{zigzag}\"}}")
             except Exception as e:
-                result_queue.put((path, None, e))
-            finally:
-                task_queue.task_done()
+                logger.exception(f"Exception in processing for {path}: {e}")
+                print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\",\"Zigzag\":\"error\"}}")
 
-    num_workers = max(1, min(max_workers, len(image_paths)))
-    threads = [threading.Thread(target=worker, name=f"strategy-worker-{i+1}") for i in range(num_workers)]
 
-    for t in threads:
-        t.start()
+    # After all analyses complete, act on aligned 
+    # signals sequentially
 
-    completed = 0
-    total = len(image_paths)
-    while completed < total:
-        try:
-            img_path, result, err = result_queue.get(timeout=0.2)
-        except queue.Empty:
-            continue
+    if trading_manager and aligned_signals:
+        for signal in aligned_signals:
+            try:
+                symbol = signal["symbol"]
+                signal_type = signal["signal_type"]
+                # Skip symbols not tracked by IB manager
+                if symbol not in trading_manager.all_symbols:
+                    continue
 
-        if err is not None:
-            logger.exception(f"Exception in processing for {img_path}: {err}")
-            print('JSON Output: {"Symbol":"ERROR","STM":"error","TD":"error","Zigzag":"error"}')
-        else:
-            if "error" in result:
-                logger.error(f"Processing failed for {img_path}: {result['error']}")
-                print('JSON Output: {"Symbol":"ERROR","STM":"error","TD":"error","Zigzag":"error"}')
-            else:
-                symbol = result.get("symbol", "UNKNOWN")
-                stm = result.get("STM", "none")
-                td = result.get("TD", "none")
-                zigzag = result.get("Zigzag", "none")
-                logger.info(f"🔥Analysis: Symbol={symbol}, STM={stm}, TD={td}, Zigzag={zigzag}")
+                # Close opposite position first (sequentially)
+                trading_manager.handle_opposite_signal(symbol, signal_type)
 
-                # Check for signal alignment and trigger alerts
-                is_aligned, signal_type = check_signal_alignment(stm, td, zigzag)
-                if is_aligned:
-                    # Play alert sound
-                    play_alert_sound()
-                    # Show prominent alert message
-                    show_alert_message(symbol, signal_type, stm, td, zigzag, logger)
+                # Check if we already hold same-direction position
+                current_position = trading_manager.current_positions.get(symbol)
+                if current_position is not None and current_position.get("signal_type") == signal_type:
+                    continue
 
-                print(f"🔥JSON Output: {{\"Symbol\":\"{symbol}\",\"STM\":\"{stm}\",\"TD\":\"{td}\",\"Zigzag\":\"{zigzag}\"}}")
+                # Fetch price sequentially
+                current_price = trading_manager.get_current_price(symbol)
+                print(f"Current price for {symbol}: ${current_price:.2f}")
+                if not current_price:
+                    logger.error(f"Price unavailable for {symbol}; skipping order.")
+                    continue
 
-        completed += 1
-
-    for t in threads:
-        t.join()
+                signal_data = {"STM": signal["stm"], "TD": signal["td"], "Zigzag": signal["zigzag"]}
+                success = trading_manager.place_order(symbol, signal_type, current_price, signal_data)
+                if success:
+                    logger.info(f"🚀 TRADE EXECUTED: {signal_type.upper()} {symbol} at ${current_price:.2f}")
+                else:
+                    logger.error(f"❌ TRADE FAILED: Could not execute {signal_type.upper()} for {symbol}")
+            except Exception as e:
+                logger.error(f"Error during sequential IB actions for {signal.get('symbol','UNKNOWN')}: {e}")
 
 
 def ceil_to_next_5min_mark(now: datetime) -> datetime:
@@ -1154,7 +1196,7 @@ def main():
             # Check for daily position closure at 07:59 US/Eastern
             if trading_manager and us_time_now.hour == 7 and us_time_now.minute == 59:
                 # trading_manager.close_all_positions_daily()
-                print("Pretending to close all positions daily")
+                print("Daily position closure: Closing all positions")
                 time.sleep(130)  # Sleep for 2 minutes to avoid multiple closures
                 continue
 
@@ -1165,6 +1207,7 @@ def main():
                 except Exception as e:
                     logger.error(f"Error checking exit conditions: {e}")
 
+            #########################################################
             # Check if we need to refresh tabs (only at 5-minute mark - 30s)
             if now >= refresh_time and now < capture_time:
                 replacement_success = refresh_all_tabs_parallel(driver, logger, max_workers=min(8, max(2, os.cpu_count() or 4)))
@@ -1184,6 +1227,7 @@ def main():
                     if refresh_delay > 0:
                         time.sleep(refresh_delay)
                     continue  # Go back to check timing again
+            #########################################################
 
             # At capture time (5-minute mark), just capture without refreshing
             now = datetime.now()
@@ -1203,8 +1247,7 @@ def main():
                     except Exception as e:
                         logger.exception(f"Error running strategy analysis: {e}")
                     ## Running the main strategy with IB integration.
-
-
+            
     except KeyboardInterrupt:
         logger.info("KeyboardInterrupt received. Shutting down.")
         print("\nShutting down...")
