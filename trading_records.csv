@@ -1,1 +1,2 @@
 Trade_ID,Entry_Time,Exit_Time,Symbol,Signal_Type,Action,Shares,Entry_Price,Exit_Price,Take_Profit,Stop_Loss,PnL_Dollar,PnL_Percent,Exit_Reason,Duration_Minutes,STM_Signal,TD_Signal,Zigzag_Signal,Market_Hours,Order_Type,Notes
+TRADE_20250917_204502_871,2025-09-17 08:45:02,,QQQ,SELL,ENTRY,1,590.86,,576.2539408,599.8883407999999,,,,,sell,sell,sell,No,Limit @ $584.95,Trade entry

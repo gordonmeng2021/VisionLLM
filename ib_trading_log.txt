@@ -1,0 +1,13 @@
+
+============================================================
+TRADE ENTRY: QQQ
+Trade ID: TRADE_20250917_204502_871
+Time: 2025-09-17 08:45:02.168792-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $590.86
+Take Profit: $576.25
+Stop Loss: $599.89
+Order Type: Limit @ $584.95
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
