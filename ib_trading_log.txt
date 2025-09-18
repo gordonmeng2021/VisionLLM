@@ -11,3 +11,55 @@ Stop Loss: $599.89
 Order Type: Limit @ $584.95
 Signals - STM: sell, TD: sell, Zigzag: sell
 ============================================================
+
+============================================================
+TRADE ENTRY: NIO
+Trade ID: TRADE_20250918_202003_122
+Time: 2025-09-18 08:20:03.713591-04:00
+Signal Type: BUY
+Shares: 13
+Entry Price: $7.24
+Take Profit: $7.41
+Stop Loss: $7.12
+Order Type: Limit @ $7.31
+Signals - STM: buy, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: QQQ
+Trade ID: TRADE_20250918_203559_333
+Time: 2025-09-18 08:35:59.625653-04:00
+Signal Type: NONE
+Shares: 1
+Entry Price: $596.32
+Take Profit: $581.57
+Stop Loss: $605.43
+Order Type: Limit @ $590.35
+Signals - STM: none, TD: none, Zigzag: none
+============================================================
+
+============================================================
+TRADE ENTRY: QQQ
+Trade ID: TRADE_20250918_204254_476
+Time: 2025-09-18 08:42:54.901525-04:00
+Signal Type: NONE
+Shares: 1
+Entry Price: $596.27
+Take Profit: $581.54
+Stop Loss: $605.39
+Order Type: Limit @ $590.31
+Signals - STM: none, TD: none, Zigzag: none
+============================================================
+
+============================================================
+TRADE ENTRY: QUBT
+Trade ID: TRADE_20250918_220507_421
+Time: 2025-09-18 10:05:07.481425-04:00
+Signal Type: BUY
+Shares: 5
+Entry Price: $18.77
+Take Profit: $19.24
+Stop Loss: $18.49
+Order Type: Market
+Signals - STM: none, TD: none, Zigzag: buy
+============================================================

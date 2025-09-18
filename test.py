@@ -37,7 +37,7 @@ def request_market_data(req_id, symbol):
 	app.reqId_to_symbol[req_id] = symbol
 	app.reqMktData(req_id, contract, '', False, False, [])
 
-symbols = ['NVDA', 'AAPL', 'TSLA',"QQQ"]
+symbols = ['NVDA', 'AAPL', 'TSLA',"QQQ","NIO"]
 threads = []
 for idx, sym in enumerate(symbols, start=1):
 	t = threading.Thread(target=request_market_data, args=(idx, sym), daemon=True)
