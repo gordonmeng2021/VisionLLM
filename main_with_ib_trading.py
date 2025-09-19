@@ -18,7 +18,7 @@ import threading
 import asyncio
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-stock_list = ["NVDA","AAPL","TSLA","NIO","CRWV","NBIS","AMD","NFLX","IBM","OPEN","OKLO","QUBT"]
+stock_list = ["NVDA","AAPL","TSLA","NFLX","OPEN","OKLO","QUBT","HOOD","SOXL","RDDT","FIG"]
 # stock_list = []
 # Special symbols that should always be included
 special_symbols = ["QQQ"]
@@ -38,6 +38,10 @@ try:
 except ImportError:
     WebDriverException = Exception
     SELENIUM_AVAILABLE = False
+
+# Global, thread-safe market price cache updated by ibapi callbacks
+GLOBAL_PRICE_CACHE = {}
+GLOBAL_PRICE_LOCK = threading.Lock()
 
 # IB Trading imports (ibapi replacement for ib_async)
 try:
@@ -63,6 +67,7 @@ class IBApiApp(EWrapper, EClient):
         self._lock = threading.Lock()
         self.reqId_to_symbol = {}
         self.symbol_to_price = {}
+        self._active_market_data_req_ids = set()
 
     # Connection helpers
     def connect_and_start(self, host: str, port: int, client_id: int, wait_timeout: float = 5.0):
@@ -109,6 +114,15 @@ class IBApiApp(EWrapper, EClient):
             ask = self.symbol_to_price.get(f"{symbol}_t2")
             if bid and ask and bid > 0 and ask > 0:
                 self.symbol_to_price[symbol] = (bid + ask) / 2.0
+        # Publish into global cache atomically
+        new_value = self.symbol_to_price.get(symbol)
+        if new_value and new_value > 0:
+            try:
+                with GLOBAL_PRICE_LOCK:
+                    GLOBAL_PRICE_CACHE[symbol] = float(new_value)
+                    print("Updated global price cache for", symbol, new_value)
+            except Exception:
+                pass
 
     # Convenience APIs
     def request_market_price(self, symbol: str, timeout: float = 2.0) -> float:
@@ -140,6 +154,43 @@ class IBApiApp(EWrapper, EClient):
         except Exception:
             pass
         return price if price and price > 0 else None
+
+    # Continuous market data subscription helpers
+    def _build_stock_contract(self, symbol: str) -> Contract:
+        c = Contract()
+        c.symbol = symbol
+        c.secType = 'STK'
+        c.exchange = 'SMART'
+        c.currency = 'USD'
+        return c
+
+    def subscribe_market_data_stream(self, symbols: list):
+        for symbol in symbols:
+            try:
+                with self._lock:
+                    self._req_id += 1
+                    req_id = self._req_id
+                self.reqId_to_symbol[req_id] = symbol
+                contract = self._build_stock_contract(symbol)
+                self.reqMktData(req_id, contract, '', False, False, [])
+                self._active_market_data_req_ids.add(req_id)
+                # Initialize cache entry to avoid KeyErrors on early reads
+                with GLOBAL_PRICE_LOCK:
+                    GLOBAL_PRICE_CACHE.setdefault(symbol, None)
+            except Exception as e:
+                try:
+                    self.logger.error(f"Failed subscribing market data for {symbol}: {e}")
+                except Exception:
+                    pass
+
+    def cancel_all_market_data(self):
+        for req_id in list(self._active_market_data_req_ids):
+            try:
+                self.cancelMktData(req_id)
+            except Exception:
+                pass
+            finally:
+                self._active_market_data_req_ids.discard(req_id)
 
     def place_order(self, contract: Contract, order: Order):
         # Ensure we have a valid next order id
@@ -224,10 +275,6 @@ class IBTradingManager:
         # Thread-local IB connections for use under ThreadPoolExecutor
         self._thread_local = threading.local()
         self._thread_ib_conns = []  # keep references for cleanup
-        
-        # Heartbeat/connection monitoring
-        self._heartbeat_thread = None
-        self._heartbeat_stop_event = threading.Event()
     
     def _generate_client_id(self):
         """Generate a unique client ID."""
@@ -283,59 +330,48 @@ class IBTradingManager:
         random_suffix = random.randint(100, 999)
         return f"TRADE_{timestamp}_{random_suffix}"
     
-    def connect(self, max_retries: int = 3, retry_delay_seconds: float = 3.0):
-        """Connect to Interactive Brokers API using ibapi, with simple retries."""
+    def connect(self):
+        """Connect to Interactive Brokers API using ibapi."""
         if not IB_AVAILABLE:
             self.logger.error("IB API not available. Cannot connect.")
             return False
 
-        # Ensure any prior heartbeat is stopped
-        self._stop_heartbeat_monitor()
+        try:
+            self.ib = IBApiApp(self.logger)
+            self.logger.info(f"Connecting to IB at {self.ib_host}:{self.ib_port} with client ID {self.ib_client_id}...")
+            self.ib.connect_and_start(self.ib_host, self.ib_port, self.ib_client_id)
+            self.logger.info("Connected to IB!")
 
-        attempt = 0
-        last_error = None
-        while attempt < max_retries:
-            attempt += 1
+            # Create stock contracts for each symbol (regular + special)
+            for symbol in self.all_symbols:
+                c = Contract()
+                c.symbol = symbol
+                c.secType = 'STK'
+                c.exchange = 'SMART'
+                c.currency = 'USD'
+                self.contracts[symbol] = c
+                self.logger.info(f"Created stock contract for {symbol}")
+
+            # Start continuous market data stream for all symbols
             try:
-                # Clean up previous client if any
-                if self.ib:
-                    try:
-                        self.ib.disconnect()
-                    except Exception:
-                        pass
-
-                self.ib = IBApiApp(self.logger)
-                self.logger.info(f"Connecting to IB at {self.ib_host}:{self.ib_port} (clientId={self.ib_client_id}) [attempt {attempt}/{max_retries}]...")
-                self.ib.connect_and_start(self.ib_host, self.ib_port, self.ib_client_id)
-                self.logger.info("Connected to IB!")
-
-                # Create stock contracts for each symbol (regular + special)
-                for symbol in self.all_symbols:
-                    if symbol not in self.contracts:
-                        c = Contract()
-                        c.symbol = symbol
-                        c.secType = 'STK'
-                        c.exchange = 'SMART'
-                        c.currency = 'USD'
-                        self.contracts[symbol] = c
-                        self.logger.info(f"Created stock contract for {symbol}")
-
-                # Start heartbeat monitor during trading hours
-                self._start_heartbeat_monitor()
-                return True
+                self.ib.subscribe_market_data_stream(self.all_symbols)
+                self.logger.info(f"Subscribed to market data stream for {len(self.all_symbols)} symbols")
             except Exception as e:
-                last_error = e
-                self.logger.error(f"Failed to connect to IB (attempt {attempt}): {e}")
-                time.sleep(retry_delay_seconds)
+                self.logger.error(f"Failed to subscribe market data streams: {e}")
 
-        self.logger.error(f"Failed to connect to IB after {max_retries} attempts: {last_error}")
-        return False
+            return True
+        except Exception as e:
+            self.logger.error(f"Failed to connect to IB: {str(e)}")
+            return False
     
     def disconnect(self):
         """Disconnect from Interactive Brokers API."""
-        self._stop_heartbeat_monitor()
         if self.ib:
             try:
+                try:
+                    self.ib.cancel_all_market_data()
+                except Exception:
+                    pass
                 self.ib.disconnect()
                 self.logger.info("Disconnected from IB")
             except Exception:
@@ -351,78 +387,17 @@ class IBTradingManager:
             self._thread_ib_conns.clear()
         except Exception:
             pass
-
-    def is_connected(self) -> bool:
-        """Return True if there is an active IB connection."""
-        try:
-            return bool(self.ib) and bool(self.ib.isConnected())
-        except Exception:
-            return False
-
-    def _is_trading_hours(self) -> bool:
-        """US regular market hours: 09:30 - 16:00 Eastern."""
-        now_et = datetime.now(pytz.timezone('US/Eastern'))
-        market_open = now_et.replace(hour=9, minute=30, second=0, microsecond=0)
-        market_close = now_et.replace(hour=16, minute=0, second=0, microsecond=0)
-        # Exclude weekends
-        if now_et.weekday() >= 5:
-            return False
-        return market_open <= now_et <= market_close
-
-    def _heartbeat_loop(self, interval_seconds: int = 300, reconnect_retries: int = 3, reconnect_delay_seconds: float = 3.0):
-        """Background loop to check connection every interval during trading hours and auto-reconnect."""
-        self.logger.info("Starting IB connection heartbeat monitor")
-        while not self._heartbeat_stop_event.is_set():
-            try:
-                if self._is_trading_hours():
-                    if not self.is_connected():
-                        self.logger.warning("IB connection lost during trading hours. Attempting to reconnect...")
-                        # Try reconnect
-                        self.connect(max_retries=reconnect_retries, retry_delay_seconds=reconnect_delay_seconds)
-                # Sleep in small chunks to allow fast shutdown
-                for _ in range(int(interval_seconds)):
-                    if self._heartbeat_stop_event.is_set():
-                        break
-                    time.sleep(1)
-            except Exception as hb_err:
-                self.logger.error(f"Heartbeat error: {hb_err}")
-                time.sleep(5)
-        self.logger.info("IB connection heartbeat monitor stopped")
-
-    def _start_heartbeat_monitor(self, interval_seconds: int = 300):
-        try:
-            self._stop_heartbeat_monitor()
-            self._heartbeat_stop_event.clear()
-            self._heartbeat_thread = threading.Thread(target=self._heartbeat_loop, kwargs={"interval_seconds": interval_seconds}, daemon=True)
-            self._heartbeat_thread.start()
-        except Exception as e:
-            self.logger.error(f"Failed to start heartbeat monitor: {e}")
-
-    def _stop_heartbeat_monitor(self):
-        try:
-            if self._heartbeat_thread and self._heartbeat_thread.is_alive():
-                self._heartbeat_stop_event.set()
-                # Give it a moment to stop
-                self._heartbeat_thread.join(timeout=2.0)
-        except Exception:
-            pass
-        finally:
-            self._heartbeat_thread = None
-            self._heartbeat_stop_event.clear()
     
     def get_current_price(self, symbol: str) -> float:
-        """Get current market price for a symbol using ibapi market data callbacks."""
+        """Atomically read the latest price from the global cache."""
         try:
-            if self.ib is None:
-                self.logger.error("No IB connection available for price request")
-                return None
-            price = self.ib.request_market_price(symbol)
-            if price is None:
-                self.logger.warning(f"No price data available for {symbol}")
+            with GLOBAL_PRICE_LOCK:
+                price = GLOBAL_PRICE_CACHE.get(symbol)
+            if price is None or (isinstance(price, (int, float)) and price <= 0):
                 return None
             return float(price)
         except Exception as e:
-            self.logger.error(f"Error getting price for {symbol}: {e}")
+            self.logger.error(f"Error reading cached price for {symbol}: {e}")
             return None
     
     def calculate_fibonacci_levels(self, entry_price: float, signal_type: str, lookback_high: float = None, lookback_low: float = None):
@@ -442,18 +417,18 @@ class IBTradingManager:
         if lookback_high is None:
             lookback_high = entry_price * 1.02  # Assume 2% range
         if lookback_low is None:
-            lookback_low = entry_price * 0.98   # Assume 2% range
+            lookback_low = entry_price * 0.99  # Assume 1% range
         
         price_range = lookback_high - lookback_low
         
         if signal_type == 'buy':
             # For buy signals: TP above entry, SL below entry
-            take_profit = entry_price + (price_range * 0.618)  # 61.8% fibonacci extension
-            stop_loss = entry_price - (price_range * 0.382)    # 38.2% fibonacci retracement
+            take_profit = entry_price + (price_range * 0.1545)  
+            stop_loss = entry_price - (price_range * 0.0955)   
         else:  # sell
             # For sell signals: TP below entry, SL above entry
-            take_profit = entry_price - (price_range * 0.618)  # 61.8% fibonacci extension
-            stop_loss = entry_price + (price_range * 0.382)    # 38.2% fibonacci retracement
+            take_profit = entry_price - (price_range * 0.1545)  
+            stop_loss = entry_price + (price_range * 0.0955)  
         
         return take_profit, stop_loss
     
@@ -510,6 +485,8 @@ class IBTradingManager:
                 order.totalQuantity = shares
                 order.tif = 'DAY'
                 order_type = "Market"
+                order.eTradeOnly = ""
+                order.firmQuoteOnly = ""
                 self.logger.info(f"Placing market order: {action} {shares} shares of {symbol}")
             else:
                 # Outside market hours - use limit order
@@ -797,8 +774,7 @@ def check_signal_alignment(stm: str, td: str, zigzag: str) -> tuple:
     # elif stm == "sell" and td == "sell" and zigzag == "sell":
     #     return True, "sell"
 
-
-
+    ### FKKFKFKFKFK
     # if stm == "buy" and zigzag == "buy":
     #     return True, "buy"
     # elif stm == "sell" and zigzag == "sell":
@@ -1412,18 +1388,23 @@ def main():
             us_time_now = datetime.now(pytz.timezone('US/Eastern'))
             capture_time = ceil_to_next_5min_mark(now)
             refresh_time = capture_time - timedelta(seconds=30)
-
+            
             # Check for daily position closure at 07:59 US/Eastern
-            if trading_manager and us_time_now.hour == 7 and us_time_now.minute == 59:
-                # trading_manager.close_all_positions_daily()
+            if trading_manager and us_time_now.hour == 16 and us_time_now.minute == 0:
+                trading_manager.close_all_positions_daily()
                 print("Daily position closure: Closing all positions")
+                # logger.info("Daily position closure: Closing all positions")                
                 time.sleep(130)  # Sleep for 2 minutes to avoid multiple closures
                 continue
 
+            a = True
             # Check exit conditions for existing positions
             if trading_manager:
                 try:
-                    trading_manager.check_exit_conditions()
+                    if a:
+                        print("Checking exit conditions*****")
+                        trading_manager.check_exit_conditions()
+                        a = False
                 except Exception as e:
                     logger.error(f"Error checking exit conditions: {e}")
 
@@ -1451,8 +1432,9 @@ def main():
             if now >= capture_time:
                 us_time_now = datetime.now(pytz.timezone('US/Eastern'))
                 # if False: # fk
-                if not ((us_time_now.hour >= 4 and us_time_now.hour < 20) or (us_time_now.hour == 20 and us_time_now.minute < 1)):
+                if not ((us_time_now.hour >= 4 and us_time_now.hour < 16) or (us_time_now.hour == 16 and us_time_now.minute < 1)):
                     # print("Not in market hours. Skipping capture...")
+                    # time.sleep(30)
                     continue
                 else:
                     logger.info("Time to capture screenshots (5-minute mark)")
@@ -1468,7 +1450,7 @@ def main():
                         )
                     except Exception as e:
                         logger.exception(f"Error running streamed capture+analysis: {e}")
-            # time.sleep(1000) # fk
+
     except KeyboardInterrupt:
         logger.info("KeyboardInterrupt received. Shutting down.")
         print("\nShutting down...")
