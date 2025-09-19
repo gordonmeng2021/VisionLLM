@@ -18,7 +18,7 @@ import threading
 import asyncio
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-stock_list = ["NVDA","AAPL","TSLA","NIO","CRWV","NBIS","AMD","NFLX","IBM"]
+stock_list = ["NVDA","AAPL","TSLA","NFLX","OPEN","OKLO","QUBT","HOOD","SOXL","RDDT","FIG"]
 # stock_list = []
 # Special symbols that should always be included
 special_symbols = ["QQQ"]
@@ -426,6 +426,8 @@ class IBTradingManager:
                 order.totalQuantity = shares
                 order.tif = 'DAY'
                 order_type = "Market"
+                order.eTradeOnly = ""
+                order.firmQuoteOnly = ""
                 self.logger.info(f"Placing market order: {action} {shares} shares of {symbol}")
             else:
                 # Outside market hours - use limit order
@@ -712,9 +714,15 @@ def check_signal_alignment(stm: str, td: str, zigzag: str) -> tuple:
     #     return True, "buy"
     # elif stm == "sell" and td == "sell" and zigzag == "sell":
     #     return True, "sell"
-    if stm == "buy" and zigzag == "buy":
+
+    ### FKKFKFKFKFK
+    # if stm == "buy" and zigzag == "buy":
+    #     return True, "buy"
+    # elif stm == "sell" and zigzag == "sell":
+    #     return True, "sell"
+    if zigzag == "buy":
         return True, "buy"
-    elif stm == "sell" and zigzag == "sell":
+    elif zigzag == "sell":
         return True, "sell"
     else:
         return False, "none"

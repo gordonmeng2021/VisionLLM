@@ -63,3 +63,68 @@ Stop Loss: $18.49
 Order Type: Market
 Signals - STM: none, TD: none, Zigzag: buy
 ============================================================
+
+============================================================
+TRADE ENTRY: QUBT
+Trade ID: TRADE_20250918_222508_823
+Time: 2025-09-18 10:25:08.158244-04:00
+Signal Type: BUY
+Shares: 5
+Entry Price: $18.50
+Take Profit: $18.96
+Stop Loss: $18.22
+Order Type: Market
+Signals - STM: none, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: AMD
+Trade ID: TRADE_20250918_233512_406
+Time: 2025-09-18 11:35:12.268053-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $154.48
+Take Profit: $150.66
+Stop Loss: $156.84
+Order Type: Market
+Signals - STM: none, TD: none, Zigzag: sell
+============================================================
+
+============================================================
+TRADE ENTRY: NFLX
+Trade ID: TRADE_20250919_011004_125
+Time: 2025-09-18 13:10:04.498510-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $1222.88
+Take Profit: $1253.11
+Stop Loss: $1204.19
+Order Type: Market
+Signals - STM: none, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: AAPL
+Trade ID: TRADE_20250919_020508_543
+Time: 2025-09-18 14:05:08.057609-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $237.58
+Take Profit: $243.45
+Stop Loss: $233.95
+Order Type: Market
+Signals - STM: none, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: OPEN
+Trade ID: TRADE_20250919_024007_593
+Time: 2025-09-18 14:40:06.974651-04:00
+Signal Type: BUY
+Shares: 8
+Entry Price: $10.09
+Take Profit: $10.33
+Stop Loss: $9.93
+Order Type: Market
+Signals - STM: none, TD: none, Zigzag: buy
+============================================================
