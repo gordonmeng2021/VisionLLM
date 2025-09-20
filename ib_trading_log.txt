@@ -128,3 +128,159 @@ Stop Loss: $9.93
 Order Type: Market
 Signals - STM: none, TD: none, Zigzag: buy
 ============================================================
+
+============================================================
+TRADE ENTRY: NFLX
+Trade ID: TRADE_20250919_194019_726
+Time: 2025-09-19 07:40:19.814082-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $1211.14
+Take Profit: $1216.76
+Stop Loss: $1207.68
+Order Type: Limit @ $1223.26
+Signals - STM: none, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: OKLO
+Trade ID: TRADE_20250919_194506_138
+Time: 2025-09-19 07:45:06.886180-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $104.77
+Take Profit: $105.25
+Stop Loss: $104.46
+Order Type: Limit @ $105.81
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: OKLO
+Trade ID: TRADE_20250919_194506_138
+Time: 2025-09-19 08:05:07.078697-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $104.77
+Exit Price: $105.41
+P&L: 0.62% ($0.64)
+Duration: 20.0 minutes
+Reason: TAKE PROFIT
+============================================================
+
+============================================================
+TRADE ENTRY: FIG
+Trade ID: TRADE_20250919_201003_120
+Time: 2025-09-19 08:10:03.518909-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $58.75
+Take Profit: $59.02
+Stop Loss: $58.58
+Order Type: Limit @ $59.34
+Signals - STM: none, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: OKLO
+Trade ID: TRADE_20250919_211506_417
+Time: 2025-09-19 09:15:06.350889-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $106.45
+Take Profit: $105.96
+Stop Loss: $106.75
+Order Type: Limit @ $105.39
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: OKLO
+Trade ID: TRADE_20250919_211506_417
+Time: 2025-09-19 09:20:07.393249-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $106.45
+Exit Price: $107.65
+P&L: -1.13% ($-1.20)
+Duration: 5.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: RDDT
+Trade ID: TRADE_20250920_011019_694
+Time: 2025-09-19 13:10:19.213226-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $257.86
+Take Profit: $255.47
+Stop Loss: $259.34
+Order Type: Market
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE ENTRY: INTC
+Trade ID: TRADE_20250920_014007_545
+Time: 2025-09-19 13:40:07.818812-04:00
+Signal Type: BUY
+Shares: 13
+Entry Price: $29.75
+Take Profit: $30.03
+Stop Loss: $29.58
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: RDDT
+Trade ID: TRADE_20250920_011019_694
+Time: 2025-09-19 14:00:09.480573-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $257.86
+Exit Price: $259.45
+P&L: -0.62% ($-1.59)
+Duration: 49.8 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE EXIT: INTC
+Trade ID: TRADE_20250920_014007_545
+Time: 2025-09-19 14:30:10.112764-04:00
+Signal Type: BUY
+Shares: 13
+Entry Price: $29.75
+Exit Price: $29.54
+P&L: -0.71% ($-2.73)
+Duration: 50.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: INTC
+Trade ID: TRADE_20250920_023524_352
+Time: 2025-09-19 14:35:24.557547-04:00
+Signal Type: BUY
+Shares: 13
+Entry Price: $29.58
+Take Profit: $29.85
+Stop Loss: $29.41
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: INTC
+Trade ID: TRADE_20250920_023524_352
+Time: 2025-09-19 16:00:26.758128-04:00
+Signal Type: BUY
+Shares: 13
+Entry Price: $29.58
+Exit Price: $29.66
+P&L: 0.27% ($1.04)
+Duration: 85.0 minutes
+Reason: DAILY CLOSE
+============================================================

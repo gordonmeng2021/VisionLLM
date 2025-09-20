@@ -18,7 +18,7 @@ import threading
 import asyncio
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-stock_list = ["NVDA","AAPL","TSLA","NFLX","OPEN","OKLO","QUBT","HOOD","SOXL","RDDT","FIG"]
+stock_list = ["NVDA","AAPL","TSLA","NFLX","OPEN","OKLO","HOOD","SOXL","RDDT","FIG","INTC","NIO","CRWV","NBIS","AMD"]
 # stock_list = []
 # Special symbols that should always be included
 special_symbols = ["QQQ"]
@@ -38,6 +38,10 @@ try:
 except ImportError:
     WebDriverException = Exception
     SELENIUM_AVAILABLE = False
+
+# Global, thread-safe market price cache updated by ibapi callbacks
+GLOBAL_PRICE_CACHE = {}
+GLOBAL_PRICE_LOCK = threading.Lock()
 
 # IB Trading imports (ibapi replacement for ib_async)
 try:
@@ -63,6 +67,7 @@ class IBApiApp(EWrapper, EClient):
         self._lock = threading.Lock()
         self.reqId_to_symbol = {}
         self.symbol_to_price = {}
+        self._active_market_data_req_ids = set()
 
     # Connection helpers
     def connect_and_start(self, host: str, port: int, client_id: int, wait_timeout: float = 5.0):
@@ -109,6 +114,16 @@ class IBApiApp(EWrapper, EClient):
             ask = self.symbol_to_price.get(f"{symbol}_t2")
             if bid and ask and bid > 0 and ask > 0:
                 self.symbol_to_price[symbol] = (bid + ask) / 2.0
+        # Publish into global cache atomically
+        new_value = self.symbol_to_price.get(symbol)
+        if new_value and new_value > 0:
+            try:
+                with GLOBAL_PRICE_LOCK:
+                    GLOBAL_PRICE_CACHE[symbol] = float(new_value)
+                    # print("Updated global price cache for", symbol, new_value)
+                    self.logger.info("Updated global price cache for", symbol, new_value)
+            except Exception:
+                pass
 
     # Convenience APIs
     def request_market_price(self, symbol: str, timeout: float = 2.0) -> float:
@@ -140,6 +155,43 @@ class IBApiApp(EWrapper, EClient):
         except Exception:
             pass
         return price if price and price > 0 else None
+
+    # Continuous market data subscription helpers
+    def _build_stock_contract(self, symbol: str) -> Contract:
+        c = Contract()
+        c.symbol = symbol
+        c.secType = 'STK'
+        c.exchange = 'SMART'
+        c.currency = 'USD'
+        return c
+
+    def subscribe_market_data_stream(self, symbols: list):
+        for symbol in symbols:
+            try:
+                with self._lock:
+                    self._req_id += 1
+                    req_id = self._req_id
+                self.reqId_to_symbol[req_id] = symbol
+                contract = self._build_stock_contract(symbol)
+                self.reqMktData(req_id, contract, '', False, False, [])
+                self._active_market_data_req_ids.add(req_id)
+                # Initialize cache entry to avoid KeyErrors on early reads
+                with GLOBAL_PRICE_LOCK:
+                    GLOBAL_PRICE_CACHE.setdefault(symbol, None)
+            except Exception as e:
+                try:
+                    self.logger.error(f"Failed subscribing market data for {symbol}: {e}")
+                except Exception:
+                    pass
+
+    def cancel_all_market_data(self):
+        for req_id in list(self._active_market_data_req_ids):
+            try:
+                self.cancelMktData(req_id)
+            except Exception:
+                pass
+            finally:
+                self._active_market_data_req_ids.discard(req_id)
 
     def place_order(self, contract: Contract, order: Order):
         # Ensure we have a valid next order id
@@ -301,6 +353,13 @@ class IBTradingManager:
                 self.contracts[symbol] = c
                 self.logger.info(f"Created stock contract for {symbol}")
 
+            # Start continuous market data stream for all symbols
+            try:
+                self.ib.subscribe_market_data_stream(self.all_symbols)
+                self.logger.info(f"Subscribed to market data stream for {len(self.all_symbols)} symbols")
+            except Exception as e:
+                self.logger.error(f"Failed to subscribe market data streams: {e}")
+
             return True
         except Exception as e:
             self.logger.error(f"Failed to connect to IB: {str(e)}")
@@ -310,6 +369,10 @@ class IBTradingManager:
         """Disconnect from Interactive Brokers API."""
         if self.ib:
             try:
+                try:
+                    self.ib.cancel_all_market_data()
+                except Exception:
+                    pass
                 self.ib.disconnect()
                 self.logger.info("Disconnected from IB")
             except Exception:
@@ -327,18 +390,15 @@ class IBTradingManager:
             pass
     
     def get_current_price(self, symbol: str) -> float:
-        """Get current market price for a symbol using ibapi market data callbacks."""
+        """Atomically read the latest price from the global cache."""
         try:
-            if self.ib is None:
-                self.logger.error("No IB connection available for price request")
-                return None
-            price = self.ib.request_market_price(symbol)
-            if price is None:
-                self.logger.warning(f"No price data available for {symbol}")
+            with GLOBAL_PRICE_LOCK:
+                price = GLOBAL_PRICE_CACHE.get(symbol)
+            if price is None or (isinstance(price, (int, float)) and price <= 0):
                 return None
             return float(price)
         except Exception as e:
-            self.logger.error(f"Error getting price for {symbol}: {e}")
+            self.logger.error(f"Error reading cached price for {symbol}: {e}")
             return None
     
     def calculate_fibonacci_levels(self, entry_price: float, signal_type: str, lookback_high: float = None, lookback_low: float = None):
@@ -364,12 +424,12 @@ class IBTradingManager:
         
         if signal_type == 'buy':
             # For buy signals: TP above entry, SL below entry
-            take_profit = entry_price + (price_range * 0.1545)  
-            stop_loss = entry_price - (price_range * 0.0955)   
+            take_profit = entry_price + (price_range * 0.1545 *2)  
+            stop_loss = entry_price - (price_range * 0.0955 *2)   
         else:  # sell
             # For sell signals: TP below entry, SL above entry
-            take_profit = entry_price - (price_range * 0.1545)  
-            stop_loss = entry_price + (price_range * 0.0955)  
+            take_profit = entry_price - (price_range * 0.1545 *2)  
+            stop_loss = entry_price + (price_range * 0.0955 *2)  
         
         return take_profit, stop_loss
     
@@ -527,6 +587,8 @@ class IBTradingManager:
                 order.orderType = 'MKT'
                 order.totalQuantity = shares
                 order.tif = 'DAY'
+                order.eTradeOnly = ""
+                order.firmQuoteOnly = ""
             else:
                 order = Order()
                 order.action = action
@@ -535,6 +597,8 @@ class IBTradingManager:
                 order.totalQuantity = shares
                 order.tif = 'DAY'
                 order.outsideRth = True
+                order.eTradeOnly = ""
+                order.firmQuoteOnly = ""
             
             trade = self.ib.place_order(contract, order)
             
@@ -715,14 +779,9 @@ def check_signal_alignment(stm: str, td: str, zigzag: str) -> tuple:
     # elif stm == "sell" and td == "sell" and zigzag == "sell":
     #     return True, "sell"
 
-    ### FKKFKFKFKFK
-    # if stm == "buy" and zigzag == "buy":
-    #     return True, "buy"
-    # elif stm == "sell" and zigzag == "sell":
-    #     return True, "sell"
-    if zigzag == "buy":
+    if stm == "buy" and zigzag == "buy":
         return True, "buy"
-    elif zigzag == "sell":
+    elif stm == "sell" and zigzag == "sell":
         return True, "sell"
     else:
         return False, "none"
@@ -1280,7 +1339,7 @@ def main():
                 symbols=stock_list,
                 special_symbols=special_symbols,
                 logger=logger,
-                init_capital=1000  # $10,000 initial capital
+                init_capital=4000  # $10,000 initial capital
             )
             
             # Connect to IB
@@ -1329,18 +1388,17 @@ def main():
             us_time_now = datetime.now(pytz.timezone('US/Eastern'))
             capture_time = ceil_to_next_5min_mark(now)
             refresh_time = capture_time - timedelta(seconds=30)
-            print("Checking daily position closure", us_time_now.hour, us_time_now.minute)
             
             # Check for daily position closure at 07:59 US/Eastern
             if trading_manager and us_time_now.hour == 16 and us_time_now.minute == 0:
-                # trading_manager.close_all_positions_daily()
+                trading_manager.close_all_positions_daily()
                 print("Daily position closure: Closing all positions")
-                logger.info("Daily position closure: Closing all positions")                
                 time.sleep(130)  # Sleep for 2 minutes to avoid multiple closures
                 continue
 
             a = True
             # Check exit conditions for existing positions
+            # Need to check the exit conditions every seconds *************
             if trading_manager:
                 try:
                     if a:
@@ -1376,7 +1434,7 @@ def main():
                 # if False: # fk
                 if not ((us_time_now.hour >= 4 and us_time_now.hour < 16) or (us_time_now.hour == 16 and us_time_now.minute < 1)):
                     # print("Not in market hours. Skipping capture...")
-                    time.sleep(30)
+                    # time.sleep(30)
                     continue
                 else:
                     logger.info("Time to capture screenshots (5-minute mark)")

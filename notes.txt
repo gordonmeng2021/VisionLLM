@@ -45,63 +45,8 @@ Steps:
 
 ### fabaci too big, chcek the stop loss and take profit. - done
 ### daily close having problem - done
+New logic -> start a pool of keep getting the current price. - work
 
 
 
-
-
-## main_with_ib_trading_2.py
-Now I want a new logic of the "get_current_price", it will be a atomic function for getting the price from a global dictionary. And now there will be a new thread which keeps updating the current price concurrent to the global dictionary, the reference code:"""
-from ibapi.client import EClient
-from ibapi.wrapper import EWrapper
-from ibapi.contract import Contract
-
-import threading
-import time
-
-
-class IBapi(EWrapper, EClient):
-	def __init__(self):
-		EClient.__init__(self, self)
-		self.reqId_to_symbol = {}
-	def tickPrice(self, reqId, tickType, price, attrib):
-		if tickType == 4:
-			symbol = self.reqId_to_symbol.get(reqId, str(reqId))
-			print(f"{symbol} last price: {price}")
-
-def run_loop():
-	app.run()
-
-app = IBapi()
-app.connect('127.0.0.1', 4002, 123)
-
-#Start the socket in a thread
-api_thread = threading.Thread(target=run_loop, daemon=True)
-api_thread.start()
-
-time.sleep(0.1) #Sleep interval to allow time for connection to server
-
-# Request market data for multiple symbols concurrently
-def request_market_data(req_id, symbol):
-	contract = Contract()
-	contract.symbol = symbol
-	contract.secType = 'STK'
-	contract.exchange = 'SMART'
-	contract.currency = 'USD'
-	app.reqId_to_symbol[req_id] = symbol
-	app.reqMktData(req_id, contract, '', False, False, [])
-
-symbols = ['NVDA', 'AAPL', 'TSLA',"QQQ","NIO"]
-threads = []
-for idx, sym in enumerate(symbols, start=1):
-	t = threading.Thread(target=request_market_data, args=(idx, sym), daemon=True)
-	threads.append(t)
-	t.start()
-
-time.sleep(10) #Sleep interval to allow time for incoming price data
-app.disconnect()
-"""
-### Notes: the symbols = $stock_list
-
-I hope this can keep the connection to ib more properly.
-New logic -> start a pool of keep getting the current price.
+self.ib -> use the same connection with the current price.

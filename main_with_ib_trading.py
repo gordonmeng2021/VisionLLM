@@ -18,7 +18,7 @@ import threading
 import asyncio
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-stock_list = ["NVDA","AAPL","TSLA","NFLX","OPEN","OKLO","QUBT","HOOD","SOXL","RDDT","FIG"]
+stock_list = ["NVDA","AAPL","TSLA","NFLX","OPEN","OKLO","HOOD","SOXL","RDDT","FIG","INTC","NIO","CRWV","NBIS","AMD"]
 # stock_list = []
 # Special symbols that should always be included
 special_symbols = ["QQQ"]
@@ -120,7 +120,8 @@ class IBApiApp(EWrapper, EClient):
             try:
                 with GLOBAL_PRICE_LOCK:
                     GLOBAL_PRICE_CACHE[symbol] = float(new_value)
-                    print("Updated global price cache for", symbol, new_value)
+                    # print("Updated global price cache for", symbol, new_value)
+                    self.logger.info("Updated global price cache for", symbol, new_value)
             except Exception:
                 pass
 
@@ -230,6 +231,7 @@ class IBTradingManager:
     def __init__(self, 
                  symbols: list,
                  special_symbols: list = None,
+                 ib_connection: IBApiApp = None,  # Accept external connection
                  ib_host: str = '127.0.0.1', 
                  ib_port: int = 4002, 
                  ib_client_id: int = None,
@@ -241,6 +243,9 @@ class IBTradingManager:
         # Combine regular symbols with special symbols for complete list
         self.all_symbols = list(set(symbols + self.special_symbols))
         
+        # Use external connection if provided, otherwise store connection parameters
+        self.ib = ib_connection  # Use external connection
+        self._is_external_connection = ib_connection is not None  # Flag to track if connection is external
         self.ib_host = ib_host
         self.ib_port = ib_port
         self.ib_client_id = ib_client_id or self._generate_client_id()
@@ -248,8 +253,7 @@ class IBTradingManager:
         self.current_capital = init_capital
         self.logger = logger or logging.getLogger(__name__)
         
-        # IB connection and contracts
-        self.ib = None
+        # Contracts dictionary
         self.contracts = {}
         
         # Trading state - track positions per symbol
@@ -331,11 +335,34 @@ class IBTradingManager:
         return f"TRADE_{timestamp}_{random_suffix}"
     
     def connect(self):
-        """Connect to Interactive Brokers API using ibapi."""
+        """Connect to Interactive Brokers API using ibapi or use existing connection."""
         if not IB_AVAILABLE:
             self.logger.error("IB API not available. Cannot connect.")
             return False
 
+        # If external connection provided, use it
+        if self.ib is not None:
+            self.logger.info("Using provided external IB connection")
+            # Create stock contracts for each symbol (regular + special)
+            for symbol in self.all_symbols:
+                c = Contract()
+                c.symbol = symbol
+                c.secType = 'STK'
+                c.exchange = 'SMART'
+                c.currency = 'USD'
+                self.contracts[symbol] = c
+                self.logger.info(f"Created stock contract for {symbol}")
+
+            # Start continuous market data stream for all symbols
+            try:
+                self.ib.subscribe_market_data_stream(self.all_symbols)
+                self.logger.info(f"Subscribed to market data stream for {len(self.all_symbols)} symbols")
+            except Exception as e:
+                self.logger.error(f"Failed to subscribe market data streams: {e}")
+
+            return True
+
+        # Otherwise, create new connection
         try:
             self.ib = IBApiApp(self.logger)
             self.logger.info(f"Connecting to IB at {self.ib_host}:{self.ib_port} with client ID {self.ib_client_id}...")
@@ -372,8 +399,13 @@ class IBTradingManager:
                     self.ib.cancel_all_market_data()
                 except Exception:
                     pass
-                self.ib.disconnect()
-                self.logger.info("Disconnected from IB")
+                # Only disconnect if we created the connection ourselves
+                # Don't disconnect external connections
+                if hasattr(self, '_is_external_connection') and self._is_external_connection:
+                    self.logger.info("Keeping external IB connection alive")
+                else:
+                    self.ib.disconnect()
+                    self.logger.info("Disconnected from IB")
             except Exception:
                 pass
         # Disconnect any thread-local IB connections
@@ -423,12 +455,12 @@ class IBTradingManager:
         
         if signal_type == 'buy':
             # For buy signals: TP above entry, SL below entry
-            take_profit = entry_price + (price_range * 0.1545)  
-            stop_loss = entry_price - (price_range * 0.0955)   
+            take_profit = entry_price + (price_range * 0.1545 *2)  
+            stop_loss = entry_price - (price_range * 0.0955 *2)   
         else:  # sell
             # For sell signals: TP below entry, SL above entry
-            take_profit = entry_price - (price_range * 0.1545)  
-            stop_loss = entry_price + (price_range * 0.0955)  
+            take_profit = entry_price - (price_range * 0.1545 *2)  
+            stop_loss = entry_price + (price_range * 0.0955 *2)  
         
         return take_profit, stop_loss
     
@@ -586,6 +618,8 @@ class IBTradingManager:
                 order.orderType = 'MKT'
                 order.totalQuantity = shares
                 order.tif = 'DAY'
+                order.eTradeOnly = ""
+                order.firmQuoteOnly = ""
             else:
                 order = Order()
                 order.action = action
@@ -594,6 +628,8 @@ class IBTradingManager:
                 order.totalQuantity = shares
                 order.tif = 'DAY'
                 order.outsideRth = True
+                order.eTradeOnly = ""
+                order.firmQuoteOnly = ""
             
             trade = self.ib.place_order(contract, order)
             
@@ -774,14 +810,9 @@ def check_signal_alignment(stm: str, td: str, zigzag: str) -> tuple:
     # elif stm == "sell" and td == "sell" and zigzag == "sell":
     #     return True, "sell"
 
-    ### FKKFKFKFKFK
-    # if stm == "buy" and zigzag == "buy":
-    #     return True, "buy"
-    # elif stm == "sell" and zigzag == "sell":
-    #     return True, "sell"
-    if zigzag == "buy":
+    if stm == "buy" and zigzag == "buy":
         return True, "buy"
-    elif zigzag == "sell":
+    elif stm == "sell" and zigzag == "sell":
         return True, "sell"
     else:
         return False, "none"
@@ -1323,6 +1354,34 @@ def capture_and_analyze_streamed(driver, logger: logging.Logger, output_base: st
                 logger.exception(f"Exception in streamed processing: {e}")
                 print(f"JSON Output: {{\"Symbol\":\"ERROR\",\"STM\":\"error\",\"TD\":\"error\",\"Zigzag\":\"error\"}}")
 
+def create_external_ib_connection(host: str = '127.0.0.1', port: int = 4002, client_id: int = None, logger: logging.Logger = None) -> IBApiApp:
+    """
+    Create an external IB connection that can be reused.
+    
+    Args:
+        host: IB Gateway/TWS host
+        port: IB Gateway/TWS port
+        client_id: Client ID for the connection
+        logger: Logger instance
+    
+    Returns:
+        IBApiApp: Connected IB API instance
+    """
+    if not IB_AVAILABLE:
+        raise RuntimeError("IB API not available")
+    
+    if client_id is None:
+        # Generate a unique client ID
+        today = datetime.now(pytz.timezone('US/Eastern'))
+        weekday = today.weekday()
+        random_number = random.randint(1, 60)
+        client_id = random_number + weekday
+    
+    ib = IBApiApp(logger or logging.getLogger(__name__))
+    ib.connect_and_start(host, port, client_id)
+    return ib
+
+
 def main():
     logger = configure_logging("main.log")
 
@@ -1331,20 +1390,37 @@ def main():
         print("ERROR: scrape.py helpers not available. Cannot continue.")
         return
 
-    # Initialize IB Trading Manager
-    trading_manager = None
+    # Create external IB connection (you can modify these parameters)
+    external_ib_connection = None
     if IB_AVAILABLE:
+        try:
+            # Create your stable connection here with your specific client_id
+            external_ib_connection = create_external_ib_connection(
+                host='127.0.0.1',
+                port=4002,
+                client_id=1,  # Use your stable client_id here
+                logger=logger
+            )
+            logger.info("✅ External IB connection created successfully")
+        except Exception as e:
+            logger.error(f"❌ Failed to create external IB connection: {e}")
+            external_ib_connection = None
+
+    # Initialize IB Trading Manager with external connection
+    trading_manager = None
+    if external_ib_connection:
         try:
             trading_manager = IBTradingManager(
                 symbols=stock_list,
                 special_symbols=special_symbols,
+                ib_connection=external_ib_connection,  # Pass external connection
                 logger=logger,
-                init_capital=1000  # $10,000 initial capital
+                init_capital=4000  # $4,000 initial capital
             )
             
-            # Connect to IB
+            # Connect to IB (will use external connection)
             if trading_manager.connect():
-                logger.info("✅ IB Trading Manager connected successfully")
+                logger.info("✅ IB Trading Manager connected successfully using external connection")
             else:
                 logger.error("❌ Failed to connect IB Trading Manager")
                 trading_manager = None
@@ -1352,7 +1428,7 @@ def main():
             logger.error(f"Error initializing IB Trading Manager: {e}")
             trading_manager = None
     else:
-        logger.warning("IB API not available. Running in analysis-only mode.")
+        logger.warning("No external IB connection available. Running in analysis-only mode.")
 
     try:
         driver = open_browser()
@@ -1393,12 +1469,12 @@ def main():
             if trading_manager and us_time_now.hour == 16 and us_time_now.minute == 0:
                 trading_manager.close_all_positions_daily()
                 print("Daily position closure: Closing all positions")
-                # logger.info("Daily position closure: Closing all positions")                
                 time.sleep(130)  # Sleep for 2 minutes to avoid multiple closures
                 continue
 
             a = True
             # Check exit conditions for existing positions
+            # Need to check the exit conditions every seconds *************
             if trading_manager:
                 try:
                     if a:
@@ -1465,6 +1541,14 @@ def main():
             #     if trading_manager.current_positions[symbol] is not None:
             #         trading_manager.close_position(symbol, "SYSTEM SHUTDOWN")
             trading_manager.disconnect()
+        
+        # Disconnect external connection if it exists
+        if external_ib_connection:
+            try:
+                external_ib_connection.disconnect()
+                logger.info("External IB connection closed")
+            except Exception as e:
+                logger.error(f"Error closing external IB connection: {e}")
         
         try:
             driver.quit()
