@@ -284,3 +284,81 @@ P&L: 0.27% ($1.04)
 Duration: 85.0 minutes
 Reason: DAILY CLOSE
 ============================================================
+
+============================================================
+TRADE ENTRY: TSLA
+Trade ID: TRADE_20250922_210509_937
+Time: 2025-09-22 09:05:09.027885-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $430.82
+Take Profit: $426.83
+Stop Loss: $433.29
+Order Type: Limit @ $426.51
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: TSLA
+Trade ID: TRADE_20250922_210509_937
+Time: 2025-09-22 09:35:25.225724-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $430.82
+Exit Price: $435.91
+P&L: -1.18% ($-5.09)
+Duration: 30.3 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: OPEN
+Trade ID: TRADE_20250923_010522_170
+Time: 2025-09-22 13:05:22.040720-04:00
+Signal Type: BUY
+Shares: 44
+Entry Price: $8.99
+Take Profit: $9.07
+Stop Loss: $8.93
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: OPEN
+Trade ID: TRADE_20250923_010522_170
+Time: 2025-09-22 13:15:26.721069-04:00
+Signal Type: BUY
+Shares: 44
+Entry Price: $8.99
+Exit Price: $8.91
+P&L: -0.79% ($-3.14)
+Duration: 10.1 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: NIO
+Trade ID: TRADE_20250923_022006_541
+Time: 2025-09-22 14:20:06.778949-04:00
+Signal Type: BUY
+Shares: 58
+Entry Price: $6.87
+Take Profit: $6.93
+Stop Loss: $6.83
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: NIO
+Trade ID: TRADE_20250923_022006_541
+Time: 2025-09-22 14:40:26.342850-04:00
+Signal Type: BUY
+Shares: 58
+Entry Price: $6.87
+Exit Price: $6.83
+P&L: -0.58% ($-2.32)
+Duration: 20.3 minutes
+Reason: STOP LOSS
+============================================================

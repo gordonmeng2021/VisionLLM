@@ -46,7 +46,28 @@ Steps:
 ### fabaci too big, chcek the stop loss and take profit. - done
 ### daily close having problem - done
 New logic -> start a pool of keep getting the current price. - work
-
-
-
 self.ib -> use the same connection with the current price.
+
+
+
+
+####Add the proper last candle stop loss/ take profit.
+
+
+
+get the last 20 bar lowest value 
+get the last 20 bar highest value
+recent_low = last20bar.close.min()
+recent_high = last20bar.close.max()
+risk_long = current_price - recent_low
+Fib_SL_long = 0.382 + (1 - confidence_bull) * (0.618 - 0.382)
+Fib_TP_long = 1.382 + confidence_bull * (1.618 - 1.382)
+SL_long = current_price - risk_long * Fib_SL_long
+TP_long = current_price + risk_long * Fib_TP_long
+
+risk_short = recent_high - current_price
+Fib_SL_short = 0.382 + (1 - confidence_bear) * (0.618 - 0.382)
+Fib_TP_short = 1.382 + confidence_bear * (1.618 - 1.382)
+SL_short = current_price + risk_short * Fib_SL_short
+TP_short = current_price - risk_short * Fib_TP_short
+get the client_id from a global list, atomic action to get and pop a element from it. 
