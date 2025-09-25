@@ -362,3 +362,133 @@ P&L: -0.58% ($-2.32)
 Duration: 20.3 minutes
 Reason: STOP LOSS
 ============================================================
+
+============================================================
+TRADE ENTRY: QQQ
+Trade ID: TRADE_20250923_164504_701
+Time: 2025-09-23 04:45:01.770246-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $602.69
+Take Profit: $602.26
+Stop Loss: $602.84
+Order Type: Limit @ $596.66
+Signals - STM: sell, TD: none, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: QQQ
+Trade ID: TRADE_20250923_164504_701
+Time: 2025-09-23 06:40:23.876501-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $602.69
+Exit Price: $602.16
+P&L: 0.09% ($0.53)
+Duration: 115.4 minutes
+Reason: TAKE PROFIT
+============================================================
+
+============================================================
+TRADE ENTRY: SOXL
+Trade ID: TRADE_20250923_211025_685
+Time: 2025-09-23 09:10:22.747086-04:00
+Signal Type: SELL
+Shares: 11
+Entry Price: $34.86
+Take Profit: $34.62
+Stop Loss: $34.94
+Order Type: Limit @ $34.51
+Signals - STM: sell, TD: none, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: SOXL
+Trade ID: TRADE_20250923_211025_685
+Time: 2025-09-23 09:30:09.452438-04:00
+Signal Type: SELL
+Shares: 11
+Entry Price: $34.86
+Exit Price: $34.59
+P&L: 0.76% ($2.92)
+Duration: 19.8 minutes
+Reason: TAKE PROFIT
+============================================================
+
+============================================================
+TRADE ENTRY: NIO
+Trade ID: TRADE_20250924_024009_665
+Time: 2025-09-23 14:40:06.648363-04:00
+Signal Type: BUY
+Shares: 57
+Entry Price: $6.97
+Take Profit: $7.00
+Stop Loss: $6.96
+Order Type: Market
+Signals - STM: buy, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: NIO
+Trade ID: TRADE_20250924_024009_665
+Time: 2025-09-23 15:10:09.171923-04:00
+Signal Type: BUY
+Shares: 57
+Entry Price: $6.97
+Exit Price: $6.95
+P&L: -0.29% ($-1.14)
+Duration: 30.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: NFLX
+Trade ID: TRADE_20250924_174514_191
+Time: 2025-09-24 05:45:08.459824-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $1214.81
+Take Profit: $1226.95
+Stop Loss: $1208.73
+Order Type: Limit @ $1226.95
+Signals - STM: buy, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: OPEN
+Trade ID: TRADE_20250924_184506_644
+Time: 2025-09-24 06:45:04.070227-04:00
+Signal Type: SELL
+Shares: 53
+Entry Price: $7.30
+Take Profit: $7.27
+Stop Loss: $7.31
+Order Type: Limit @ $7.23
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: OPEN
+Trade ID: TRADE_20250924_184506_644
+Time: 2025-09-24 06:50:08.616478-04:00
+Signal Type: SELL
+Shares: 53
+Entry Price: $7.30
+Exit Price: $7.25
+P&L: 0.75% ($2.91)
+Duration: 5.1 minutes
+Reason: TAKE PROFIT
+============================================================
+
+============================================================
+TRADE EXIT: NFLX
+Trade ID: TRADE_20250924_174514_191
+Time: 2025-09-24 10:55:08.866996-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $1214.81
+Exit Price: $1206.66
+P&L: -0.67% ($-8.14)
+Duration: 310.0 minutes
+Reason: STOP LOSS
+============================================================

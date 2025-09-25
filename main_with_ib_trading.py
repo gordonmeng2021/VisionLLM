@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import math
 import logging
 from logging.handlers import RotatingFileHandler
 from datetime import datetime, timedelta
@@ -8,16 +9,16 @@ from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import platform
 import pytz
+import json
 import random
 import numpy as np
 import pandas as pd
 import csv
 import threading
 import asyncio
-from queue import Queue, Empty
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-stock_list = ["NVDA","TSLA","NFLX","OPEN","OKLO","HOOD","RDDT","FIG","INTC","CRWV","NBIS","AMD","SMCI","PLTR","CRCL"]
+stock_list = ["NVDA","AAPL","TSLA","NFLX","OPEN","OKLO","HOOD","SOXL","RDDT","FIG","INTC","NIO","CRWV","NBIS","AMD"]
 # stock_list = []
 # Special symbols that should always be included
 special_symbols = ["QQQ"]
@@ -41,35 +42,6 @@ except ImportError:
 # Global, thread-safe market price cache updated by ibapi callbacks
 GLOBAL_PRICE_CACHE = {}
 GLOBAL_PRICE_LOCK = threading.Lock()
-
-# Global atomic client ID pool (2..69), FIFO to avoid immediate reuse
-CLIENT_ID_LOCK = threading.Lock()
-CLIENT_ID_QUEUE: Queue[int] = Queue()
-CLIENT_ID_IN_USE = set()
-
-for _cid in range(2, 70):
-    CLIENT_ID_QUEUE.put(_cid)
-
-def acquire_client_id(timeout: float | None = None) -> int:
-    """Atomically acquire an IB client_id from the global pool (2..69).
-    Blocks until available or until timeout if provided.
-    """
-    try:
-        client_id = CLIENT_ID_QUEUE.get(timeout=timeout) if timeout else CLIENT_ID_QUEUE.get()
-    except Empty:
-        raise RuntimeError("No IB client_id available from pool (2..69)")
-    with CLIENT_ID_LOCK:
-        CLIENT_ID_IN_USE.add(client_id)
-    return client_id
-
-def release_client_id(client_id: int | None) -> None:
-    """Return a client_id to the back of the queue to avoid quick reuse."""
-    if client_id is None:
-        return
-    with CLIENT_ID_LOCK:
-        if client_id in CLIENT_ID_IN_USE:
-            CLIENT_ID_IN_USE.remove(client_id)
-            CLIENT_ID_QUEUE.put(client_id)
 
 # IB Trading imports (ibapi replacement for ib_async)
 try:
@@ -99,13 +71,10 @@ class IBApiApp(EWrapper, EClient):
         # Historical data buffers and events keyed by reqId
         self._hist_data = {}
         self._hist_events = {}
-        # Track assigned client id for release on disconnect
-        self._assigned_client_id: int | None = None
 
     # Connection helpers
     def connect_and_start(self, host: str, port: int, client_id: int, wait_timeout: float = 5.0):
         self.connect(host, port, client_id)
-        self._assigned_client_id = client_id
         self._thread = threading.Thread(target=self.run, daemon=True)
         self._thread.start()
         # Wait for nextValidId which signals readiness
@@ -115,13 +84,6 @@ class IBApiApp(EWrapper, EClient):
     def disconnect(self):
         try:
             super().disconnect()
-        except Exception:
-            pass
-        # Release client id back to pool
-        try:
-            if getattr(self, "_assigned_client_id", None) is not None:
-                release_client_id(self._assigned_client_id)
-                self._assigned_client_id = None
         except Exception:
             pass
 
@@ -363,12 +325,7 @@ class IBTradingManager:
         self._is_external_connection = ib_connection is not None  # Flag to track if connection is external
         self.ib_host = ib_host
         self.ib_port = ib_port
-        # Defer client_id acquisition until we actually connect.
-        # If using external connection, we do not manage a client_id here.
-        if self._is_external_connection:
-            self.ib_client_id = None
-        else:
-            self.ib_client_id = ib_client_id  # May be None; we'll acquire from pool in connect()
+        self.ib_client_id = ib_client_id or self._generate_client_id()
         self.init_capital = init_capital
         self.current_capital = init_capital
         self.logger = logger or logging.getLogger(__name__)
@@ -401,8 +358,11 @@ class IBTradingManager:
         self._thread_ib_conns = []  # keep references for cleanup
     
     def _generate_client_id(self):
-        """Acquire a unique client ID from the global pool (2..69)."""
-        return acquire_client_id()
+        """Generate a unique client ID."""
+        today = datetime.now(pytz.timezone('US/Eastern'))
+        weekday = today.weekday()
+        random_number = random.randint(1, 60)
+        return random_number + weekday
     
     def _initialize_log_files(self):
         """Initialize log files if they don't exist."""
@@ -481,10 +441,6 @@ class IBTradingManager:
 
         # Otherwise, create new connection
         try:
-            # Ensure we have a client_id from the pool
-            if self.ib_client_id is None:
-                self.ib_client_id = acquire_client_id()
-
             self.ib = IBApiApp(self.logger)
             self.logger.info(f"Connecting to IB at {self.ib_host}:{self.ib_port} with client ID {self.ib_client_id}...")
             self.ib.connect_and_start(self.ib_host, self.ib_port, self.ib_client_id)
@@ -509,13 +465,6 @@ class IBTradingManager:
 
             return True
         except Exception as e:
-            # Release client_id if we acquired it and connect failed
-            try:
-                if self.ib_client_id is not None:
-                    release_client_id(self.ib_client_id)
-            except Exception:
-                pass
-            self.ib_client_id = None
             self.logger.error(f"Failed to connect to IB: {str(e)}")
             return False
     
@@ -1122,7 +1071,7 @@ def crop_screenshot(image_path: str, output_dir: str, logger: logging.Logger) ->
         top_left_height = 60
         
         # CROP 2: Vertical long rectangle in the middle-right area
-        vertical_x = 2500
+        vertical_x = 2430
         vertical_y = 80
         vertical_width = 250
         vertical_height = 1430
@@ -1492,21 +1441,16 @@ def create_external_ib_connection(host: str = '127.0.0.1', port: int = 4002, cli
     if not IB_AVAILABLE:
         raise RuntimeError("IB API not available")
     
-    # Always use the global client-id pool regardless of provided client_id
-    acquired_client_id = acquire_client_id()
+    if client_id is None:
+        # Generate a unique client ID
+        today = datetime.now(pytz.timezone('US/Eastern'))
+        weekday = today.weekday()
+        random_number = random.randint(1, 60)
+        client_id = random_number + weekday
     
     ib = IBApiApp(logger or logging.getLogger(__name__))
-    try:
-        ib.connect_and_start(host, port, acquired_client_id)
-        return ib
-    except Exception as e:
-        # Attempt to disconnect and release client-id on failure
-        try:
-            ib.disconnect()
-        except Exception:
-            pass
-        release_client_id(acquired_client_id)
-        raise
+    ib.connect_and_start(host, port, client_id)
+    return ib
 
 
 def main():
@@ -1590,7 +1534,7 @@ def main():
             now = datetime.now()
             us_time_now = datetime.now(pytz.timezone('US/Eastern'))
             capture_time = ceil_to_next_5min_mark(now)
-            refresh_time = capture_time - timedelta(seconds=30)
+            refresh_time = capture_time - timedelta(seconds=50)
             
             # Check for daily position closure at 07:59 US/Eastern
             if trading_manager and us_time_now.hour == 16 and us_time_now.minute == 0:
