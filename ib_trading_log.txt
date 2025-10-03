@@ -492,3 +492,654 @@ P&L: -0.67% ($-8.14)
 Duration: 310.0 minutes
 Reason: STOP LOSS
 ============================================================
+
+============================================================
+TRADE ENTRY: CRWV
+Trade ID: TRADE_20250925_172006_206
+Time: 2025-09-25 05:20:04.160864-04:00
+Signal Type: BUY
+Shares: 3
+Entry Price: $131.12
+Take Profit: $131.73
+Stop Loss: $130.98
+Order Type: Limit @ $132.44
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: SOXL
+Trade ID: TRADE_20250925_172008_943
+Time: 2025-09-25 05:20:06.835493-04:00
+Signal Type: BUY
+Shares: 11
+Entry Price: $33.86
+Take Profit: $34.01
+Stop Loss: $33.82
+Order Type: Limit @ $34.19
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: SOXL
+Trade ID: TRADE_20250925_172008_943
+Time: 2025-09-25 05:30:08.773597-04:00
+Signal Type: BUY
+Shares: 11
+Entry Price: $33.86
+Exit Price: $33.81
+P&L: -0.13% ($-0.50)
+Duration: 10.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE EXIT: CRWV
+Trade ID: TRADE_20250925_172006_206
+Time: 2025-09-25 05:35:09.107821-04:00
+Signal Type: BUY
+Shares: 3
+Entry Price: $131.12
+Exit Price: $130.95
+P&L: -0.13% ($-0.53)
+Duration: 15.1 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: NIO
+Trade ID: TRADE_20250925_194009_666
+Time: 2025-09-25 07:40:07.105598-04:00
+Signal Type: BUY
+Shares: 55
+Entry Price: $7.21
+Take Profit: $7.24
+Stop Loss: $7.20
+Order Type: Limit @ $7.28
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: NIO
+Trade ID: TRADE_20250925_194009_666
+Time: 2025-09-25 07:45:08.726643-04:00
+Signal Type: BUY
+Shares: 55
+Entry Price: $7.21
+Exit Price: $7.20
+P&L: -0.14% ($-0.55)
+Duration: 5.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: FIG
+Trade ID: TRADE_20250925_211008_370
+Time: 2025-09-25 09:10:04.511950-04:00
+Signal Type: BUY
+Shares: 7
+Entry Price: $53.74
+Take Profit: $54.08
+Stop Loss: $53.66
+Order Type: Limit @ $54.28
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: FIG
+Trade ID: TRADE_20250925_211008_370
+Time: 2025-09-25 09:35:05.384659-04:00
+Signal Type: BUY
+Shares: 7
+Entry Price: $53.74
+Exit Price: $53.35
+P&L: -0.73% ($-2.73)
+Duration: 25.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: QQQ
+Trade ID: TRADE_20250926_171004_254
+Time: 2025-09-26 05:10:01.321026-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $592.76
+Take Profit: $593.58
+Stop Loss: $592.57
+Order Type: Limit @ $598.69
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: NFLX
+Trade ID: TRADE_20250926_184007_971
+Time: 2025-09-26 06:40:04.859440-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $1207.57
+Take Profit: $1208.30
+Stop Loss: $1207.39
+Order Type: Limit @ $1219.64
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: NFLX
+Trade ID: TRADE_20250926_184007_971
+Time: 2025-09-26 06:50:07.641355-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $1207.57
+Exit Price: $1207.36
+P&L: -0.02% ($-0.21)
+Duration: 10.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: INTC
+Trade ID: TRADE_20250926_193506_208
+Time: 2025-09-26 07:35:04.453902-04:00
+Signal Type: SELL
+Shares: 11
+Entry Price: $35.45
+Take Profit: $35.19
+Stop Loss: $35.50
+Order Type: Limit @ $35.09
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: QQQ
+Trade ID: TRADE_20250926_171004_254
+Time: 2025-09-26 07:40:06.913397-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $592.76
+Exit Price: $593.63
+P&L: 0.15% ($0.87)
+Duration: 150.1 minutes
+Reason: TAKE PROFIT
+============================================================
+
+============================================================
+TRADE EXIT: INTC
+Trade ID: TRADE_20250926_193506_208
+Time: 2025-09-26 07:45:05.453414-04:00
+Signal Type: SELL
+Shares: 11
+Entry Price: $35.45
+Exit Price: $35.56
+P&L: -0.32% ($-1.27)
+Duration: 10.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: AAPL
+Trade ID: TRADE_20250926_220506_282
+Time: 2025-09-26 10:05:03.767025-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $256.07
+Take Profit: $254.78
+Stop Loss: $256.38
+Order Type: Market
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: AAPL
+Trade ID: TRADE_20250926_220506_282
+Time: 2025-09-26 10:25:05.307927-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $256.07
+Exit Price: $254.57
+P&L: 0.59% ($1.50)
+Duration: 20.0 minutes
+Reason: TAKE PROFIT
+============================================================
+
+============================================================
+TRADE ENTRY: NVDA
+Trade ID: TRADE_20250927_010504_399
+Time: 2025-09-26 13:05:02.725333-04:00
+Signal Type: SELL
+Shares: 2
+Entry Price: $177.22
+Take Profit: $176.86
+Stop Loss: $177.31
+Order Type: Market
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE ENTRY: QQQ
+Trade ID: TRADE_20250927_010504_802
+Time: 2025-09-26 13:05:01.378427-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $595.12
+Take Profit: $594.68
+Stop Loss: $595.22
+Order Type: Market
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: QQQ
+Trade ID: TRADE_20250927_010504_802
+Time: 2025-09-26 13:10:05.625275-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $595.12
+Exit Price: $595.40
+P&L: -0.05% ($-0.28)
+Duration: 5.1 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE EXIT: NVDA
+Trade ID: TRADE_20250927_010504_399
+Time: 2025-09-26 13:15:05.550447-04:00
+Signal Type: SELL
+Shares: 2
+Entry Price: $177.22
+Exit Price: $177.31
+P&L: -0.05% ($-0.18)
+Duration: 10.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: QQQ
+Trade ID: TRADE_20250927_014003_697
+Time: 2025-09-26 13:40:01.342161-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $595.48
+Take Profit: $594.93
+Stop Loss: $595.60
+Order Type: Market
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: QQQ
+Trade ID: TRADE_20250927_014003_697
+Time: 2025-09-26 13:55:05.298503-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $595.48
+Exit Price: $594.76
+P&L: 0.12% ($0.72)
+Duration: 15.1 minutes
+Reason: TAKE PROFIT
+============================================================
+
+============================================================
+TRADE ENTRY: NFLX
+Trade ID: TRADE_20250929_194007_242
+Time: 2025-09-29 07:40:05.158980-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $1213.84
+Take Profit: $1212.09
+Stop Loss: $1214.42
+Order Type: Limit @ $1225.97
+Signals - STM: buy, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: NFLX
+Trade ID: TRADE_20250929_194007_242
+Time: 2025-09-29 07:40:10.248416-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $1213.84
+Exit Price: $1213.84
+P&L: 0.00% ($0.00)
+Duration: 0.1 minutes
+Reason: TAKE PROFIT
+============================================================
+
+============================================================
+TRADE ENTRY: NFLX
+Trade ID: TRADE_20250929_194505_408
+Time: 2025-09-29 07:45:05.180603-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $1213.84
+Take Profit: $1212.09
+Stop Loss: $1214.42
+Order Type: Limit @ $1225.97
+Signals - STM: buy, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: NFLX
+Trade ID: TRADE_20250929_194505_408
+Time: 2025-09-29 07:45:08.301675-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $1213.84
+Exit Price: $1213.84
+P&L: 0.00% ($0.00)
+Duration: 0.1 minutes
+Reason: TAKE PROFIT
+============================================================
+
+============================================================
+TRADE ENTRY: AMD
+Trade ID: TRADE_20250929_204007_109
+Time: 2025-09-29 08:40:03.596355-04:00
+Signal Type: SELL
+Shares: 2
+Entry Price: $160.34
+Take Profit: $159.63
+Stop Loss: $160.51
+Order Type: Limit @ $158.74
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: AMD
+Trade ID: TRADE_20250929_204007_109
+Time: 2025-09-29 08:55:05.336454-04:00
+Signal Type: SELL
+Shares: 2
+Entry Price: $160.34
+Exit Price: $160.57
+P&L: -0.14% ($-0.46)
+Duration: 15.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: OPEN
+Trade ID: TRADE_20250929_234004_640
+Time: 2025-09-29 11:40:02.427801-04:00
+Signal Type: BUY
+Shares: 48
+Entry Price: $8.23
+Take Profit: $8.49
+Stop Loss: $8.12
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: OPEN
+Trade ID: TRADE_20250929_234004_640
+Time: 2025-09-29 13:55:05.441673-04:00
+Signal Type: BUY
+Shares: 48
+Entry Price: $8.23
+Exit Price: $8.53
+P&L: 3.58% ($14.16)
+Duration: 135.1 minutes
+Reason: TAKE PROFIT
+============================================================
+
+#### the fkkkk, this need to be solved.
+============================================================
+TRADE ENTRY: INTC
+Trade ID: TRADE_20250930_024006_653
+Time: 2025-09-29 14:40:04.441677-04:00
+Signal Type: SELL
+Shares: 11
+Entry Price: $34.75
+Take Profit: $34.73
+Stop Loss: $34.76
+Order Type: Market
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: INTC
+Trade ID: TRADE_20250930_024006_653
+Time: 2025-09-29 14:40:09.262047-04:00
+Signal Type: SELL
+Shares: 11
+Entry Price: $34.75
+Exit Price: $34.76
+P&L: -0.03% ($-0.11)
+Duration: 0.1 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: AMD
+Trade ID: TRADE_20250930_034509_983
+Time: 2025-09-29 15:45:03.631524-04:00
+Signal Type: BUY
+Shares: 2
+Entry Price: $161.33
+Take Profit: $162.94
+Stop Loss: $160.52
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: AMD
+Trade ID: TRADE_20250930_034509_983
+Time: 2025-09-29 16:00:05.542247-04:00
+Signal Type: BUY
+Shares: 2
+Entry Price: $161.33
+Exit Price: $161.33
+P&L: 0.00% ($0.00)
+Duration: 15.0 minutes
+Reason: DAILY CLOSE
+============================================================
+
+============================================================
+TRADE ENTRY: AMD
+Trade ID: TRADE_20251001_013506_660
+Time: 2025-09-30 13:35:02.878881-04:00
+Signal Type: BUY
+Shares: 2
+Entry Price: $159.92
+Take Profit: $160.42
+Stop Loss: $159.67
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: AAPL
+Trade ID: TRADE_20251001_013506_919
+Time: 2025-09-30 13:35:05.134821-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $253.86
+Take Profit: $254.74
+Stop Loss: $253.44
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: AMD
+Trade ID: TRADE_20251001_013506_660
+Time: 2025-09-30 14:10:07.029536-04:00
+Signal Type: BUY
+Shares: 2
+Entry Price: $159.92
+Exit Price: $160.61
+P&L: 0.43% ($1.38)
+Duration: 35.1 minutes
+Reason: TAKE PROFIT
+============================================================
+
+============================================================
+TRADE EXIT: AAPL
+Trade ID: TRADE_20251001_013506_919
+Time: 2025-09-30 14:25:07.095013-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $253.86
+Exit Price: $253.29
+P&L: -0.22% ($-0.57)
+Duration: 50.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: IBM
+Trade ID: TRADE_20251001_024005_230
+Time: 2025-09-30 14:40:02.052661-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $283.30
+Take Profit: $284.13
+Stop Loss: $282.91
+Order Type: Market
+Signals - STM: buy, TD: buy, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: IBM
+Trade ID: TRADE_20251001_024005_230
+Time: 2025-09-30 16:00:07.298534-04:00
+Signal Type: BUY
+Shares: 1
+Entry Price: $283.30
+Exit Price: $283.52
+P&L: 0.08% ($0.22)
+Duration: 80.1 minutes
+Reason: DAILY CLOSE
+============================================================
+
+============================================================
+TRADE ENTRY: NFLX
+Trade ID: TRADE_20251001_224506_375
+Time: 2025-10-01 10:45:05.585459-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $1174.90
+Take Profit: $1161.16
+Stop Loss: $1184.06
+Order Type: Market
+Signals - STM: sell, TD: none, Zigzag: sell
+============================================================
+
+============================================================
+TRADE ENTRY: OPEN
+Trade ID: TRADE_20251002_020505_984
+Time: 2025-10-01 14:05:03.776885-04:00
+Signal Type: BUY
+Shares: 46
+Entry Price: $8.41
+Take Profit: $8.62
+Stop Loss: $8.27
+Order Type: Market
+Signals - STM: buy, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE ENTRY: IBM
+Trade ID: TRADE_20251002_021503_204
+Time: 2025-10-01 14:15:02.003326-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $282.70
+Take Profit: $281.11
+Stop Loss: $283.45
+Order Type: Market
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: OPEN
+Trade ID: TRADE_20251002_020505_984
+Time: 2025-10-01 14:20:06.596479-04:00
+Signal Type: BUY
+Shares: 46
+Entry Price: $8.41
+Exit Price: $8.20
+P&L: -2.55% ($-9.86)
+Duration: 15.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE EXIT: IBM
+Trade ID: TRADE_20251002_021503_204
+Time: 2025-10-01 14:30:06.478824-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $282.70
+Exit Price: $283.58
+P&L: -0.31% ($-0.88)
+Duration: 15.1 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE EXIT: NFLX
+Trade ID: TRADE_20251001_224506_375
+Time: 2025-10-01 16:00:06.536576-04:00
+Signal Type: SELL
+Shares: 1
+Entry Price: $1174.90
+Exit Price: $1170.90
+P&L: 0.34% ($4.00)
+Duration: 315.0 minutes
+Reason: DAILY CLOSE
+============================================================
+
+============================================================
+TRADE ENTRY: WMT
+Trade ID: TRADE_20251002_213508_378
+Time: 2025-10-02 09:35:06.265770-04:00
+Signal Type: BUY
+Shares: 3
+Entry Price: $101.49
+Take Profit: $102.13
+Stop Loss: $101.06
+Order Type: Market
+Signals - STM: buy, TD: none, Zigzag: buy
+============================================================
+
+============================================================
+TRADE EXIT: WMT
+Trade ID: TRADE_20251002_213508_378
+Time: 2025-10-02 09:40:05.984385-04:00
+Signal Type: BUY
+Shares: 3
+Entry Price: $101.49
+Exit Price: $101.01
+P&L: -0.47% ($-1.44)
+Duration: 5.0 minutes
+Reason: STOP LOSS
+============================================================
+
+============================================================
+TRADE ENTRY: OPEN
+Trade ID: TRADE_20251003_001007_518
+Time: 2025-10-02 12:10:05.755894-04:00
+Signal Type: SELL
+Shares: 49
+Entry Price: $8.11
+Take Profit: $7.95
+Stop Loss: $8.19
+Order Type: Market
+Signals - STM: sell, TD: sell, Zigzag: sell
+============================================================
+
+============================================================
+TRADE EXIT: OPEN
+Trade ID: TRADE_20251003_001007_518
+Time: 2025-10-02 13:00:06.486599-04:00
+Signal Type: SELL
+Shares: 49
+Entry Price: $8.11
+Exit Price: $8.20
+P&L: -1.10% ($-4.38)
+Duration: 50.0 minutes
+Reason: STOP LOSS
+============================================================

@@ -18,7 +18,7 @@ import threading
 import asyncio
 
 #### make sure the stock is within the same stock exchange e.g. NASDAQ, NYSE, etc.
-stock_list = ["NVDA","AAPL","TSLA","NFLX","OPEN","OKLO","HOOD","SOXL","RDDT","FIG","INTC","NIO","CRWV","NBIS","AMD"]
+stock_list = ["NVDA","TSLA","NFLX","OPEN","AMD","AVGO","META","WMT","IBM","UBER","OKLO"]
 # stock_list = []
 # Special symbols that should always be included
 special_symbols = ["QQQ"]
@@ -41,7 +41,7 @@ except ImportError:
 
 # Global, thread-safe market price cache updated by ibapi callbacks
 GLOBAL_PRICE_CACHE = {}
-GLOBAL_PRICE_LOCK = threading.Lock()
+# GLOBAL_PRICE_LOCK = threading.Lock()
 
 # IB Trading imports (ibapi replacement for ib_async)
 try:
@@ -71,6 +71,12 @@ class IBApiApp(EWrapper, EClient):
         # Historical data buffers and events keyed by reqId
         self._hist_data = {}
         self._hist_events = {}
+        
+        # Order execution tracking
+        self.order_status = {}  # {order_id: order_status_info}
+        self.executions = {}    # {order_id: [execution_details]}
+        self.filled_orders = {} # {order_id: filled_price_info}
+        self.order_events = {}  # {order_id: threading.Event} for waiting on fills
 
     # Connection helpers
     def connect_and_start(self, host: str, port: int, client_id: int, wait_timeout: float = 5.0):
@@ -99,32 +105,30 @@ class IBApiApp(EWrapper, EClient):
             pass
 
     def tickPrice(self, reqId, tickType, price, attrib):
-        # 4 = LAST price, 1 = BID, 2 = ASK, 9 = CLOSE
+        # 4 = LAST price, 9 = CLOSE
         if price is None or price <= 0:
             return
         symbol = self.reqId_to_symbol.get(reqId)
         if not symbol:
             return
-        # Prefer LAST, else mid of BID/ASK, else CLOSE
-        if tickType == 4 or tickType == 9:
+        # Only accept LAST (4) or CLOSE (9). Prefer LAST over CLOSE.
+        if tickType == 4:
+            # store last under the symbol key
             self.symbol_to_price[symbol] = price
-        elif tickType in (1, 2):
-            # Just record, mid handled elsewhere if needed
-            # For simplicity, store last seen bid/ask by composing a key
-            key = f"{symbol}_t{tickType}"
-            self.symbol_to_price[key] = price
-            bid = self.symbol_to_price.get(f"{symbol}_t1")
-            ask = self.symbol_to_price.get(f"{symbol}_t2")
-            if bid and ask and bid > 0 and ask > 0:
-                self.symbol_to_price[symbol] = (bid + ask) / 2.0
-        # Publish into global cache atomically
-        new_value = self.symbol_to_price.get(symbol)
-        if new_value and new_value > 0:
+        elif tickType == 9:
+            # store close separately as fallback
+            self.symbol_to_price[f"{symbol}_close"] = price
+        # Publish preferred price (LAST then CLOSE) into global cache atomically
+        preferred_value = self.symbol_to_price.get(symbol)
+        if not preferred_value:
+            preferred_value = self.symbol_to_price.get(f"{symbol}_close")
+        if preferred_value and preferred_value > 0:
             try:
-                with GLOBAL_PRICE_LOCK:
-                    GLOBAL_PRICE_CACHE[symbol] = float(new_value)
-                    # print("Updated global price cache for", symbol, new_value)
-                    # self.logger.info("Updated global price cache for", symbol, new_value)
+                # with GLOBAL_PRICE_LOCK:
+                GLOBAL_PRICE_CACHE[symbol] = float(preferred_value)
+                # print("Updated global price cache for", symbol, preferred_value)
+                # print(GLOBAL_PRICE_CACHE)
+                    # self.logger.info("Updated global price cache for", symbol, preferred_value)
             except Exception:
                 pass
 
@@ -152,6 +156,75 @@ class IBApiApp(EWrapper, EClient):
                 ev.set()
         except Exception:
             pass
+
+    # Order execution callbacks
+    def orderStatus(self, orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld, mktCapPrice):
+        """Called when order status changes"""
+        try:
+            self.logger.info(f"Order {orderId} status: {status}, filled: {filled}, remaining: {remaining}, avgFillPrice: {avgFillPrice}")
+            
+            # Store order status
+            self.order_status[orderId] = {
+                'status': status,
+                'filled': filled,
+                'remaining': remaining,
+                'avgFillPrice': avgFillPrice,
+                'lastFillPrice': lastFillPrice,
+                'timestamp': datetime.now()
+            }
+            
+            # Check if order is filled
+            if status == "Filled" and filled > 0:
+                self.filled_orders[orderId] = {
+                    'filled_quantity': filled,
+                    'avg_fill_price': avgFillPrice,
+                    'last_fill_price': lastFillPrice,
+                    'fill_time': datetime.now(),
+                    'status': status
+                }
+                self.logger.info(f"🎉 ORDER FILLED! Order {orderId}: {filled} shares at avg price ${avgFillPrice:.2f}")
+                
+                # Signal waiting threads
+                if orderId in self.order_events:
+                    self.order_events[orderId].set()
+        except Exception as e:
+            self.logger.error(f"Error in orderStatus callback: {e}")
+
+    def execDetails(self, reqId, contract, execution):
+        """Called when execution details are received"""
+        try:
+            self.logger.info(f"Execution details - Order {execution.orderId}: {execution.shares} shares at ${execution.avgPrice:.2f}")
+            
+            # Store execution details
+            if execution.orderId not in self.executions:
+                self.executions[execution.orderId] = []
+            
+            self.executions[execution.orderId].append({
+                'execId': execution.execId,
+                'time': execution.time,
+                'account': execution.acctNumber,
+                'exchange': execution.exchange,
+                'side': execution.side,
+                'shares': execution.shares,
+                'price': execution.price,
+                'avgPrice': execution.avgPrice,
+                'orderId': execution.orderId,
+                'cumQty': execution.cumQty,
+                'permId': execution.permId
+            })
+        except Exception as e:
+            self.logger.error(f"Error in execDetails callback: {e}")
+
+    def openOrder(self, orderId, contract, order, orderState):
+        """Called when order details are received"""
+        try:
+            self.logger.info(f"Open order {orderId}: {order.action} {order.totalQuantity} {contract.symbol} @ {order.lmtPrice if hasattr(order, 'lmtPrice') else 'Market'}")
+        except Exception as e:
+            self.logger.error(f"Error in openOrder callback: {e}")
+
+    def openOrderEnd(self):
+        """Called when all open orders have been sent"""
+        self.logger.info("Open orders end")
 
     def request_historical_5m(self, symbol: str, durationStr: str = "1 D", barSizeSetting: str = "5 mins", useRTH: int = 0, timeout: float = 5.0):
         """Request recent historical bars and return list of bar dicts."""
@@ -253,8 +326,8 @@ class IBApiApp(EWrapper, EClient):
                 self.reqMktData(req_id, contract, '', False, False, [])
                 self._active_market_data_req_ids.add(req_id)
                 # Initialize cache entry to avoid KeyErrors on early reads
-                with GLOBAL_PRICE_LOCK:
-                    GLOBAL_PRICE_CACHE.setdefault(symbol, None)
+                # with GLOBAL_PRICE_LOCK:
+                GLOBAL_PRICE_CACHE.setdefault(symbol, None)
             except Exception as e:
                 try:
                     self.logger.error(f"Failed subscribing market data for {symbol}: {e}")
@@ -286,6 +359,47 @@ class IBApiApp(EWrapper, EClient):
             self.logger.error(f"placeOrder failed for {contract.symbol}: {e}")
             raise
         return order_id
+
+    def wait_for_fill(self, order_id: int, timeout: float = 30.0) -> dict:
+        """Wait for order to be filled and return fill details"""
+        # Create event for this order if it doesn't exist
+        if order_id not in self.order_events:
+            self.order_events[order_id] = threading.Event()
+        
+        start_time = time.time()
+        
+        while time.time() - start_time < timeout:
+            if order_id in self.filled_orders:
+                return self.filled_orders[order_id]
+            
+            # Check if order is cancelled or rejected
+            if order_id in self.order_status:
+                status = self.order_status[order_id]['status']
+                if status in ['Cancelled', 'Rejected']:
+                    self.logger.error(f"Order {order_id} was {status}")
+                    return None
+            
+            # Wait for event with short timeout
+            if self.order_events[order_id].wait(0.01):
+                if order_id in self.filled_orders:
+                    return self.filled_orders[order_id]
+        
+        self.logger.warning(f"Timeout waiting for order {order_id} to fill")
+        return None
+
+    def get_order_status(self, order_id: int) -> dict:
+        """Get current status of an order"""
+        return self.order_status.get(order_id, {})
+
+    def get_executions(self, order_id: int) -> list:
+        """Get execution details for an order"""
+        return self.executions.get(order_id, [])
+
+    def get_filled_price(self, order_id: int) -> float:
+        """Get the average fill price for a filled order"""
+        if order_id in self.filled_orders:
+            return self.filled_orders[order_id]['avg_fill_price']
+        return None
 
 # Reuse existing Selenium helpers and login flow
 try:
@@ -500,8 +614,8 @@ class IBTradingManager:
     def get_current_price(self, symbol: str) -> float:
         """Atomically read the latest price from the global cache."""
         try:
-            with GLOBAL_PRICE_LOCK:
-                price = GLOBAL_PRICE_CACHE.get(symbol)
+            # with GLOBAL_PRICE_LOCK:
+            price = GLOBAL_PRICE_CACHE.get(symbol)
             if price is None or (isinstance(price, (int, float)) and price <= 0):
                 return None
             return float(price)
@@ -526,19 +640,25 @@ class IBTradingManager:
             if ib is None:
                 # Fallback: simple 1% TP/0.5% SL
                 if signal_type == 'buy':
+                    self.logger.info(f"Symbol: {symbol}, **Not using Fibo SL AND TP, Entry Price: {entry_price:.2f}, Take Profit: {entry_price * 1.01:.2f}, Stop Loss: {entry_price * 0.995:.2f}, reason: no connection")
                     return entry_price * 1.01, entry_price * 0.995
                 else:
+                    self.logger.info(f"Symbol: {symbol}, **Not using Fibo SL AND TP, Entry Price: {entry_price:.2f}, Take Profit: {entry_price * 0.99:.2f}, Stop Loss: {entry_price * 1.005:.2f}, reason: no connection")
                     return entry_price * 0.99, entry_price * 1.005
+                
             # Fetch recent 5m bars (1 day) including extended hours
             bars = ib.request_historical_5m(symbol, durationStr="1 D", barSizeSetting="5 mins", useRTH=0, timeout=6.0)
             if not bars:
                 # Fallback if no data
                 if signal_type == 'buy':
+                    self.logger.info(f"Symbol: {symbol}, **Not using Fibo SL AND TP, Entry Price: {entry_price:.2f}, Take Profit: {entry_price * 1.01:.2f}, Stop Loss: {entry_price * 0.995:.2f}, reason: no bars")
                     return entry_price * 1.01, entry_price * 0.995
                 else:
+                    self.logger.info(f"Symbol: {symbol}, **Not using Fibo SL AND TP, Entry Price: {entry_price:.2f}, Take Profit: {entry_price * 0.99:.2f}, Stop Loss: {entry_price * 1.005:.2f}, reason: no bars")
                     return entry_price * 0.99, entry_price * 1.005
-            # Use last 20 bars
-            last = bars[-20:] if len(bars) >= 20 else list(bars)
+            
+            # Use last 33 bars
+            last = bars[-33:] if len(bars) >= 33 else list(bars)
             highs = [float(b['high']) for b in last]
             lows = [float(b['low']) for b in last]
             recent_low = min(lows)
@@ -549,20 +669,50 @@ class IBTradingManager:
 
             if signal_type.lower() == 'buy':
                 risk_long = entry_price - recent_low
-                if risk_long == 0:
-                    risk_long = recent_high - recent_low
+                if risk_long <= 0:
+                    # Entry below recent_low (or equal) → use range-based fallback to avoid negative risk
+                    range_span = max(recent_high - recent_low, entry_price * 0.005)
+                    risk_long = range_span
                 fib_sl = 0.382 + (1 - confidence) * (0.618 - 0.382)
                 fib_tp = 1.382 + confidence * (1.618 - 1.382)
-                stop_loss = entry_price - risk_long * fib_sl
+                stop_loss = entry_price - risk_long * fib_sl * 2
                 take_profit = entry_price + risk_long * fib_tp
+                # Enforce directional sanity for BUY
+                if take_profit <= entry_price or stop_loss >= entry_price:
+                    try:
+                        self.logger.warning(
+                            f"BUY TP/SL adjusted: entry={entry_price:.2f}, tp={take_profit:.2f}, sl={stop_loss:.2f}, "
+                            f"recent_low={recent_low:.2f}, recent_high={recent_high:.2f}"
+                        )
+                    except Exception:
+                        pass
+                    stop_loss = min(recent_low, entry_price * 0.995)
+                    adjusted_risk = max(entry_price - stop_loss, max(recent_high - recent_low, entry_price * 0.005))
+                    take_profit = entry_price + adjusted_risk * fib_tp
+                self.logger.info(f"Symbol: {symbol}, **Fibo SL: {fib_sl:.2f}, Fibo TP: {fib_tp:.2f}, Stop Loss: {stop_loss:.2f}, Take Profit: {take_profit:.2f}")
             else:
                 risk_short = recent_high - entry_price
-                if risk_short == 0:
-                    risk_short = recent_high - recent_low
+                if risk_short <= 0:
+                    # Entry above recent_high (or equal) → use range-based fallback to avoid negative risk
+                    range_span = max(recent_high - recent_low, entry_price * 0.005)
+                    risk_short = range_span
                 fib_sl = 0.382 + (1 - confidence) * (0.618 - 0.382)
                 fib_tp = 1.382 + confidence * (1.618 - 1.382)
-                stop_loss = entry_price + risk_short * fib_sl
+                stop_loss = entry_price + risk_short * fib_sl * 2
                 take_profit = entry_price - risk_short * fib_tp
+                # Enforce directional sanity for SELL
+                if take_profit >= entry_price or stop_loss <= entry_price:
+                    try:
+                        self.logger.warning(
+                            f"SELL TP/SL adjusted: entry={entry_price:.2f}, tp={take_profit:.2f}, sl={stop_loss:.2f}, "
+                            f"recent_low={recent_low:.2f}, recent_high={recent_high:.2f}"
+                        )
+                    except Exception:
+                        pass
+                    stop_loss = max(recent_high, entry_price * 1.005)
+                    adjusted_risk = max(stop_loss - entry_price, max(recent_high - recent_low, entry_price * 0.005))
+                    take_profit = entry_price - adjusted_risk * fib_tp
+                self.logger.info(f"Symbol: {symbol}, **Fibo SL: {fib_sl:.2f}, Fibo TP: {fib_tp:.2f}, Stop Loss: {stop_loss:.2f}, Take Profit: {take_profit:.2f}")
 
             return float(take_profit), float(stop_loss)
         except Exception as e:
@@ -612,10 +762,10 @@ class IBTradingManager:
             
             if signal_type == 'buy':
                 action = 'BUY'
-                limit_price = entry_price * 1.01  # 1% above current price
+                limit_price = entry_price * 1.005  # 0.5% above current price
             else:
                 action = 'SELL'
-                limit_price = entry_price * 0.99  # 1% below current price
+                limit_price = entry_price * 0.995  # 0.5% below current price
             
             # Determine order type and market hours status
             is_market_hours = market_open <= current_us_time < market_close
@@ -646,9 +796,22 @@ class IBTradingManager:
                 self.logger.info(f"Placing limit order: {action} {shares} shares of {symbol} at ${limit_price:.2f}")
 
             # Place the order
-            trade = self.ib.place_order(contract, order)
-            # Calculate fibonacci levels using recent 5m history
-            take_profit, stop_loss = self.calculate_fibonacci_levels(symbol, entry_price, signal_type, confidence)
+            order_id = self.ib.place_order(contract, order)
+            
+            # Wait for order to fill and get actual filled price
+            self.logger.info(f"Waiting for order {order_id} to fill...")
+            fill_details = self.ib.wait_for_fill(order_id, timeout=30.0)
+            
+            if fill_details:
+                actual_entry_price = fill_details['avg_fill_price']
+                self.logger.info(f"✅ Order filled at actual price: ${actual_entry_price:.2f}")
+            else:
+                # Fallback to estimated price if no fill received
+                actual_entry_price = entry_price
+                self.logger.warning(f"⚠️ No fill confirmation received, using estimated price: ${actual_entry_price:.2f}")
+            
+            # Calculate fibonacci levels using actual filled price
+            take_profit, stop_loss = self.calculate_fibonacci_levels(symbol, actual_entry_price, signal_type, confidence)
             # Generate unique trade ID
             trade_id = self._generate_trade_id()
             
@@ -657,12 +820,12 @@ class IBTradingManager:
                 'trade_id': trade_id,
                 'symbol': symbol,
                 'signal_type': signal_type,
-                'entry_price': entry_price,
+                'entry_price': actual_entry_price,  # Use actual filled price
                 'shares': shares,
                 'take_profit': take_profit,
                 'stop_loss': stop_loss,
                 'entry_time': current_us_time,
-                'trade': trade,
+                'trade': order_id,
                 'order_type': order_type,
                 'is_market_hours': is_market_hours,
                 'signal_data': signal_data or {}
@@ -707,10 +870,10 @@ class IBTradingManager:
             # Determine order action (opposite of entry)
             if position_info['signal_type'] == 'buy':
                 action = 'SELL'
-                limit_price = current_price * 0.99
+                limit_price = current_price * 0.995
             else:
                 action = 'BUY'
-                limit_price = current_price * 1.01
+                limit_price = current_price * 1.005
             
             # Get market hours
             current_us_time = datetime.now(pytz.timezone('US/Eastern'))
@@ -743,16 +906,28 @@ class IBTradingManager:
                 order.eTradeOnly = ""
                 order.firmQuoteOnly = ""
             
-            trade = self.ib.place_order(contract, order)
+            order_id = self.ib.place_order(contract, order)
             
-            # Calculate P&L
-            if position_info['signal_type'] == 'buy':
-                pnl_pct = ((current_price - position_info['entry_price']) / position_info['entry_price']) * 100
+            # Wait for closing order to fill and get actual exit price
+            self.logger.info(f"Waiting for closing order {order_id} to fill...")
+            fill_details = self.ib.wait_for_fill(order_id, timeout=30.0)
+            
+            if fill_details:
+                actual_exit_price = fill_details['avg_fill_price']
+                self.logger.info(f"✅ Closing order filled at actual price: ${actual_exit_price:.2f}")
             else:
-                pnl_pct = ((position_info['entry_price'] - current_price) / position_info['entry_price']) * 100
+                # Fallback to current market price if no fill received
+                actual_exit_price = current_price
+                self.logger.warning(f"⚠️ No fill confirmation for closing order, using market price: ${actual_exit_price:.2f}")
+
+            # Calculate P&L using actual exit price
+            if position_info['signal_type'] == 'buy':
+                pnl_pct = ((actual_exit_price - position_info['entry_price']) / position_info['entry_price']) * 100
+            else:
+                pnl_pct = ((position_info['entry_price'] - actual_exit_price) / position_info['entry_price']) * 100
             
-            # Calculate dollar P&L
-            pnl_dollar = (current_price - position_info['entry_price']) * shares
+            # Calculate dollar P&L using actual exit price
+            pnl_dollar = (actual_exit_price - position_info['entry_price']) * shares
             if position_info['signal_type'] == 'sell':
                 pnl_dollar = -pnl_dollar
             
@@ -760,7 +935,7 @@ class IBTradingManager:
             duration_minutes = (current_us_time - position_info['entry_time']).total_seconds() / 60
             
             # Update position info for logging
-            position_info['exit_price'] = current_price
+            position_info['exit_price'] = actual_exit_price  # Use actual filled price
             position_info['exit_time'] = current_us_time
             position_info['pnl_pct'] = pnl_pct
             position_info['pnl_dollar'] = pnl_dollar
@@ -1226,16 +1401,16 @@ def refresh_all_tabs_parallel(driver, logger: logging.Logger, max_workers: int =
                 logger.error(f"Failed to open tab for: {tab['url']}")
                 return False
         
-        # Verify new tabs are loaded
-        for i, handle in enumerate(new_handles, 1):
-            driver.switch_to.window(handle)
-            time.sleep(0.05)
-            if driver.current_url and driver.current_url != "about:blank":
-                # logger.info(f"✓ New tab {i} loaded")
-                pass
-            else:
-                logger.error(f"✗ New tab {i} not loaded")
-                return False
+        # # Verify new tabs are loaded
+        # for i, handle in enumerate(new_handles, 1):
+        #     driver.switch_to.window(handle)
+        #     time.sleep(0.05)
+        #     if driver.current_url and driver.current_url != "about:blank":
+        #         # logger.info(f"✓ New tab {i} loaded")
+        #         pass
+        #     else:
+        #         logger.error(f"✗ New tab {i} not loaded")
+        #         return False
         
         # Close old tabs SEQUENTIALLY (this is the key fix)
         for i, tab in enumerate(old_tabs, 1):
@@ -1537,7 +1712,8 @@ def main():
             refresh_time = capture_time - timedelta(seconds=50)
             
             # Check for daily position closure at 07:59 US/Eastern
-            if trading_manager and us_time_now.hour == 16 and us_time_now.minute == 0:
+            if trading_manager and us_time_now.hour == 15 and us_time_now.minute == 55:
+                time.sleep(240)
                 trading_manager.close_all_positions_daily()
                 print("Daily position closure: Closing all positions")
                 time.sleep(130)  # Sleep for 2 minutes to avoid multiple closures
@@ -1579,7 +1755,7 @@ def main():
             if now >= capture_time:
                 us_time_now = datetime.now(pytz.timezone('US/Eastern'))
                 # if False: # fk
-                if not ((us_time_now.hour >= 4 and us_time_now.hour < 16) or (us_time_now.hour == 16 and us_time_now.minute < 1)):
+                if not (((us_time_now.hour > 9 and us_time_now.hour < 16) or (us_time_now.hour == 9 and us_time_now.minute >= 30)) or (us_time_now.hour == 16 and us_time_now.minute < 1)):
                     # print("Not in market hours. Skipping capture...")
                     # time.sleep(30)
                     continue

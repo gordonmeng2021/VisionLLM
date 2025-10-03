@@ -32,7 +32,7 @@ def get_sl_tp(symbol: str, signal_type: str):
     """
     app = IBApp()
     # connect to TWS / Gateway
-    app.connect("127.0.0.1", 4002, clientId=120)
+    app.connect("127.0.0.1", 4002, clientId=110)
 
     # Start the socket in a thread
     api_thread = threading.Thread(target=run_loop, args=(app,), daemon=True)
@@ -121,7 +121,7 @@ def main():
     # Example usage
     # _sl, _tp = fetch_historical_5m("AAPL", "buy")
     # print("BUY -> SL:", _sl, "TP:", _tp)
-    _sl, _tp = get_sl_tp("AAPL", "sell")
+    _sl, _tp = get_sl_tp("TSLA", "sell")
     print("SELL -> SL:", _sl, "TP:", _tp)
 
 if __name__ == "__main__":

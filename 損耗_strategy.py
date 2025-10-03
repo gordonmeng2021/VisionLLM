@@ -7,6 +7,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
+# Global default holding period in months (1 = same month end). Change as needed.
+HOLD_MONTHS_DEFAULT: int = 1
+
+
 @dataclass
 class Trade:
     symbol: str
@@ -145,7 +149,7 @@ def main():
     parser = argparse.ArgumentParser(description="Monthly short-and-cover strategy for SOXL & SOXS")
     parser.add_argument('--symbols', nargs='*', default=['SOXL', 'SOXS'], help='Symbols to include')
     parser.add_argument('--data-dir', default='data', help='Directory containing {SYMBOL}.csv files')
-    parser.add_argument('--hold-months', type=int, default=1, help='Holding period in months (1 = same month end)')
+    parser.add_argument('--hold-months', type=int, default=HOLD_MONTHS_DEFAULT, help='Holding period in months (1 = same month end)')
     parser.add_argument('--cash-per-leg', type=float, default=10_000.0, help='Capital allocated per short leg')
     parser.add_argument('--start-date', type=str, default=None, help='Start date (YYYY-MM-DD)')
     parser.add_argument('--end-date', type=str, default=None, help='End date (YYYY-MM-DD)')

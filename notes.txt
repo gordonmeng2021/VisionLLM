@@ -71,7 +71,19 @@ Fib_TP_short = 1.382 + confidence_bear * (1.618 - 1.382)
 SL_short = current_price + risk_short * Fib_SL_short
 TP_short = current_price - risk_short * Fib_TP_short
 get the client_id from a global list, atomic action to get and pop a element from it. 
-
-
-
 ### Maybe 盤前ge單9點半之前就要close like 4點
+open then refresh??
+**Check whenther it has fibo sl and tp in log - done, yes
+
+
+bigger sl range fibo now, need bigger sl and tp the same time?
+盤前 then 2129 ends the trade..
+After Market open is correct.
+3:55 close all position - Done
+
+
+****If 盤中賺錢 then 俾錢買data for 盤前
+**** If stop loss > 2%, then must use less shares.
+
+
+### check the daily close position logic.
